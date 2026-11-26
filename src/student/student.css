@@ -294,3 +294,4 @@
 .pt-switch .pt-rules { border: 1px solid #ffffff40; color: #fff; border-radius: 999px; padding: 3px 12px; font-weight: 800; margin-left: 10px; }
 .pt-switch .pt-rules[aria-pressed="true"] { background: #8b5cf6; border-color: #8b5cf6; }
 @media (max-width: 980px) { .ht-flow { grid-template-columns: 1fr; } .ht-flow li + li::before { content: "↓"; left: 50%; top: -11px; } }
+.ht-rule-decided { border-color: #9fe7dc; background: #effcf9; }
