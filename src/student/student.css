@@ -325,3 +325,20 @@
 .ht-pin-hugo.side { right: calc(100% + 4px); left: auto; bottom: 18px; width: 92px; }
 .ht-pin-hugo.above { bottom: 92px; width: 80px; }
 @keyframes ht-pulse { 50% { box-shadow: 0 0 0 4px #291454, 0 0 0 22px #ffd16633, 0 6px 16px #29145477; } }
+
+/* Opaque panels, traced routes and the walking Hugo (Kennady, November 26) */
+.ht-A .htA, .ht-C .htC { background: #f8f5fff2; backdrop-filter: blur(10px); border: 2px solid #fff; border-radius: 34px; padding: 18px; box-shadow: 0 16px 50px #2914543d; }
+.ht-C .htC { max-width: 1280px; margin: 12px auto 0; }
+.ht-C .htC-pano { margin-top: 0; }
+.ht-route-glow { stroke: #291454; stroke-opacity: .5; stroke-width: 12px; }
+.ht-route-ahead { stroke: #fff; stroke-width: 5px; stroke-dasharray: 1 11; }
+.ht-route-done { stroke: #f5a524; stroke-width: 7px; }
+.ht-pin.cur .ht-pin-label { background: #291454; color: #fff; }
+.ht-walker { position: absolute; z-index: 3; transform: translate(-50%, -96%); display: grid; justify-items: center; gap: 2px; pointer-events: none; }
+.ht-walker img { width: 88px; height: auto; filter: drop-shadow(0 6px 8px #29145466); transition: transform .2s; }
+.ht-walker-tag { font-size: 12.5px; font-weight: 900; white-space: nowrap; background: #f5a524; color: #2a1600; border-radius: 999px; padding: 2px 10px; box-shadow: 0 3px 8px #29145455; border: 2px solid #fff; }
+.ht-replay { position: absolute; z-index: 4; left: 14px; bottom: 14px; background: #291454; color: #fff; border-radius: 999px; padding: 8px 14px; font-weight: 900; font-size: 14px; box-shadow: 0 4px 12px #29145466; }
+.ht-replay:hover { background: #3d1f78; }
+.ht-walker { grid-template-columns: auto; }
+.ht-walker img { width: 76px; }
+.ht-walker-tag { position: absolute; left: calc(100% + 2px); top: 38%; }

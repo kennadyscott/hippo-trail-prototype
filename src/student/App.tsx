@@ -2,7 +2,7 @@
 // so a student knows they are building skills: a gold "power-up climb" up one mountain (levels are camps), Hugo as coach, badges,
 // time spent, and what the climb unlocks in Know & Grow. Screens: Home, Hippo Check, the climb, lessons, step back, level up,
 // quick review, Math tools, and the Know & Grow adventures. Progress is kept in this browser only.
-import {useEffect, useMemo, useState} from 'react'
+import {useEffect, useMemo, useRef, useState} from 'react'
 import {ToolView} from '@/components/khi-tools'
 import {blankScene, isBuiltTool, shownScene, type Item, type Scene, type ToolCode} from '@/lib/khi-steps'
 import type {KhiSkill} from '@/lib/khi-contract'
@@ -180,9 +180,14 @@ function ToolsArt() { return <svg width="130" height="90" viewBox="0 0 130 90" a
 
 /* ---------- The climb, three layouts to compare (A: the mountain map, B: at camp, C: the ridge) ---------- */
 export type Layout = 'A' | 'B' | 'C' | 'D'
-// Where each tent sits in the painted art, as % of the picture (level 1 first).
-const MOUNT_PINS: [number, number][] = [[31, 75], [70, 60.5], [31.6, 50.5], [67.8, 42], [33, 32], [65.5, 26], [39, 18.5]]
-const RIDGE_PINS: [number, number][] = [[9.5, 72], [23, 58], [38.3, 48], [52, 40], [66.8, 33], [78.3, 25.5], [86, 17]]
+// The painted trails, traced by hand from the art (% of the picture, bottom to top), and the points where the trail passes each tent.
+type Route = {pts: [number, number][]; camps: number[]}
+const MOUNT_ROUTE: Route = {
+  pts: [[57, 99.5], [53, 95], [46, 92.8], [36, 90.5], [40, 88.5], [47, 86.5], [55, 84], [61.5, 81.5], [59, 79], [53, 77.8], [47, 77], [41, 75], [36, 72], [35, 69.5], [40, 67], [48, 65.2], [55, 64], [59, 63], [56, 60.5], [52, 58], [49, 56.5], [46, 54.5], [44, 52.5], [46, 50.5], [50, 48.8], [55, 47], [59, 45], [60, 43.5], [57, 40.5], [53, 39], [48, 37], [44, 35.5], [43, 35], [46, 32.5], [51, 31], [56, 29.5], [53, 27.5], [49, 25.8], [45, 24], [47, 19], [50, 13], [51, 9.5]],
+  camps: [10, 17, 22, 27, 32, 35, 38]}
+const RIDGE_ROUTE: Route = {
+  pts: [[2, 92.2], [7.5, 87.5], [13, 82.3], [16, 77], [19.5, 71.2], [23.5, 68.3], [28, 65.3], [32.5, 60.7], [36, 58.3], [41, 56], [45, 53.7], [48, 51.3], [51, 49.6], [55, 48.4], [60, 46.7], [65, 42], [71, 40.3], [75, 37.3], [81, 33.3], [87, 27.4], [89.5, 24.5], [91.5, 22.2], [94, 7]],
+  camps: [2, 5, 9, 13, 15, 18, 20]}
 
 type ClimbProps = {name: string; trail: TrailCode; P: Progress; current: KhiSkill | null; levelSkills: KhiSkill[]; layout: Layout; onBack: () => void; onPlay: (code: string, review?: boolean) => void; onLevelUp: () => void}
 function useClimb({trail, P, current, levelSkills}: ClimbProps) {
@@ -214,31 +219,54 @@ function SkillList({p, c, compact}: {p: ClimbProps; c: ReturnType<typeof useClim
     })}
   </ul>
 }
-function Pins({p, c, pins, hugoAt}: {p: ClimbProps; c: ReturnType<typeof useClimb>; pins: [number, number][]; hugoAt: 'above' | 'side'}) {
-  const pts = c.levels.map((l, i) => { const k = c.levels.length < 2 ? pins.length - 1 : Math.round(i * (pins.length - 1) / (c.levels.length - 1)); return {l, x: pins[k][0], y: pins[k][1]} })
-  const cur = Math.max(0, pts.findIndex(q => q.l === p.P.level))
-  // A smooth curve through the camps (Catmull-Rom as cubic Béziers).
-  const line = (from: number, to: number) => {
-    const q = pts.map(t => [t.x, t.y - 2.5]); if (to <= from) return ''
-    let d = `M ${q[from][0]} ${q[from][1]}`
-    for (let i = from; i < to; i++) { const p0 = q[Math.max(0, i - 1)], p1 = q[i], p2 = q[i + 1], p3 = q[Math.min(q.length - 1, i + 2)]
-      d += ` C ${p1[0] + (p2[0] - p0[0]) / 6} ${p1[1] + (p2[1] - p0[1]) / 6}, ${p2[0] - (p3[0] - p1[0]) / 6} ${p2[1] - (p3[1] - p1[1]) / 6}, ${p2[0]} ${p2[1]}` }
-    return d
+// Arc-length helpers along a route (in picture %, corrected for the picture's shape so distances are fair).
+function routeMath(r: Route, aspect: number) {
+  const P = r.pts.map(([x, y]) => [x, y * aspect] as [number, number])
+  const cum = [0]; for (let i = 1; i < P.length; i++) cum.push(cum[i - 1] + Math.hypot(P[i][0] - P[i - 1][0], P[i][1] - P[i - 1][1]))
+  const total = cum[cum.length - 1]
+  const at = (t: number): [number, number] => { const d = Math.max(0, Math.min(1, t)) * total; let i = 1; while (i < cum.length - 1 && cum[i] < d) i++
+    const f = (d - cum[i - 1]) / ((cum[i] - cum[i - 1]) || 1); return [r.pts[i - 1][0] + (r.pts[i][0] - r.pts[i - 1][0]) * f, r.pts[i - 1][1] + (r.pts[i][1] - r.pts[i - 1][1]) * f] }
+  const tOf = (idx: number) => cum[idx] / total
+  const path = (t0: number, t1: number) => { const n = Math.max(2, Math.round((t1 - t0) * 160)); let d = ''; for (let k = 0; k <= n; k++) { const [x, y] = at(t0 + (t1 - t0) * k / n); d += `${k ? ' L' : 'M'} ${x} ${y}` } return t1 > t0 ? d : '' }
+  return {at, tOf, path}
+}
+function Pins({p, c, route, aspect}: {p: ClimbProps; c: ReturnType<typeof useClimb>; route: Route; aspect: number}) {
+  const R = useMemo(() => routeMath(route, aspect), [route, aspect])
+  const n = c.levels.length
+  const campT = c.levels.map((_, i) => R.tOf(route.camps[n < 2 ? route.camps.length - 1 : Math.round(i * (route.camps.length - 1) / (n - 1))]))
+  const ci = Math.max(0, c.levels.indexOf(p.P.level)), endT = 1
+  const frac = p.levelSkills.length ? c.done / p.levelSkills.length : 0
+  const target = campT[ci] + ((ci + 1 < n ? campT[ci + 1] : endT) - campT[ci]) * frac
+  const key = `hippo-trail-hugo-${p.trail}`
+  const [t, setT] = useState(() => { try { const v = Number(sessionStorage.getItem(key)); return v > 0 ? v : campT[0] } catch { return campT[0] } })
+  const [flip, setFlip] = useState(false)
+  const raf = useRef(0)
+  const walk = (from: number, to: number, ms: number) => {
+    cancelAnimationFrame(raf.current)
+    if (Math.abs(to - from) < 1e-4 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setT(to); return }
+    const start = performance.now()
+    const step = (now: number) => { const k = Math.min(1, (now - start) / ms), e = k < .5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2, v = from + (to - from) * e
+      const [x1] = R.at(v), [x0] = R.at(v - 0.004); setFlip(x1 < x0); setT(v); if (k < 1) raf.current = requestAnimationFrame(step) }
+    raf.current = requestAnimationFrame(step)
   }
+  useEffect(() => { walk(t, target, 1600 + Math.abs(target - t) * 4000); try { sessionStorage.setItem(key, String(target)) } catch { /* ignore */ } return () => cancelAnimationFrame(raf.current) }, [target]) // eslint-disable-line
+  const [hx, hy] = R.at(t)
   return <>
     <svg className="ht-route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-      <path d={line(0, pts.length - 1)} className="ht-route-glow"/>
-      <path d={line(cur, pts.length - 1)} className="ht-route-ahead"/>
-      {cur > 0 && <path d={line(0, cur)} className="ht-route-done"/>}
+      <path d={R.path(0, endT)} className="ht-route-glow"/>
+      <path d={R.path(t, endT)} className="ht-route-ahead"/>
+      <path d={R.path(0, t)} className="ht-route-done"/>
     </svg>
-    {pts.map(({l, x, y}) => {
-      const isCur = l === p.P.level, done = l < p.P.level
+    {c.levels.map((l, i) => { const [x, y] = R.at(campT[i]), isCur = l === p.P.level, done = l < p.P.level
       return <div key={l} className={`ht-pin${isCur ? ' cur' : done ? ' done' : ''}`} style={{left: `${x}%`, top: `${y}%`}}>
-        {isCur && <img className={`ht-pin-hugo ${hugoAt}`} src={hugoHiker} alt=""/>}
         <span className="ht-pin-dot">{done ? '✓' : l}</span>
-        <span className="ht-pin-label">{l === c.top ? `Camp ${l} · grade level` : `Camp ${l}`}{isCur ? ' · you are here' : ''}</span>
-      </div>
-    })}
+        <span className="ht-pin-label">{l === c.top ? `Camp ${l} · grade level` : `Camp ${l}`}</span>
+      </div> })}
+    <div className="ht-walker" style={{left: `${hx}%`, top: `${hy}%`}}>
+      <span className="ht-walker-tag">{c.done} of {p.levelSkills.length} skills · Camp {p.P.level}</span>
+      <img src={hugoHiker} alt={`Hugo is on the way to ${ci + 1 < n ? `Camp ${c.levels[ci + 1]}` : 'the grade-level summit'}`} style={{transform: flip ? 'scaleX(-1)' : undefined}}/>
+    </div>
+    <button type="button" className="ht-replay" onClick={() => { setT(0); walk(0, target, 4200) }}>▶ Watch Hugo climb</button>
   </>
 }
 function Pack({c, p, inline}: {c: ReturnType<typeof useClimb>; p: ClimbProps; inline?: boolean}) {
@@ -289,7 +317,8 @@ function Climb(p: ClimbProps) {
 
   if (p.layout === 'C') return <main className="gw-world gw-detail ht-climb ht-C">
     <ClimbHead p={p} c={c} chip/>
-    <section className="htC-pano"><img src={ridgeArt} alt={`${T.name}: ${c.levels.length} camps from the meadow to the summit`}/><Pins p={p} c={c} pins={RIDGE_PINS} hugoAt="above"/></section>
+    <div className="htC">
+    <section className="htC-pano"><img src={ridgeArt} alt={`${T.name}: ${c.levels.length} camps from the meadow to the summit`}/><Pins p={p} c={c} route={RIDGE_ROUTE} aspect={943 / 2200}/></section>
     <section className="htC-today">
       <span className="ht-eyebrow ht-eyebrow-gold">Today’s climb · Camp {P.level}: {T.levelNames[P.level]}</span>
       <h2>{c.next.title}</h2>
@@ -298,13 +327,14 @@ function Climb(p: ClimbProps) {
       <details className="htC-more"><summary>All {p.levelSkills.length} skills at Camp {P.level} · {c.done} done</summary><SkillList p={p} c={c}/></details>
     </section>
     <Pack c={c} p={p}/>
+    </div>
   </main>
 
   // A: the mountain is the map
   return <main className="gw-world gw-detail ht-climb ht-A">
     <ClimbHead p={p} c={c}/>
     <div className="htA">
-      <section className="htA-map"><img src={mountainArt} alt={`${T.name}: ${c.levels.length} camps up the mountain`}/><Pins p={p} c={c} pins={MOUNT_PINS} hugoAt="side"/></section>
+      <section className="htA-map"><img src={mountainArt} alt={`${T.name}: ${c.levels.length} camps up the mountain`}/><Pins p={p} c={c} route={MOUNT_ROUTE} aspect={1506 / 1000}/></section>
       <aside className="htA-card">
         <span className="ht-eyebrow ht-eyebrow-gold">Camp {P.level} of {c.levels.length}</span>
         <h2>{T.levelNames[P.level]}</h2>
