@@ -98,7 +98,6 @@ export function App() {
     <nav className="pt-switch" aria-label="Prototype view"><b>Prototype</b><span>View as</span><a href="./" aria-current="page">Student</a><a href="./teacher.html">Teacher</a><a href="./cms.html">CMS</a><small>Not part of KnowHippo</small></nav>
     <div className="student-world ht-has-bar">
       <Header onHome={() => setView({name: 'home'})}/>
-      <Subjects/>
       {page}
     </div>
     <ScreenBar active={view.name} onJump={jump} name={name} onName={n => { setName(n); saveName(n) }} trail={trail} level={P.level}
@@ -125,6 +124,7 @@ function Home({name, trail, P, current, levelSkills, onGo}: {name: string; trail
   const T = TRAILS[trail], done = levelSkills.filter(s => P.done[s.code] != null).length, left = levelSkills.length - done
   const passed = skillsMastered(trail, P).length
   return <main className="gw-world ht-home">
+    <div className="ht-home-head"><h1>My Learning</h1><Subjects/></div>
     <div className="gw-guide ht-guide"><div className="gw-hippo-sprite gw-pose-point"/>
       <p>{left > 0 ? <>Ready to climb? <strong>You’re {left} skill{left > 1 ? 's' : ''} from Level {P.level + 1}!</strong></> : <>You reached the top of Level {P.level}. <strong>Time to level up!</strong></>}</p></div>
     <div className="ht-cards">
@@ -178,6 +178,7 @@ function Climb({name, trail, P, current, levelSkills, onBack, onPlay, onLevelUp}
         <button type="button" className="gw-back" onClick={onBack}>‹ My Learning</button>
         <span className="kg-plan-label ht-gold-text">Your power-up climb · {name}</span>
         <h1>{T.name}</h1>
+        <Subjects/>
       </div>
       <div className="gw-journey ht-level-chip"><strong>Level {P.level} of {levels.length}</strong>
         <div>{levels.map(l => <span key={l} className={l < P.level ? 'done' : l === P.level ? 'current' : undefined}>{l < P.level ? '✓' : l}</span>)}</div></div>
@@ -318,7 +319,7 @@ function Adventures({onBack}: {onBack: () => void}) {
     <button type="button" className="gw-back ht-back-float" onClick={onBack}>‹ My Learning</button>
     <header className="gw-intro">
       <div className="kg-mark"><span className="kg-orbit"><img src={hugoHead} alt=""/></span><span><small>THE</small><strong>Know <i>&amp;</i> <b>Grow</b> Cycle</strong></span></div>
-      <span>MATH · ROUND 1</span><h1>Your next adventures await<span>.</span></h1><p>Your Know &amp; Grow Plan. One discovery at a time.</p>
+      <span>MATH · ROUND 1</span><h1>Your next adventures await<span>.</span></h1><p>Your Know &amp; Grow Plan. One discovery at a time.</p><Subjects/>
     </header>
     <div className="gw-plan-grid">{KNOW_GROW.map((t, i) => <div key={t} className="gw-plan-island ht-after">
       <img src={ISLANDS[i]} alt=""/><span className="gw-plan-card"><span className="gw-plan-number">{i + 1}</span><span><strong>{t}</strong><small>The core Know &amp; Grow plan, shown for comparison</small></span></span></div>)}</div>
@@ -388,6 +389,7 @@ function Tools({onBack}: {onBack: () => void}) {
       <button type="button" className="gw-back" onClick={onBack}>‹ My Learning</button>
       <span className="kg-plan-label">Free for every student</span>
       <h1>Math tools</h1>
+      <Subjects/>
     </div></div>
     <div className="ht-tools">
       {TOOLS.map(x => <button key={x.code} type="button" className="ht-tool" aria-pressed={pick === x.code} onClick={() => setPick(x.code)}><b>{x.name}</b><span>{x.about}</span></button>)}

@@ -10,22 +10,19 @@ import subjScience from './art/subject-science.png'
 import hugoHead from './art/hugo-head.png'
 import {nameWord} from '../shared/name'
 
+/** One slim bar (Option B, November 26, 2026): logo, the three main tabs, ClassCade as an icon and the avatar. Subjects sit with the page title. */
 export function Header({onHome}: {onHome: () => void}) {
-  return <header className="sw-header">
-    <a className="sw-brand" href="./" onClick={e => { e.preventDefault(); onHome() }}><img src={logo} alt="Know Hippo"/></a>
-    <nav className="sw-main-nav">
-      <button className="active" type="button" onClick={onHome}><img className="sw-icon" src={navLearning} alt=""/>My Learning</button>
-      <button type="button" disabled title="Not part of this prototype"><img className="sw-icon" src={navProgress} alt=""/>My Progress</button>
-      <button type="button" disabled title="Not part of this prototype"><img className="sw-icon" src={navRewards} alt=""/>Rewards</button>
+  return <header className="ht-top">
+    <a className="ht-top-brand" href="./" onClick={e => { e.preventDefault(); onHome() }}><img src={logo} alt="Know Hippo"/></a>
+    <nav className="ht-top-nav" aria-label="Main">
+      <button className="on" type="button" aria-current="page" onClick={onHome}><img src={navLearning} alt=""/>My Learning</button>
+      <button type="button" disabled title="Not part of this prototype"><img src={navProgress} alt=""/>My Progress</button>
+      <button type="button" disabled title="Not part of this prototype"><img src={navRewards} alt=""/>Rewards</button>
     </nav>
-    <span className="sw-classcade"><img className="sw-classcade-logo" src={classcade} alt="ClassCade"/><span>↗</span></span>
-    <details className="sw-profile">
-      <summary>
-        <span><Avatar/></span>
-        <span><strong>Henry</strong><small>Grade 3 · Texas</small></span>
-        <span className="sw-profile-chevron">⌄</span>
-      </summary>
-      <div className="sw-profile-menu"><strong>Henry</strong><p>Example student for this prototype.</p></div>
+    <span className="ht-top-cc" title="ClassCade"><img src={classcade} alt="ClassCade"/></span>
+    <details className="ht-top-me">
+      <summary aria-label="Henry, Grade 3, Texas"><Avatar/></summary>
+      <div><strong>Henry</strong><small>Grade 3 · Texas</small><p>Example student for this prototype.</p></div>
     </details>
   </header>
 }
@@ -37,12 +34,13 @@ function Avatar() {
   </svg>
 }
 
+/** Subject chips that sit with the page title. */
 export function Subjects() {
-  return <nav className="sw-subjects">
-    <button className="active" type="button"><img className="sw-icon" src={subjMath} alt=""/>Math</button>
-    <button type="button" disabled title="Not part of this prototype"><img className="sw-icon" src={subjReading} alt=""/>Reading</button>
-    <button type="button" disabled><img className="sw-icon" src={subjScience} alt=""/>Science<span>Soon</span></button>
-  </nav>
+  return <div className="ht-subjects" role="group" aria-label="Subject">
+    <button className="on" type="button" aria-pressed="true"><img src={subjMath} alt=""/>Math</button>
+    <button type="button" disabled title="Not part of this prototype"><img src={subjReading} alt=""/>Reading</button>
+    <button type="button" disabled><img src={subjScience} alt=""/>Science<small>soon</small></button>
+  </div>
 }
 
 /** "THE Hippo Trail" mark (or the picked name), built like the live "THE Know & Grow Cycle" mark. */
