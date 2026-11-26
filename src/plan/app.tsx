@@ -7,6 +7,7 @@ import {validateLesson} from '@/lib/khi-steps'
 import {khiStatusLabel,type KhiSkill,type KhiStatus,type KhiNote} from '@/lib/khi-contract'
 import {CC,TRAILS,baseMap,byCode,byId,file,loadSaved,stepsFor as savedStepsFor,writeSaved,type Saved} from '../shared/trail'
 import './proto.css'
+import {loadName} from '../shared/name'
 import {knowHowStatus} from '@/lib/know-how-review'
 import {AI_LOG,AI_PER_SKILL,BUILT,CC_DECIMALS_DAYS,DEPTHS,PICTURE_DAYS_PER_TOOL,TOOL_SIZE,WORST_CASE_MULT,aiPerSkill,toolDays,usd,type Depth} from './costs'
 
@@ -56,7 +57,7 @@ function App(){
  return <>
   <header className="top">
    <div className="topIn">
-    <div className="brand"><span className="mark" aria-hidden="true">▲</span><div><b>Hippo Trail</b><small>KnowHippo math intervention · prototype</small></div></div>
+    <div className="brand"><span className="mark" aria-hidden="true">▲</span><div><b>{loadName()}</b><small>KnowHippo math intervention · prototype</small></div></div>
     <nav className="tabs" aria-label="Prototype sections"><a className="tabLink" href="./"><b>Student view</b><small>Play it in KnowHippo</small></a>{TABS.map(([k,l,d])=><button key={k} type="button" aria-current={tab===k?'page':undefined} onClick={()=>go(k)}><b>{l}</b><small>{d}</small></button>)}</nav>
    </div>
   </header>

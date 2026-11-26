@@ -8,6 +8,7 @@ import subjMath from './art/subject-math.png'
 import subjReading from './art/subject-reading.png'
 import subjScience from './art/subject-science.png'
 import hugoHead from './art/hugo-head.png'
+import {nameWord} from '../shared/name'
 
 export function Header({onHome}: {onHome: () => void}) {
   return <header className="sw-header">
@@ -44,10 +45,10 @@ export function Subjects() {
   </nav>
 }
 
-/** "THE Hippo Trail" mark, built like the live "THE Know & Grow Cycle" mark. */
-export function TrailMark() {
+/** "THE Hippo Trail" mark (or the picked name), built like the live "THE Know & Grow Cycle" mark. */
+export function TrailMark({name}: {name: string}) {
   return <div className="kg-mark">
     <span className="kg-orbit"><img src={hugoHead} alt=""/></span>
-    <span><small>THE</small><strong>Hippo <b>Trail</b></strong></span>
+    <span><small>THE</small><strong>Hippo <b>{nameWord(name)}</b></strong></span>
   </div>
 }

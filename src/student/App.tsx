@@ -6,6 +6,7 @@ import {blankScene, isBuiltTool, type Scene, type ToolCode} from '@/lib/khi-step
 import type {KhiSkill} from '@/lib/khi-contract'
 import {TRAILS, byCode, levelsOf, playable, skillsOf, waitingOn, type TrailCode} from '../shared/trail'
 import {Header, Subjects, TrailMark} from './Chrome'
+import {NAMES, loadName, saveName, type TrailName} from '../shared/name'
 import {Lesson, STEPS, type Outcome} from './Lesson'
 import mathIsland from './art/math-island.webp'
 import portalIsland from './art/portal-island.webp'
@@ -33,6 +34,7 @@ const load = (): {trail: TrailCode; prog: Record<TrailCode, Progress>} => {
 
 export function App() {
   const init = useMemo(load, [])
+  const [name, setName] = useState<TrailName>(loadName)
   const [trail, setTrail] = useState<TrailCode>(init.trail), [prog, setProg] = useState(init.prog), [view, setView] = useState<View>({name: 'trail'})
   useEffect(() => { try { localStorage.setItem(KEY, JSON.stringify({trail, prog})) } catch { /* ignore */ } }, [trail, prog])
   useEffect(() => { window.scrollTo(0, 0) }, [view.name, (view as {code?: string}).code])
@@ -56,19 +58,19 @@ export function App() {
   }
 
   let page: React.ReactNode
-  if (view.name === 'adventures') page = <Adventures prog={prog} onTrail={t => { setTrail(t); setView({name: 'trail'}) }} onTools={() => setView({name: 'tools'})}/>
+  if (view.name === 'adventures') page = <Adventures name={name} prog={prog} onTrail={t => { setTrail(t); setView({name: 'trail'}) }} onTools={() => setView({name: 'tools'})}/>
   else if (view.name === 'tools') page = <Tools onBack={() => setView({name: 'adventures'})}/>
   else if (view.name === 'lesson') {
     const s = byCode.get(view.code)!
-    page = <LessonPage key={view.code + view.review} skill={s} trailName={T.name} level={P.level} review={view.review} step={view.step} setStep={n => setView({...view, step: n})}
+    page = <LessonPage key={view.code + view.review} name={name} skill={s} trailName={T.name} level={P.level} review={view.review} step={view.step} setStep={n => setView({...view, step: n})}
       onBack={() => setView({name: 'trail'})} onDone={o => finishLesson(view.code, view.review, o)}/>
   } else if (view.name === 'stepback') page = <StepBack skill={byCode.get(view.code)!} pre={byCode.get(P.review?.code ?? '')} reason={view.reason} level={P.level} onGo={() => setView({name: 'trail'})}/>
   else if (view.name === 'levelup') page = <LevelUp trail={trail} level={view.level} onGo={() => { update(p => ({...p, level: Math.min(p.level + 1, Math.max(...levelsOf(trail))), review: null})); setView({name: 'trail'}) }}/>
-  else page = <Trail trail={trail} P={P} current={current} levelSkills={levelSkills} onBack={() => setView({name: 'adventures'})}
+  else page = <Trail name={name} trail={trail} P={P} current={current} levelSkills={levelSkills} onBack={() => setView({name: 'adventures'})}
     onPlay={(code, review) => setView({name: 'lesson', code, step: 0, review})} onLevelUp={() => setView({name: 'levelup', level: P.level})}/>
 
   return <>
-    <DemoBar trail={trail} level={P.level} onTrail={t => { setTrail(t); setView({name: 'trail'}) }}
+    <DemoBar name={name} onName={n => { setName(n); saveName(n) }} trail={trail} level={P.level} onTrail={t => { setTrail(t); setView({name: 'trail'}) }}
       onLevel={l => { update(p => ({...p, level: l, review: null})); setView({name: 'trail'}) }}
       onReset={() => { setProg(structuredClone(START)); setTrail('CC'); setView({name: 'trail'}) }}/>
     <div className="student-world">
@@ -81,7 +83,7 @@ export function App() {
 
 /* ---------- My adventures: the live overview, with the Hippo Trail first ---------- */
 const KNOW_GROW = ['Represent Data', 'Multiplicative Comparison', 'Represent Numbers', 'Rounding Numbers']
-function Adventures({prog, onTrail, onTools}: {prog: Record<TrailCode, Progress>; onTrail: (t: TrailCode) => void; onTools: () => void}) {
+function Adventures({name, prog, onTrail, onTools}: {name: string; prog: Record<TrailCode, Progress>; onTrail: (t: TrailCode) => void; onTools: () => void}) {
   const card = (t: TrailCode, i: number) => {
     const P = prog[t], levels = levelsOf(t)
     return <button key={t} type="button" className="gw-plan-island" onClick={() => onTrail(t)}>
@@ -95,8 +97,8 @@ function Adventures({prog, onTrail, onTools}: {prog: Record<TrailCode, Progress>
   }
   return <main className="gw-world gw-plans">
     <header className="gw-intro">
-      <TrailMark/>
-      <span>MATH · HIPPO TRAIL</span>
+      <TrailMark name={name}/>
+      <span>MATH · {name.toUpperCase()}</span>
       <h1>Your climb is waiting<span>.</span></h1>
       <p>Finish your trail, then your next adventures open.</p>
     </header>
@@ -117,7 +119,7 @@ function Adventures({prog, onTrail, onTools}: {prog: Record<TrailCode, Progress>
 
 /* ---------- The trail page, built like the live Know & Grow plan page ---------- */
 type Stop = {key: string; type: string; stage: string; title: string; status: string; state: 'done' | 'current' | 'later'; skill?: KhiSkill; score?: string; review?: boolean; locked?: string}
-function Trail({trail, P, current, levelSkills, onBack, onPlay, onLevelUp}: {trail: TrailCode; P: Progress; current: KhiSkill | null; levelSkills: KhiSkill[]; onBack: () => void; onPlay: (code: string, review: boolean) => void; onLevelUp: () => void}) {
+function Trail({name, trail, P, current, levelSkills, onBack, onPlay, onLevelUp}: {name: string; trail: TrailCode; P: Progress; current: KhiSkill | null; levelSkills: KhiSkill[]; onBack: () => void; onPlay: (code: string, review: boolean) => void; onLevelUp: () => void}) {
   const T = TRAILS[trail], levels = levelsOf(trail), last = Math.max(...levels)
   const stops: Stop[] = []
   for (const s of levelSkills) {
@@ -151,7 +153,7 @@ function Trail({trail, P, current, levelSkills, onBack, onPlay, onLevelUp}: {tra
     <div className="gw-detail-heading">
       <div>
         <button type="button" className="gw-back" onClick={onBack}>‹ My adventures</button>
-        <span className="kg-plan-label">Your Hippo Trail · Level {P.level}</span>
+        <span className="kg-plan-label">Your {name} · Level {P.level}</span>
         <h1>{T.name}</h1>
         <details className="gw-info"><summary>i</summary><p>Level {P.level} of {levels.length}: {T.levelNames[P.level]}. Every trail starts at Level 1 and you climb one level at a time.</p></details>
       </div>
@@ -159,9 +161,9 @@ function Trail({trail, P, current, levelSkills, onBack, onPlay, onLevelUp}: {tra
         <div>{stops.map((s, k) => <span key={s.key} className={s.state === 'done' ? 'done' : s.state === 'current' ? 'current' : undefined}>{s.state === 'done' ? '✓' : k + 1}</span>)}</div></div>
     </div>
     <section className="kg-journey">
-      <TrailMark/>
+      <TrailMark name={name}/>
       <ol>{STEPS.map((n, k) => <li key={n}><span>{k + 1}</span>{n}</li>)}</ol>
-      <details><summary>How your trail works</summary><p>Each stop is one skill in five steps. Watch Show Me, build it with the tools, then show what you know. If something is tricky you get more practice, and a review stop if you need it. Finish every stop to open the next level.</p></details>
+      <details><summary>How your {nameWordLower(name)} works</summary><p>Each stop is one skill in five steps. Watch Show Me, build it with the tools, then show what you know. If something is tricky you get more practice, and a review stop if you need it. Finish every stop to open the next level.</p></details>
     </section>
     <div className="gw-path" ref={pathRef}>
       <svg className="gw-trail" aria-hidden="true">{segs.map((d, k) => <path key={k} d={d}/>)}</svg>
@@ -188,22 +190,23 @@ function Trail({trail, P, current, levelSkills, onBack, onPlay, onLevelUp}: {tra
     </div>}
   </main>
 }
+const nameWordLower = (n: string) => n.replace(/^Hippo /, '').toLowerCase()
 const toolLabel = (t: string) => ({CTR: 'counters', LC: 'linking cubes', TF: 'ten frames', NL: 'number line', HB: 'hundreds board'} as Record<string, string>)[t] ?? t
 
 /* ---------- Lesson page ---------- */
-function LessonPage({skill, trailName, level, review, step, setStep, onBack, onDone}: {skill: KhiSkill; trailName: string; level: number; review: boolean; step: number; setStep: (n: number) => void; onBack: () => void; onDone: (o: Outcome) => void}) {
+function LessonPage({name, skill, trailName, level, review, step, setStep, onBack, onDone}: {name: string; skill: KhiSkill; trailName: string; level: number; review: boolean; step: number; setStep: (n: number) => void; onBack: () => void; onDone: (o: Outcome) => void}) {
   return <main className="gw-world gw-detail">
     <div className="gw-detail-heading">
       <div>
         <button type="button" className="gw-back" onClick={onBack}>‹ {trailName}</button>
-        <span className="kg-plan-label">{review ? 'Review stop' : `Level ${level} · Hippo Trail`}</span>
+        <span className="kg-plan-label">{review ? 'Review stop' : `Level ${level} · ${name}`}</span>
         <h1>{skill.name}</h1>
       </div>
       <div className="gw-journey"><strong>Step {step + 1} of 5</strong>
         <div>{STEPS.map((n, k) => <span key={n} className={k < step ? 'done' : k === step ? 'current' : undefined}>{k < step ? '✓' : k + 1}</span>)}</div></div>
     </div>
     <section className="kg-journey">
-      <TrailMark/>
+      <TrailMark name={name}/>
       <ol>{STEPS.map((n, k) => <li key={n} className={k === step ? 'current' : undefined}><span>{k + 1}</span>{n}</li>)}</ol>
     </section>
     <Lesson skill={skill} step={step} setStep={setStep} onDone={onDone}/>
@@ -262,9 +265,10 @@ function Tools({onBack}: {onBack: () => void}) {
 }
 
 /* ---------- prototype controls (not part of KnowHippo) ---------- */
-function DemoBar({trail, level, onTrail, onLevel, onReset}: {trail: TrailCode; level: number; onTrail: (t: TrailCode) => void; onLevel: (l: number) => void; onReset: () => void}) {
+function DemoBar({name, onName, trail, level, onTrail, onLevel, onReset}: {name: TrailName; onName: (n: TrailName) => void; trail: TrailCode; level: number; onTrail: (t: TrailCode) => void; onLevel: (l: number) => void; onReset: () => void}) {
   return <nav className="ht-demo" aria-label="Prototype controls">
     <b>Prototype</b><small>Not part of KnowHippo</small>
+    <label>Name <select value={name} onChange={e => onName(e.target.value as TrailName)}>{NAMES.map(n => <option key={n}>{n}</option>)}</select></label>
     <label>Trail <select value={trail} onChange={e => onTrail(e.target.value as TrailCode)}>{(Object.keys(TRAILS) as TrailCode[]).map(t => <option key={t} value={t}>{TRAILS[t].name}</option>)}</select></label>
     <label>Level <select value={level} onChange={e => onLevel(Number(e.target.value))}>{levelsOf(trail).map(l => <option key={l} value={l}>{l}{l > TRAILS[trail].playableTo ? ' (preview)' : ''}</option>)}</select></label>
     <button type="button" onClick={onReset}>Start over</button>
