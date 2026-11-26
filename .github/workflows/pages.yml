@@ -1,7 +1,7 @@
 name: Deploy to GitHub Pages
+# Runs by hand until GitHub Pages is turned on for this repo (it needs GitHub Pro for a private repo).
+# To deploy on every push, put back:  push: {branches: [main]}
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
