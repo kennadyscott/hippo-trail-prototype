@@ -270,7 +270,7 @@
 
 /* prototype strip: layout switcher */
 .pt-switch .pt-sep { margin-left: 14px; }
-.pt-switch .pt-abc { border: 1px solid #ffffff40; color: #fff; border-radius: 8px; width: 28px; height: 24px; font-weight: 900; }
+.pt-switch .pt-abc { border: 1px solid #ffffff40; color: #fff; border-radius: 8px; padding: 2px 9px; font-weight: 800; }
 .pt-switch .pt-abc[aria-pressed="true"] { background: var(--ht-gold, #f5a524); border-color: #f5a524; color: #4a2a00; }
 
 /* Entry rules page */
