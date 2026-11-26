@@ -17,5 +17,5 @@ export default defineConfig({
       {find: 'next/navigation', replacement: at('./src/shims/next/navigation.ts')},
     ],
   },
-  build: {rollupOptions: {input: {main: at('./index.html'), plan: at('./plan.html')}}},
+  build: {rollupOptions: {input: {main: at('./index.html')}}},
 })

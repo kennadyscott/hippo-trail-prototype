@@ -95,6 +95,7 @@ export function App() {
   }
 
   return <>
+    <nav className="pt-switch" aria-label="Prototype view"><b>Prototype</b><span>View as</span><a href="./" aria-current="page">Student</a><a href="./teacher.html">Teacher</a><a href="./cms.html">CMS</a><small>Not part of KnowHippo</small></nav>
     <div className="student-world ht-has-bar">
       <Header onHome={() => setView({name: 'home'})}/>
       <Subjects/>
@@ -408,7 +409,6 @@ function ScreenBar({active, onJump, name, onName, trail, level, onTrail, onLevel
       <label>Climb <select value={trail} onChange={e => onTrail(e.target.value as TrailCode)}>{(Object.keys(TRAILS) as TrailCode[]).map(t => <option key={t} value={t}>{TRAILS[t].name}</option>)}</select></label>
       <label>Level <select value={level} onChange={e => onLevel(Number(e.target.value))}>{levelsOf(trail).map(l => <option key={l} value={l}>{l}{l > TRAILS[trail].playableTo ? ' (preview)' : ''}</option>)}</select></label>
       <button type="button" onClick={onReset}>Start over</button>
-      <a href="./plan.html">Publisher and costs ↗</a>
     </div>
   </nav>
 }
