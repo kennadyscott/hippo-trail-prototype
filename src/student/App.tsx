@@ -354,15 +354,15 @@ function EntryRules({name, onBack}: {name: string; onBack: () => void}) {
     </div></div>
     <section className="ht-rules">
       <ol className="ht-flow">
-        {step('1', 'Low scores, then the teacher', 'Low scores suggest it; the teacher says yes', true)}
+        {step('1', 'Low scores, or a teacher', 'Low scores start it; teachers can assign it too', true)}
         {step('2', 'Hippo Check', 'Finds the starting camp')}
         {step('3', 'The climb', 'That category’s core work waits', true)}
         {step('4', 'Grade-level camp', 'Reached the student’s grade in that category')}
         {step('5', 'Back to Know & Grow', 'Spiral review keeps skills strong', true)}
       </ol>
       <div className="ht-rule-grid">
-        <article className="ht-rule"><h2>Low scores suggest it <em>Draft</em></h2><p>Repeated low grade-level scores in one category put the student on the teacher’s suggestion list. Nothing starts until the teacher says yes.</p>
-          <dl><div><dt>Breakouts under the mastery mark</dt><dd>3 or more</dd></div><div><dt>Within</dt><dd>30 days</dd></div><div><dt>Counts toward a category when</dt><dd>The breakout’s standards tag to that category’s skills</dd></div><div><dt>Scope</dt><dd>Only that category</dd></div><div><dt>Teacher sees</dt><dd>“Add to {name}” or “Not now” on Class Overview</dd></div><div><dt>Not now</dt><dd>Suggested again after 3 more low breakouts</dd></div></dl></article>
+        <article className="ht-rule"><h2>Starts on its own <em>Draft</em></h2><p>Repeated low grade-level scores in one category start the {name} for that category. No one has to approve it.</p>
+          <dl><div><dt>Breakouts under the mastery mark</dt><dd>3 or more</dd></div><div><dt>Within</dt><dd>30 days</dd></div><div><dt>Counts toward a category when</dt><dd>The breakout’s standards tag to that category’s skills</dd></div><div><dt>Scope</dt><dd>Only that category</dd></div><div><dt>Teacher sees</dt><dd>“Started on its own” on Class Overview</dd></div></dl></article>
         <article className="ht-rule"><h2>A teacher assigns it</h2><p>From the teacher view, for any student.</p>
           <dl><div><dt>Scope</dt><dd>One category, or all of them</dd></div><div><dt>Shows in reports as</dt><dd>Teacher assigned</dd></div></dl></article>
         <article className="ht-rule"><h2>Hippo Check <em>Draft</em></h2><p>A short placement check, scored by rules. No AI.</p>
@@ -371,7 +371,7 @@ function EntryRules({name, onBack}: {name: string; onBack: () => void}) {
           <dl><div><dt>That category’s grade-level work</dt><dd>Waits</dd></div><div><dt>Other categories</dt><dd>Carry on in Know &amp; Grow</dd></div><div><dt>Skill pass mark</dt><dd>80% on the first try</dd></div><div><dt>Moves down a camp after</dt><dd>3 missed in a row · 4 in a step · 8 extras</dd></div></dl></article>
         <article className="ht-rule"><h2>Back to core</h2><p>The climb ends when the student reaches their grade.</p>
           <dl><div><dt>Leaves the trail</dt><dd>At grade level in that category</dd></div><div><dt>Then</dt><dd>Spiral review at 1 week, 3 weeks, 6 weeks, then monthly</dd></div></dl></article>
-        <article className="ht-rule ht-rule-decided"><h2>Decided</h2><p>The teacher confirms first. Low scores never move a student onto the {name} by themselves.</p>
+        <article className="ht-rule ht-rule-decided"><h2>Decided</h2><p>Low scores start the {name} on their own, and teachers can also assign it to any student.</p>
           <p className="ht-note">Decided by Kennady, November 26, 2026.</p></article>
       </div>
     </section>

@@ -278,7 +278,7 @@ function statCards(){
   const hold = Math.round(tr.reduce((a, s) => a + s.spiral, 0) / tr.length);
   const icon = (c1, c2, d) => `<span class="ic"><svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"><rect x="2" y="2" width="48" height="48" rx="14" fill="${c1}"/>${d.replace(/C2/g, c2)}</svg></span>`;
   return `<div class="cards3">
-    <div class="stat">${icon('#efe9ff','#6d28d9','<circle cx="20" cy="21" r="6" fill="C2"/><circle cx="33" cy="23" r="5" fill="#0fa38d"/><path d="M10 40c0-6 4.5-10 10-10s10 4 10 10z" fill="C2"/><path d="M27 40c0-5 3-8 6-8s7 3 7 8z" fill="#0fa38d"/>')}<div><small>Students in ${esc(P())}</small><b>${tr.length} / ${STU.length}</b><span class="sub">${STU.filter(s => s.suggest).length} more suggested</span></div></div>
+    <div class="stat">${icon('#efe9ff','#6d28d9','<circle cx="20" cy="21" r="6" fill="C2"/><circle cx="33" cy="23" r="5" fill="#0fa38d"/><path d="M10 40c0-6 4.5-10 10-10s10 4 10 10z" fill="C2"/><path d="M27 40c0-5 3-8 6-8s7 3 7 8z" fill="#0fa38d"/>')}<div><small>Students in ${esc(P())}</small><b>${tr.length} / ${STU.length}</b><span class="sub">${STU.filter(s => s.suggest).length} started on their own this week</span></div></div>
     <div class="stat tint">${icon('#e6f7f3','#0fa38d','<path d="M12 36l8-9 6 6 12-14" fill="none" stroke="C2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 19h6v6" fill="none" stroke="C2" stroke-width="4" stroke-linecap="round"/>')}<div><small>Average growth since placement</small><b>+${avg.toFixed(1)} yrs</b><span class="sub">per category</span></div></div>
     <div class="stat">${icon('#fff3df','#f0a436','<circle cx="26" cy="26" r="13" fill="none" stroke="C2" stroke-width="4"/><path d="M26 19v8l5 3" fill="none" stroke="C2" stroke-width="4" stroke-linecap="round"/>')}<div><small>Accelerated instruction this month</small><b>${mins(month)}</b><span class="sub">active time only</span></div></div>
     <div class="stat">${icon('#efe9ff','#6d28d9','<path d="M14 27l8 8 16-17" fill="none" stroke="C2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>')}<div><small>Passed skills still holding</small><b>${hold}%</b><span class="sub">from spiral review</span></div></div>
@@ -287,8 +287,8 @@ function statCards(){
 function suggestBanner(){
   const sg = STU.filter(s => s.suggest);
   if (!sg.length) return '';
-  return `<div class="banner"><span class="i">i</span><div class="grow"><h3>${sg.length} students keep scoring low in one category</h3><p>Add them to ${esc(P())} for that category. A short Hippo Check finds where each one starts. Their other categories stay in grade-level work.</p></div>
-    <div class="sugg">${sg.map(s => `<div class="sugg-row"><b>${s.name}</b><span>${esc(CAT[s.suggest.c].name)} · ${esc(s.suggest.why)} · working at about grade ${fmt(s.g[s.suggest.c])}</span><button class="btn solid" data-add="${s.name}">Add to ${esc(P())}</button><button class="btn ghost" data-skip="${s.name}">Not now</button></div>`).join('')}</div></div>`;
+  return `<div class="banner"><span class="i">i</span><div class="grow"><h3>${sg.length} students started ${esc(P())} on their own this week</h3><p>Repeated low scores in one category started each of them on ${esc(P())} for that category. A short Hippo Check finds where each one starts. Their other categories stay in grade-level work.</p></div>
+    <div class="sugg">${sg.map(s => `<div class="sugg-row"><b>${s.name}</b><span>${esc(CAT[s.suggest.c].name)} · ${esc(s.suggest.why)} · working at about grade ${fmt(s.g[s.suggest.c])}</span><span class="status go">Started on its own · Hippo Check next</span><button class="btn ghost" data-skip="${s.name}">Got it</button></div>`).join('')}</div></div>`;
 }
 function zoneCard(){
   const legend = Object.entries(BAND).map(([k, [n, c]]) => `<span><i style="background:${c}"></i>${n}</span>`).join('');
@@ -419,7 +419,7 @@ document.addEventListener('click', e => {
   if (e.target.closest('#open-assign')) { openAssign(); return; }
   const one = e.target.closest('#assign-one'); if (one) { openAssign(one.dataset.name); return; }
   const add = e.target.closest('[data-add]'); if (add) { const s = S(add.dataset.add); s.trail.push({c:s.suggest.c, placed:s.g[s.suggest.c], start:'Nov', by:'auto'}); s.week = [0,0,0,0]; s.hours = 0; s.last = 'Hippo Check next'; s.spiral = 100; const n = s.name; s.suggest = null; render(); toast(`${n} added. Hippo Check is next.`); return; }
-  const skip = e.target.closest('[data-skip]'); if (skip) { S(skip.dataset.skip).suggest = null; render(); toast('Hidden for now. It comes back if the low scores continue.'); return; }
+  const skip = e.target.closest('[data-skip]'); if (skip) { S(skip.dataset.skip).suggest = null; render(); toast('Noted. You can still assign other students any time.'); return; }
 });
 document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.matches('tr.click')) e.target.click(); });
 document.addEventListener('change', e => { if (e.target.id === 'pname') { PNAME = e.target.value; try { localStorage.setItem('hippo-trail-name', PNAME); } catch (err) {} render(); } });
