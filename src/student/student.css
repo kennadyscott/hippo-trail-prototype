@@ -348,3 +348,16 @@
 .ht-flow-built li.gold em { background: #fff1cc; color: #a35f00; }
 .ht-linkbtn { display: inline-block; text-decoration: none; }
 .ht-sec { justify-self: start; background: #fffffff2; border-radius: 14px; padding: 6px 14px; box-shadow: 0 4px 12px #51347620; margin: 6px 0 0; }
+
+/* D: one drawn mountain + one card (Kennady, November 26: "still just REALLY busy") */
+.ht-D .htD { max-width: 1100px; margin: 14px auto 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 420px); gap: 24px; align-items: center; background: #f8f5fff2; backdrop-filter: blur(10px); border: 2px solid #fff; border-radius: 34px; padding: 24px; box-shadow: 0 16px 50px #2914543d; }
+.htD-art svg { display: block; width: 100%; max-height: 620px; }
+.htD-card { display: grid; gap: 12px; color: #291454; }
+.htD-card h2 { font-size: 34px; font-weight: 900; line-height: 1.05; }
+.htD-why { margin: 0; color: #685485; font-weight: 800; }
+.htD-next { display: grid; background: #fffaf0; border: 2px solid var(--ht-gold-line); border-radius: 18px; padding: 10px 14px; }
+.htD-next small { font-size: 11px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; color: #a35f00; } .htD-next b { font-size: 18px; font-weight: 900; } .htD-next span { font-size: 13.5px; color: #685485; font-weight: 700; }
+.htD-more summary { cursor: pointer; font-weight: 800; color: #6433be; font-size: 14px; }
+.htD-more .ht-skills { margin-top: 8px; }
+.htD-quiet { margin: 0; font-size: 13px; font-weight: 700; color: #8b7fb8; }
+@media (max-width: 900px) { .ht-D .htD { grid-template-columns: 1fr; } }

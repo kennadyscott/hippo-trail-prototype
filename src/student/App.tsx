@@ -351,102 +351,48 @@ function Climb(p: ClimbProps) {
 const TOOL_WORDS: Record<string, string> = {CTR: 'counters', LC: 'linking cubes', TF: 'ten frames', NL: 'number line', HB: 'hundreds board'}
 
 /* ---------- D: the drawn mountain (the earlier climb page, kept as an option) ---------- */
-function ClimbDrawn({name, trail, P, current, levelSkills, onBack, onPlay, onLevelUp}: {name: string; trail: TrailCode; P: Progress; current: KhiSkill | null; levelSkills: KhiSkill[]; onBack: () => void; onPlay: (code: string, review?: boolean) => void; onLevelUp: () => void}) {
-  const T = TRAILS[trail], levels = climbLevels(trail), top = Math.max(...levels)
-  const done = levelSkills.filter(s => P.done[s.code] != null).length, left = levelSkills.length - done
-  const mastered = skillsMastered(trail, P), badges = levels.filter(l => l < P.level).length
-  const pre = P.review ? byCode.get(P.review.code) : undefined
-  const tools = current ? current.tools.filter(isBuiltTool) : []
-  return <main className="gw-world gw-detail ht-climb">
-    <div className="gw-detail-heading">
-      <div>
-        <button type="button" className="gw-back" onClick={onBack}>‹ My Learning</button>
-        <span className="kg-plan-label ht-gold-text">Your power-up climb · {name}</span>
-        <h1>{T.name}</h1>
-        <Subjects/>
-      </div>
-      <div className="gw-journey ht-level-chip"><strong>Level {P.level} of {levels.length}</strong>
-        <div>{levels.map(l => <span key={l} className={l < P.level ? 'done' : l === P.level ? 'current' : undefined}>{l < P.level ? '✓' : l}</span>)}</div></div>
-    </div>
-
-    <section className="ht-coach">
-      <img src={hugo} alt=""/>
-      <div><span>{name.toUpperCase()} · POWER-UP</span><strong>Every camp you reach makes your class math easier.</strong></div>
-      <em>{left > 0 ? `You’re ${left} skill${left > 1 ? 's' : ''} from Camp ${Math.min(P.level + 1, top)}!` : `Camp ${P.level} done. Level up!`}</em>
-      <div className="ht-next">
-        <small>{pre ? 'Review stop · about 8 minutes' : current ? (playable(current) ? `Next · 5 steps on the ${tools.slice(0, 2).map(t => TOOL_WORDS[t] ?? t).join(' and ') || 'tools'}` : `Needs the ${waitingOn(current)}`) : 'Earn your badge'}</small>
-        <b>{pre ? pre.name : current ? current.name : `Camp ${P.level} complete!`}</b>
-      </div>
-      {pre ? <button type="button" className="ht-gold" onClick={() => onPlay(pre.code, true)}>Start review →</button>
-        : current ? (playable(current) && <button type="button" className="ht-gold" onClick={() => onPlay(current.code)}>Continue climb →</button>)
-        : <button type="button" className="ht-gold" onClick={onLevelUp}>Level up →</button>}
-    </section>
-
-    <div className="ht-climb-grid">
-      <section className="ht-mtn" aria-label={`${T.name} climb`}>
-        <Mountain levels={levels} level={P.level}/>
-        <ol className="ht-camps">
-          {[...levels].reverse().map(l => {
-            const isCur = l === P.level, isDone = l < P.level
-            return <li key={l} className={isCur ? 'cur' : isDone ? 'done' : 'later'}>
-              <div className="ht-camp-head">
-                <span className="ht-camp-dot">{isDone ? '✓' : l === top ? '⚑' : l}</span>
-                <span><small>{l === top ? `Camp ${l} · grade-level summit` : `Camp ${l}`}</small><b>{T.levelNames[l]}</b></span>
-                {isDone && <Badge n={l} earned size={28}/>}
-                {isCur && <span className="ht-here"><img src={hugoHead} alt=""/>You are here</span>}
-              </div>
-              {isCur && <div className="ht-camp-body">
-                <div className="ht-seg">{levelSkills.map(s => <i key={s.code} data-s={P.done[s.code] != null ? 'done' : s === current ? 'now' : undefined}/>)}</div>
-                <p className="ht-camp-sum">{done} of {levelSkills.length} skills mastered</p>
-                <ul className="ht-skills">
-                  {pre && <li><button type="button" className="ht-skill ht-skill-review" onClick={() => onPlay(pre.code, true)}><span className="ht-sdot">↩</span><span><b>Review stop: {pre.name}</b><small>From Level {pre.level} · about 8 minutes</small></span><span className="ht-go-mini">Start</span></button></li>}
-                  {levelSkills.map(s => {
-                    const d = P.done[s.code] != null, now = s === current && !pre, lock = !playable(s)
-                    const can = !lock && (d || now)
-                    return <li key={s.code}><button type="button" className={`ht-skill${now ? ' now' : ''}${d ? ' done' : ''}`} disabled={!can} onClick={() => onPlay(s.code)}>
-                      <span className="ht-sdot">{d ? '✓' : now ? '▶' : '·'}</span>
-                      <span><b>{s.name}</b><small>{d ? `Mastered · ${P.done[s.code]}%` : lock ? `Needs the ${waitingOn(s)} · coming soon` : now ? 'Up next · about 10 minutes' : 'Ahead on your climb'}</small></span>
-                      {d ? <span className="ht-again">Play again</span> : now ? <span className="ht-go-mini">Start</span> : null}
-                    </button></li>
-                  })}
-                </ul>
-              </div>}
-            </li>
-          })}
-          <li className="done ht-base"><div className="ht-camp-head"><span className="ht-camp-dot">⛺</span><span><small>Base camp</small><b>Started {P.started}</b></span></div></li>
-        </ol>
-      </section>
-
-      <aside className="ht-side">
-        <div className="ht-stats">
-          <div><small>Levels climbed</small><b>{P.level - 1}</b></div>
-          <div><small>Skills mastered</small><b>{mastered.length}</b></div>
-          <div><small>This week</small><b>{Math.round(P.minutes)} min</b></div>
-          <div><small>Badges</small><b>{badges} of {levels.length}</b></div>
-        </div>
-        <div className="ht-panel ht-unlock"><small>What this unlocks</small><p>🔑 Finish Camp {Math.min(P.level + 1, top)} to open <b>{UNLOCKS[trail]}</b> in Know &amp; Grow.</p></div>
-        <div className="ht-panel"><small>Your badges</small><div className="ht-badges">{levels.map(l => <Badge key={l} n={l} earned={l < P.level}/>)}</div></div>
-        <div className="ht-panel"><small>Skills you’ve built</small>
-          <div className="ht-chips">{mastered.length ? mastered.slice(-6).reverse().map(s => <span key={s.code}>{shortName(s.name)}</span>) : <em>Your first skill shows up here.</em>}{mastered.length > 6 && <em>+{mastered.length - 6} more</em>}</div></div>
+function ClimbDrawn(p: ClimbProps) {
+  const c = useClimb(p), {T} = c, P = p.P
+  return <main className="gw-world gw-detail ht-climb ht-D">
+    <ClimbHead p={p} c={c}/>
+    <div className="htD">
+      <section className="htD-art"><DrawnMountain levels={c.levels} level={P.level} names={T.levelNames} top={c.top}/></section>
+      <aside className="htD-card">
+        <span className="ht-eyebrow ht-eyebrow-gold">Camp {P.level} of {c.levels.length}{P.level === c.top ? ' · grade level' : ''}</span>
+        <h2>{T.levelNames[P.level]}</h2>
+        <p className="htD-why">Every camp you reach makes your class math easier.</p>
+        <div className="ht-seg">{p.levelSkills.map(s => <i key={s.code} data-s={P.done[s.code] != null ? 'done' : s === p.current ? 'now' : undefined}/>)}</div>
+        <p className="ht-camp-sum">{c.done} of {p.levelSkills.length} skills done at this camp</p>
+        <div className="htD-next"><small>{c.pre ? 'Review stop' : 'Next'}</small><b>{c.next.title}</b><span>{c.next.sub}</span></div>
+        <Go p={p} c={c}/>
+        <details className="htD-more"><summary>All {p.levelSkills.length} skills at this camp</summary><SkillList p={p} c={c}/></details>
+        <p className="htD-quiet">{c.badges} of {c.levels.length} badges · {Math.round(P.minutes)} min this week · Camp {Math.min(P.level + 1, c.top)} opens {UNLOCKS[p.trail]}</p>
       </aside>
     </div>
-
   </main>
 }
 
-function Mountain({levels, level}: {levels: number[]; level: number}) {
-  const n = levels.length, pts = levels.map((l, i) => [i % 2 ? 190 : 110, 470 - i * (400 / Math.max(1, n - 1))])
-  const path = 'M150 500 ' + pts.map(p => `L${p[0]} ${p[1]}`).join(' ')
-  return <svg className="ht-mtn-art" viewBox="0 0 300 520" aria-hidden="true">
-    <path d="M0 520 L150 30 L300 520Z" fill="#9b7fe8"/><path d="M150 30 L300 520 L190 520Z" fill="#7c5bd6"/><path d="M0 520 L70 300 L120 520Z" fill="#b9a5f2"/>
-    <path d="M150 30 L178 120 L160 108 L148 128 L132 106 L122 120Z" fill="#fff"/>
-    <path d={path} fill="none" stroke="#fff" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" opacity=".9"/>
-    <path d={path} fill="none" stroke="#f5a524" strokeWidth="3" strokeDasharray="2 10" strokeLinecap="round"/>
-    {pts.map((p, i) => { const l = levels[i]; return <g key={l} transform={`translate(${p[0]} ${p[1]})`}>
-      <circle r={l === level ? 17 : 13} fill={l < level ? '#00aa98' : l === level ? '#f5a524' : '#e9e3fb'} stroke="#fff" strokeWidth="4"/>
-      <text y="5" textAnchor="middle" fontSize="13" fontWeight="900" fill={l <= level ? '#fff' : '#8b7fb8'}>{l < level ? '✓' : l}</text>
-    </g> })}
-    <path d="M150 30 v-26 l18 7 l-18 7" fill="#e5484d" stroke="#291454" strokeWidth="2"/>
+/** The drawn mountain: camps up a switchback, Hugo at the current camp. */
+function DrawnMountain({levels, level, names, top}: {levels: number[]; level: number; names: Record<number, string>; top: number}) {
+  const n = levels.length, pts = levels.map((l, i) => [i % 2 ? 236 : 124, 520 - i * (420 / Math.max(1, n - 1))])
+  const path = 'M180 580 ' + pts.map(q => `L${q[0]} ${q[1]}`).join(' ')
+  const ci = Math.max(0, levels.indexOf(level)), done = 'M180 580 ' + pts.slice(0, ci + 1).map(q => `L${q[0]} ${q[1]}`).join(' ')
+  return <svg viewBox="0 0 360 600" role="img" aria-label={`Camp ${level} of ${n}`}>
+    <path d="M0 600 L180 40 L360 600Z" fill="#a993ee"/><path d="M180 40 L360 600 L230 600Z" fill="#8466dc"/><path d="M0 600 L80 360 L140 600Z" fill="#c4b5f5"/>
+    <path d="M180 40 L212 140 L192 126 L178 150 L160 124 L148 140Z" fill="#fff"/>
+    <path d="M180 40 v-30 l22 8 l-22 8" fill="#e5484d" stroke="#291454" strokeWidth="2"/>
+    <path d={path} fill="none" stroke="#291454" strokeOpacity=".35" strokeWidth="14" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d={path} fill="none" stroke="#fff" strokeWidth="5" strokeDasharray="1 12" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d={done} fill="none" stroke="#f5a524" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round"/>
+    {pts.map((q, i) => { const l = levels[i], cur = l === level, d = l < level
+      return <g key={l} transform={`translate(${q[0]} ${q[1]})`}>
+        <circle r={cur ? 22 : 16} fill={d ? '#00aa98' : cur ? '#f5a524' : '#fff'} stroke={cur || d ? '#fff' : '#291454'} strokeWidth="4"/>
+        {(cur || d) && <circle r={cur ? 26 : 19} fill="none" stroke="#291454" strokeWidth="2.5"/>}
+        <text y="6" textAnchor="middle" fontSize={cur ? 20 : 15} fontWeight="900" fill={d || cur ? '#fff' : '#291454'}>{d ? '✓' : l}</text>
+        <text x={i % 2 ? -32 : 32} y="6" textAnchor={i % 2 ? 'end' : 'start'} fontSize="13" fontWeight="900" fill="#291454" paintOrder="stroke" stroke="#fff" strokeWidth="4">{l === top ? 'Grade level' : `Camp ${l}`}</text>
+      </g> })}
+    <image href={hugoHiker} x={pts[ci][0] + (ci % 2 ? 20 : -96)} y={pts[ci][1] - 92} width="76" height="76"/>
+    <text x={pts[ci][0]} y={pts[ci][1] + 46} textAnchor="middle" fontSize="13" fontWeight="900" fill="#a35f00" paintOrder="stroke" stroke="#fff" strokeWidth="4">{names[level]}</text>
   </svg>
 }
 
