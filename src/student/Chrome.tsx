@@ -25,7 +25,7 @@ export function Header({onHome}: {onHome: () => void}) {
         <span><strong>Henry</strong><small>Grade 3 · Texas</small></span>
         <span className="sw-profile-chevron">⌄</span>
       </summary>
-      <div className="sw-profile-menu"><strong>Henry Scott</strong><p>Example student for this prototype.</p></div>
+      <div className="sw-profile-menu"><strong>Henry</strong><p>Example student for this prototype.</p></div>
     </details>
   </header>
 }
