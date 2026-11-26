@@ -59,3 +59,18 @@ export function writeSaved(all: Record<string, Saved>) {
   try { localStorage.setItem(KEY, JSON.stringify(all)) } catch { /* private window: saves last for this tab only */ }
 }
 export const stepsFor = (s: KhiSkill) => loadSaved()[s.code]?.steps ?? draftFor(s)
+
+// The climb stops at grade level (Kennady, November 26, 2026): the summit is the last camp below the student's grade.
+// Reaching it is the win; that category goes back to the normal Know & Grow path.
+let STUDENT_GRADE = 3
+export const setStudentGrade = (g: number) => { STUDENT_GRADE = g }
+export const studentGrade = () => STUDENT_GRADE
+const gradeNum = (g: string | null | undefined) => g === 'K' ? 0 : Number(g ?? 0)
+export const levelGrade = (cat: string, l: number) => gradeNum(baseMap.categories.find(c => c.code === cat)?.levels.find(x => x.levelNo === l)?.grade)
+export function summitLevel(cat: TrailCode) {
+  const all = levelsOf(cat), below = all.filter(l => levelGrade(cat, l) < STUDENT_GRADE)
+  if (below.length) return Math.max(...below)
+  const atOrBelow = all.filter(l => levelGrade(cat, l) <= STUDENT_GRADE)
+  return atOrBelow.length ? Math.max(...atOrBelow) : all[0]
+}
+export const climbLevels = (cat: TrailCode) => levelsOf(cat).filter(l => l <= summitLevel(cat))

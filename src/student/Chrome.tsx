@@ -11,7 +11,7 @@ import hugoHead from './art/hugo-head.png'
 import {nameWord} from '../shared/name'
 
 /** One slim bar (Option B, November 26, 2026): logo, the three main tabs, ClassCade as an icon and the avatar. Subjects sit with the page title. */
-export function Header({onHome}: {onHome: () => void}) {
+export function Header({onHome, grade = 3}: {onHome: () => void; grade?: number}) {
   return <header className="ht-top">
     <a className="ht-top-brand" href="./" onClick={e => { e.preventDefault(); onHome() }}><img src={logo} alt="Know Hippo"/></a>
     <nav className="ht-top-nav" aria-label="Main">
@@ -21,8 +21,8 @@ export function Header({onHome}: {onHome: () => void}) {
     </nav>
     <span className="ht-top-cc" title="ClassCade"><img src={classcade} alt="ClassCade"/></span>
     <details className="ht-top-me">
-      <summary aria-label="Henry, Grade 3, Texas"><Avatar/></summary>
-      <div><strong>Henry</strong><small>Grade 3 · Texas</small><p>Example student for this prototype.</p></div>
+      <summary aria-label={`Henry, Grade ${grade === 0 ? 'K' : grade}, Texas`}><Avatar/></summary>
+      <div><strong>Henry</strong><small>Grade {grade === 0 ? 'K' : grade} · Texas</small><p>Example student for this prototype.</p></div>
     </details>
   </header>
 }

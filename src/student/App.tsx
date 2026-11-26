@@ -6,7 +6,7 @@ import {useEffect, useMemo, useState} from 'react'
 import {ToolView} from '@/components/khi-tools'
 import {blankScene, isBuiltTool, shownScene, type Item, type Scene, type ToolCode} from '@/lib/khi-steps'
 import type {KhiSkill} from '@/lib/khi-contract'
-import {TRAILS, byCode, levelsOf, playable, skillsOf, stepsFor, waitingOn, type TrailCode} from '../shared/trail'
+import {TRAILS, byCode, climbLevels, levelsOf, playable, setStudentGrade, skillsOf, stepsFor, studentGrade, summitLevel, waitingOn, type TrailCode} from '../shared/trail'
 import {Header, Subjects, TrailMark} from './Chrome'
 import {Lesson, STEPS, type Outcome} from './Lesson'
 import {NAMES, loadName, saveName, type TrailName} from '../shared/name'
@@ -26,7 +26,7 @@ const KNOW_GROW = ['Represent Data', 'Multiplicative Comparison', 'Represent Num
 /** The Know & Grow adventure each climb opens up (example pairing for the prototype). */
 const UNLOCKS: Record<TrailCode, string> = {CC: 'Represent Numbers', PV: 'Rounding Numbers'}
 
-type Progress = {level: number; done: Record<string, number>; review: {code: string; from: string; reason: string} | null; minutes: number; started: string}
+type Progress = {level: number; done: Record<string, number>; review: {code: string; from: string; reason: string} | null; minutes: number; started: string; finished?: boolean}
 type View =
   | {name: 'home'} | {name: 'check'} | {name: 'climb'} | {name: 'review'} | {name: 'tools'} | {name: 'adventures'} | {name: 'rules'}
   | {name: 'lesson'; code: string; step: number; review: boolean}
@@ -45,6 +45,8 @@ const LESSON_MINUTES = 10
 export function App() {
   const init = useMemo(load, [])
   const [name, setName] = useState<TrailName>(loadName)
+  const [grade, setGrade] = useState(() => { try { const v = Number(localStorage.getItem('hippo-trail-grade')); return v >= 0 && v <= 5 && localStorage.getItem('hippo-trail-grade') !== null ? v : 3 } catch { return 3 } })
+  setStudentGrade(grade)
   const [layout, setLayoutState] = useState<Layout>(() => { try { const v = localStorage.getItem('hippo-trail-layout'); return v === 'C' || v === 'D' ? v : 'A' } catch { return 'A' } })
   const setLayout = (l: Layout) => { setLayoutState(l); try { localStorage.setItem('hippo-trail-layout', l) } catch { /* ignore */ } }
   const [trail, setTrail] = useState<TrailCode>(init.trail), [prog, setProg] = useState(init.prog), [view, setView] = useState<View>(() => location.hash === '#rules' ? {name: 'rules'} : {name: 'home'})
@@ -67,7 +69,10 @@ export function App() {
     update(() => next)
     setView(levelSkills.every(s => next.done[s.code] != null) ? {name: 'levelup', level: P.level} : {name: 'climb'})
   }
-  const levelUp = () => { update(p => ({...p, level: Math.min(p.level + 1, Math.max(...levelsOf(trail))), review: null})); setView({name: 'climb'}) }
+  const levelUp = () => {
+    if (P.level >= summitLevel(trail)) { update(p => ({...p, finished: true, review: null})); setView({name: 'adventures'}); return }
+    update(p => ({...p, level: Math.min(p.level + 1, summitLevel(trail)), review: null})); setView({name: 'climb'})
+  }
   const play = (code: string, review = false) => setView({name: 'lesson', code, step: 0, review})
 
   // Screen bar: jump to any screen, set up the way it would look.
@@ -104,12 +109,13 @@ export function App() {
   return <>
     <nav className="pt-switch" aria-label="Prototype view"><b>Prototype</b><span>View as</span><a href="./" aria-current="page">Student</a><a href="./teacher.html">Teacher</a><a href="./cms.html">CMS</a><button type="button" className="pt-rules" aria-pressed={view.name === 'rules'} onClick={() => setView({name: 'rules'})}>Entry rules</button><span className="pt-sep">Climb layout</span>{([["A", "Mountain map"], ["C", "Ridge"], ["D", "Drawn"]] as [Layout, string][]).map(([l, label]) => <button key={l} type="button" className="pt-abc" aria-pressed={layout === l} onClick={() => { setLayout(l); setView({name: 'climb'}) }}>{l} · {label}</button>)}<small>Not part of KnowHippo</small></nav>
     <div className="student-world ht-has-bar">
-      <Header onHome={() => setView({name: 'home'})}/>
+      <Header grade={grade} onHome={() => setView({name: 'home'})}/>
       {page}
     </div>
     <ScreenBar active={view.name} onJump={jump} name={name} onName={n => { setName(n); saveName(n) }} trail={trail} level={P.level}
       onTrail={t => { setTrail(t); setView({name: 'climb'}) }} onLevel={l => { update(p => ({...p, level: l, review: null})); setView({name: 'climb'}) }}
-      onReset={() => { setProg(structuredClone(START)); setTrail('CC'); setView({name: 'home'}) }}/>
+      onReset={() => { setProg(structuredClone(START)); setTrail('CC'); setView({name: 'home'}) }}
+      grade={grade} onGrade={g => { setGrade(g); try { localStorage.setItem('hippo-trail-grade', String(g)) } catch { /* ignore */ } setStudentGrade(g); setProg(all => Object.fromEntries(Object.entries(all).map(([k, v]) => [k, {...v, finished: false, level: Math.min(v.level, summitLevel(k as TrailCode))}])) as Record<TrailCode, Progress>); setView({name: 'climb'}) }}/>
   </>
 }
 
@@ -138,7 +144,7 @@ function Home({name, trail, P, current, levelSkills, onGo}: {name: string; trail
       <article className="ht-hcard ht-feature">
         <div className="ht-art ht-art-climb"><MiniMountain/></div>
         <span className="ht-tag ht-tag-gold">{name}</span>
-        <h3>{T.name} · Level {P.level}</h3>
+        <h3>{T.name} · {P.finished ? 'Grade level ✓' : `Level ${P.level}`}</h3>
         <p>{done} of {levelSkills.length} skills done{current ? ` · next: ${shortName(current.name).toLowerCase()}` : ''}</p>
         <div className="ht-bar" aria-label={`${done} of ${levelSkills.length} skills`}><i style={{width: `${Math.max(6, done / levelSkills.length * 100)}%`}}/></div>
         <button type="button" className="ht-gold" onClick={() => onGo('climb')}>▶ Keep climbing</button>
@@ -180,7 +186,7 @@ const RIDGE_PINS: [number, number][] = [[9.5, 72], [23, 58], [38.3, 48], [52, 40
 
 type ClimbProps = {name: string; trail: TrailCode; P: Progress; current: KhiSkill | null; levelSkills: KhiSkill[]; layout: Layout; onBack: () => void; onPlay: (code: string, review?: boolean) => void; onLevelUp: () => void}
 function useClimb({trail, P, current, levelSkills}: ClimbProps) {
-  const T = TRAILS[trail], levels = levelsOf(trail), top = Math.max(...levels)
+  const T = TRAILS[trail], levels = climbLevels(trail), top = Math.max(...levels)
   const done = levelSkills.filter(s => P.done[s.code] != null).length
   const mastered = skillsMastered(trail, P), badges = levels.filter(l => l < P.level).length
   const pre = P.review ? byCode.get(P.review.code) : undefined
@@ -210,11 +216,11 @@ function SkillList({p, c, compact}: {p: ClimbProps; c: ReturnType<typeof useClim
 }
 function Pins({p, c, pins, hugoAt}: {p: ClimbProps; c: ReturnType<typeof useClimb>; pins: [number, number][]; hugoAt: 'above' | 'side'}) {
   return <>{c.levels.map((l, i) => {
-    const [x, y] = pins[i] ?? pins[pins.length - 1], cur = l === p.P.level, done = l < p.P.level
+    const k = c.levels.length < 2 ? pins.length - 1 : Math.round(i * (pins.length - 1) / (c.levels.length - 1)), [x, y] = pins[k], cur = l === p.P.level, done = l < p.P.level
     return <div key={l} className={`ht-pin${cur ? ' cur' : done ? ' done' : ''}`} style={{left: `${x}%`, top: `${y}%`}}>
       {cur && <img className={`ht-pin-hugo ${hugoAt}`} src={hugoHiker} alt=""/>}
       <span className="ht-pin-dot">{done ? '✓' : l}</span>
-      <span className="ht-pin-label">{l === c.top ? 'Summit' : `Camp ${l}`}{cur ? ' · you' : ''}</span>
+      <span className="ht-pin-label">{l === c.top ? `Camp ${l} · grade level` : `Camp ${l}`}{cur ? ' · you' : ''}</span>
     </div>
   })}</>
 }
@@ -258,7 +264,7 @@ function Climb(p: ClimbProps) {
           <span>{d ? '✓' : i + 1}</span><b>{shortName(s.name)}</b><small>{d ? `${P.done[s.code]}%` : now ? 'Up next' : playable(s) ? 'Ahead' : 'Coming soon'}</small></button> })}
     </section>
     <section className="htB-alt" aria-label="Your camps">
-      {c.levels.map(l => <div key={l} className={l < P.level ? 'done' : l === P.level ? 'cur' : ''}><i>{l < P.level ? '✓' : l === c.top ? '⚑' : '⛺'}</i><small>{l === c.top ? 'Summit' : `Camp ${l}`}</small></div>)}
+      {c.levels.map(l => <div key={l} className={l < P.level ? 'done' : l === P.level ? 'cur' : ''}><i>{l < P.level ? '✓' : l === c.top ? '⚑' : '⛺'}</i><small>{l === c.top ? 'Grade level' : `Camp ${l}`}</small></div>)}
     </section>
     <details className="htB-pack"><summary>🎒 Your pack · {c.badges} badge{c.badges === 1 ? '' : 's'} · {c.mastered.length} skills · {Math.round(P.minutes)} min this week</summary>
       <div className="ht-badges">{c.levels.map(l => <Badge key={l} n={l} earned={l < P.level}/>)}</div><Pack c={c} p={p} inline/></details>
@@ -298,7 +304,7 @@ const TOOL_WORDS: Record<string, string> = {CTR: 'counters', LC: 'linking cubes'
 
 /* ---------- D: the drawn mountain (the earlier climb page, kept as an option) ---------- */
 function ClimbDrawn({name, trail, P, current, levelSkills, onBack, onPlay, onLevelUp}: {name: string; trail: TrailCode; P: Progress; current: KhiSkill | null; levelSkills: KhiSkill[]; onBack: () => void; onPlay: (code: string, review?: boolean) => void; onLevelUp: () => void}) {
-  const T = TRAILS[trail], levels = levelsOf(trail), top = Math.max(...levels)
+  const T = TRAILS[trail], levels = climbLevels(trail), top = Math.max(...levels)
   const done = levelSkills.filter(s => P.done[s.code] != null).length, left = levelSkills.length - done
   const mastered = skillsMastered(trail, P), badges = levels.filter(l => l < P.level).length
   const pre = P.review ? byCode.get(P.review.code) : undefined
@@ -337,7 +343,7 @@ function ClimbDrawn({name, trail, P, current, levelSkills, onBack, onPlay, onLev
             return <li key={l} className={isCur ? 'cur' : isDone ? 'done' : 'later'}>
               <div className="ht-camp-head">
                 <span className="ht-camp-dot">{isDone ? '✓' : l === top ? '⚑' : l}</span>
-                <span><small>{l === top ? 'Summit' : `Camp ${l}`}</small><b>{T.levelNames[l]}</b></span>
+                <span><small>{l === top ? `Camp ${l} · grade-level summit` : `Camp ${l}`}</small><b>{T.levelNames[l]}</b></span>
                 {isDone && <Badge n={l} earned size={28}/>}
                 {isCur && <span className="ht-here"><img src={hugoHead} alt=""/>You are here</span>}
               </div>
@@ -458,7 +464,7 @@ function EntryRules({name, onBack}: {name: string; onBack: () => void}) {
         {step('1', 'Low scores, or a teacher', 'Low scores start it; teachers can assign it too', true)}
         {step('2', 'Hippo Check', 'Finds the starting camp')}
         {step('3', 'The climb', 'That category’s core work waits', true)}
-        {step('4', 'Grade-level camp', 'Reached the student’s grade in that category')}
+        {step('4', 'Grade-level summit', 'The last camp below the student’s grade. That’s the win.')}
         {step('5', 'Back to Know & Grow', 'Spiral review keeps skills strong', true)}
       </ol>
       <div className="ht-rule-grid">
@@ -470,8 +476,8 @@ function EntryRules({name, onBack}: {name: string; onBack: () => void}) {
           <dl><div><dt>Starts at</dt><dd>One level below the student’s grade</dd></div><div><dt>Items per skill</dt><dd>2–3</dd></div><div><dt>Steps down after</dt><dd>2 misses</dd></div><div><dt>Next category in the same zone</dt><dd>No new check</dd></div></dl></article>
         <article className="ht-rule"><h2>While climbing</h2><p>Only the trail’s category changes; everything else stays in core.</p>
           <dl><div><dt>That category’s grade-level work</dt><dd>Waits</dd></div><div><dt>Other categories</dt><dd>Carry on in Know &amp; Grow</dd></div><div><dt>Skill pass mark</dt><dd>80% on the first try</dd></div><div><dt>Moves down a camp after</dt><dd>3 missed in a row · 4 in a step · 8 extras</dd></div></dl></article>
-        <article className="ht-rule"><h2>Back to core</h2><p>The climb ends when the student reaches their grade.</p>
-          <dl><div><dt>Leaves the trail</dt><dd>At grade level in that category</dd></div><div><dt>Then</dt><dd>Spiral review at 1 week, 3 weeks, 6 weeks, then monthly</dd></div></dl></article>
+        <article className="ht-rule"><h2>Back to core</h2><p>The climb ends at grade level. Grade-level work belongs to Know &amp; Grow, so the {name} never goes past it.</p>
+          <dl><div><dt>Summit</dt><dd>The last camp below the student’s grade</dd></div><div><dt>Leaves the trail</dt><dd>When the summit camp is mastered</dd></div><div><dt>Then</dt><dd>Spiral review at 1 week, 3 weeks, 6 weeks, then monthly</dd></div></dl></article>
         <article className="ht-rule ht-rule-decided"><h2>Decided</h2><p>Low scores start the {name} on their own, and teachers can also assign it to any student.</p>
           <p className="ht-note">Decided by Kennady, November 26, 2026.</p></article>
       </div>
@@ -525,6 +531,18 @@ function StepBack({name, skill, pre, reason, level, onGo}: {name: string; skill:
 }
 function LevelUp({name, trail, level, P, onGo}: {name: string; trail: TrailCode; level: number; P: Progress; onGo: () => void}) {
   const T = TRAILS[trail], next = T.levelNames[level + 1]
+  if (level >= summitLevel(trail)) {
+    const cols = ['#f472b6', '#8b5cf6', '#14b8a6', '#f5a524', '#60a5fa']
+    return <main className="gw-world gw-detail ht-climb"><section className="ht-card ht-narrow ht-celebrate">
+      {Array.from({length: 34}, (_, i) => <i key={i} className="ht-conf" style={{left: `${(i * 37) % 100}%`, background: cols[i % 5], animationDelay: `${(i % 9) * .22}s`}}/>)}
+      <img src={hugoHiker} alt="" style={{width: 140, justifySelf: 'center'}}/>
+      <span className="ht-eyebrow ht-eyebrow-gold">{name} · summit</span>
+      <h2>You’re at grade level in {T.name}!</h2>
+      <p className="ht-prompt">You finished every camp below grade {studentGrade() === 0 ? 'K' : studentGrade()}, so you’re ready for grade-level work. That’s the whole climb.</p>
+      <p className="ht-note">{T.name} goes back to your Know &amp; Grow adventures now, starting with {UNLOCKS[trail]}. Your climb skills keep coming back in quick reviews so they stay strong. You spent {Math.round(P.minutes)} minutes climbing this week.</p>
+      <div className="ht-row ht-row-center"><button type="button" className="ht-gold" onClick={onGo}>Back to Know &amp; Grow →</button></div>
+    </section></main>
+  }
   const cols = ['#f472b6', '#8b5cf6', '#14b8a6', '#f5a524', '#60a5fa']
   const unlockNow = level + 1 >= 3
   return <main className="gw-world gw-detail ht-climb"><section className="ht-card ht-narrow ht-celebrate">
@@ -568,14 +586,15 @@ function Tools({onBack}: {onBack: () => void}) {
 
 /* ---------- prototype screen bar (not part of KnowHippo) ---------- */
 const SCREENS: [string, string][] = [['home', 'Home'], ['check', 'Hippo Check'], ['climb', 'Climb map'], ['lesson', 'Lesson'], ['levelup', 'Level up'], ['stepback', 'Step back'], ['review', 'Quick review'], ['tools', 'Math tools']]
-function ScreenBar({active, onJump, name, onName, trail, level, onTrail, onLevel, onReset}: {active: string; onJump: (to: string) => void; name: TrailName; onName: (n: TrailName) => void; trail: TrailCode; level: number; onTrail: (t: TrailCode) => void; onLevel: (l: number) => void; onReset: () => void}) {
+function ScreenBar({active, onJump, name, onName, trail, level, onTrail, onLevel, onReset, grade, onGrade}: {active: string; onJump: (to: string) => void; name: TrailName; onName: (n: TrailName) => void; trail: TrailCode; level: number; onTrail: (t: TrailCode) => void; onLevel: (l: number) => void; onReset: () => void; grade: number; onGrade: (g: number) => void}) {
   return <nav className="ht-screenbar" aria-label="Prototype screens">
     <b>Prototype screens</b>
     <div className="ht-sb-screens">{SCREENS.map(([k, l]) => <button key={k} type="button" aria-current={active === k || (k === 'climb' && active === 'adventures') ? 'true' : undefined} onClick={() => onJump(k)}>{l}</button>)}</div>
     <div className="ht-sb-opts">
       <label>Name <select value={name} onChange={e => onName(e.target.value as TrailName)}>{NAMES.map(n => <option key={n}>{n}</option>)}</select></label>
+      <label>Grade <select value={grade} onChange={e => onGrade(Number(e.target.value))}>{[0, 1, 2, 3, 4, 5].map(g => <option key={g} value={g}>{g === 0 ? 'K' : g}</option>)}</select></label>
       <label>Climb <select value={trail} onChange={e => onTrail(e.target.value as TrailCode)}>{(Object.keys(TRAILS) as TrailCode[]).map(t => <option key={t} value={t}>{TRAILS[t].name}</option>)}</select></label>
-      <label>Level <select value={level} onChange={e => onLevel(Number(e.target.value))}>{levelsOf(trail).map(l => <option key={l} value={l}>{l}{l > TRAILS[trail].playableTo ? ' (preview)' : ''}</option>)}</select></label>
+      <label>Level <select value={level} onChange={e => onLevel(Number(e.target.value))}>{climbLevels(trail).map(l => <option key={l} value={l}>{l}{l > TRAILS[trail].playableTo ? ' (preview)' : ''}</option>)}</select></label>
       <button type="button" onClick={onReset}>Start over</button>
     </div>
   </nav>
