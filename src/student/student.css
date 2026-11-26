@@ -1,0 +1,67 @@
+/* Hippo Trail pieces that the live site does not have yet (the lesson card, help, tools page, prototype controls),
+   drawn in the live site's palette and type so they sit inside the KnowHippo world. */
+.ht-card { position: relative; max-width: 980px; margin: 26px auto 0; background: #fffffff5; border: 2px solid #fff; border-radius: 26px; padding: 26px 28px; color: #291454; box-shadow: 0 8px 30px #4b297b33; display: grid; gap: 14px; }
+.ht-narrow { max-width: 760px; }
+.ht-card h2 { font-size: 30px; font-weight: 900; line-height: 1.1; letter-spacing: -.2px; }
+.ht-eyebrow { justify-self: start; color: #3b176c; background: #faf7ff; border: 1px solid #ae87ec; border-radius: 999px; padding: 4px 14px; font-size: 13px; font-weight: 800; }
+.ht-count { color: #685485; font-weight: 800; font-size: 14px; }
+.ht-prompt { font-size: 20px; font-weight: 800; color: #3b2a63; }
+.ht-note { color: #685485; font-weight: 700; }
+.ht-why { justify-self: start; font-weight: 800; color: #7a4a08; background: #fff3dc; border-radius: 12px; padding: 8px 14px; }
+.ht-mat { display: grid; justify-items: center; padding: 18px; border-radius: 22px; background: linear-gradient(#fbfaff, #f3efff); border: 2px dashed #ddd2f7; }
+.ht-cap { background: #291454; color: #fff; border-radius: 16px; padding: 14px 18px; font-size: 21px; font-weight: 800; min-height: 58px; }
+.ht-choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.ht-choice { border: 3px solid #e5daf8; background: #fff; border-radius: 18px; padding: 18px 10px; font-size: 30px; font-weight: 900; color: #291454; box-shadow: 0 3px 0 #e5daf8; }
+.ht-choice:hover:not(:disabled) { border-color: #ae87ec; }
+.ht-choice[data-state="right"] { border-color: #00aa98; background: #e3fbf6; box-shadow: 0 3px 0 #9fe7dc; }
+.ht-choice[data-state="wrong"] { border-color: #f7b733; background: #fff3dc; box-shadow: 0 3px 0 #f6d695; }
+.ht-fb { border-radius: 14px; padding: 12px 16px; font-weight: 900; font-size: 17px; }
+.ht-fb[data-ok="true"] { background: #e3fbf6; color: #00736b; }
+.ht-fb[data-ok="false"] { background: #fff3dc; color: #7a4a08; }
+.ht-row { display: flex; gap: 12px; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+.ht-row-center { justify-content: center; }
+.ht-center { text-align: center; display: grid; gap: 12px; }
+.ht-go { color: #fff; background: linear-gradient(120deg, #16d8c3, #009e9a); border: 2px solid #d4fff8; border-radius: 18px; padding: 12px 26px; font-size: 18px; font-weight: 900; box-shadow: 0 5px #007f81, 0 8px 20px #03af9b33; }
+.ht-go:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 2px #007f81; }
+.ht-go:disabled { opacity: .5; }
+.ht-soft { color: #6433be; background: #fff; border: 2px solid #e5daf8; border-radius: 18px; padding: 11px 20px; font-size: 16px; font-weight: 900; box-shadow: 0 4px #e5daf8; }
+.ht-help { display: flex; gap: 12px; align-items: flex-start; background: #faf7ff; border: 2px solid #e5daf8; border-radius: 18px; padding: 12px 16px; color: #3b2a63; font-weight: 700; }
+.ht-help img { width: 54px; flex: none; }
+.ht-help b { display: block; font-size: 17px; color: #291454; margin-bottom: 2px; }
+.ht-cmp { border-collapse: collapse; margin: 6px 0; font-weight: 800; }
+.ht-cmp th, .ht-cmp td { border: 2px solid #e5daf8; padding: 6px 14px; text-align: center; background: #fff; }
+.ht-cmp th { color: #685485; font-size: 13px; }
+.ht-cmp td[data-ok="true"] { color: #00736b; background: #e3fbf6; }
+.ht-cmp td[data-ok="false"] { color: #a3174a; background: #fde8ef; }
+.ht-expl { font-weight: 800; color: #291454; margin-top: 4px; }
+.ht-answer { display: flex; gap: 10px; justify-content: center; }
+.ht-answer input { width: 170px; height: 58px; border: 3px solid #ddd2f7; border-radius: 16px; font-size: 28px; font-weight: 900; text-align: center; }
+.ht-dots { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.ht-dots i { width: 14px; height: 14px; border-radius: 50%; background: #e9e3fb; }
+.ht-dots i[data-extra] { width: 10px; height: 10px; }
+.ht-dots i[data-state="now"] { background: #fff; box-shadow: 0 0 0 3px #8761e6; }
+.ht-dots i[data-state="first"] { background: #00aa98; }
+.ht-dots i[data-state="help"] { background: #f7b733; }
+.ht-dots span { margin-left: 8px; font-size: 13px; font-weight: 800; color: #685485; }
+.ht-clickable { cursor: pointer; }
+.ht-clickable:hover { border-color: #ae87ec; }
+.ht-after { opacity: .7; filter: saturate(.6); cursor: default; }
+.ht-celebrate { text-align: center; overflow: hidden; justify-items: center; }
+.ht-stars { font-size: 46px; color: #f7b733; letter-spacing: 8px; }
+.ht-conf { position: absolute; top: -20px; width: 10px; height: 14px; border-radius: 2px; animation: ht-fall 2.6s linear infinite; }
+@keyframes ht-fall { to { transform: translateY(520px) rotate(540deg); } }
+.ht-tools { max-width: 1100px; margin: 22px auto 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.ht-tool { text-align: left; display: grid; gap: 4px; background: #fffffff5; border: 3px solid #fff; border-radius: 20px; padding: 14px 16px; color: #291454; box-shadow: 0 6px 16px #51347630; }
+.ht-tool b { font-size: 19px; font-weight: 900; }
+.ht-tool span { color: #685485; font-weight: 700; font-size: 14px; }
+.ht-tool[aria-pressed="true"] { border-color: #8761e6; }
+.ht-soon { opacity: .6; box-shadow: none; }
+.ht-demo { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; background: #1d1240; color: #fff; padding: 6px max(16px, env(safe-area-inset-left, 0px)); font-size: 13px; font-weight: 700; }
+.ht-demo b { color: #c4b5fd; text-transform: uppercase; letter-spacing: .8px; font-size: 11px; }
+.ht-demo small { color: #a99cd6; font-weight: 700; }
+.ht-demo select { border: 0; border-radius: 8px; padding: 2px 6px; font-weight: 800; color: #291454; background: #fff; }
+.ht-demo button { border: 1px solid #ffffff55; color: #fff; border-radius: 999px; padding: 2px 10px; font-weight: 800; }
+.ht-demo a { color: #9ff3e6; font-weight: 800; text-decoration: none; margin-left: auto; }
+@media (max-width: 900px) { .ht-choices { grid-template-columns: 1fr; } .ht-card { padding: 18px; } }
+@media (prefers-reduced-motion: reduce) { .ht-conf { display: none; } }
+:focus-visible { outline: 3px solid #8761e6; outline-offset: 3px; }

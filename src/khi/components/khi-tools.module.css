@@ -1,0 +1,120 @@
+/* Hippo Trail manipulatives (khi-tools.tsx): the student look ('lg', tap targets of 44px or more) and the CMS card thumbnail ('sm').
+   Buttons are scoped under .tool so the app's global button styles never win. */
+.tool {
+  --kt-purple: #6d28d9; --kt-violet: #8b5cf6; --kt-teal: #14b8a6; --kt-pink: #f472b6; --kt-gold: #f7b733; --kt-red: #e5484d;
+  --kt-ink: #24124f; --kt-soft: #f4f0ff; --kt-line: #ddd3fb;
+  position: relative; display: grid; justify-items: center; gap: 14px; max-width: 100%; min-width: 0;
+  color: var(--kt-ink); font-family: inherit;
+}
+.lg { --kt-counter: 44px; --kt-cube: 28px; --kt-cell: 52px; }
+.sm { --kt-counter: 12px; --kt-cube: 9px; --kt-cell: 14px; gap: 6px; }
+.tool *, .tool *::before, .tool *::after { box-sizing: border-box; }
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+/* Shared */
+.tray { max-width: 100%; padding: 16px; border-radius: 20px; background: var(--kt-soft); }
+.sm .tray { padding: 6px; border-radius: 10px; }
+.controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; max-width: 100%; }
+.tool .btn {
+  min-height: 48px; min-width: 48px; margin: 0; padding: 0 20px; border: 0; border-radius: 999px; gap: 6px;
+  background: var(--kt-purple); color: #fff; font: inherit; font-size: 17px; font-weight: 800; line-height: 1;
+  box-shadow: 0 3px 0 #4c1d95; cursor: pointer;
+}
+.tool .btn:hover:not(:disabled) { background: #5b21b6; }
+.tool .btn:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0 #4c1d95; }
+.tool .btn:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
+.tool .soft { background: #fff; color: var(--kt-purple); box-shadow: inset 0 0 0 2px var(--kt-line), 0 3px 0 var(--kt-line); }
+.tool .soft:hover:not(:disabled) { background: var(--kt-soft); }
+.tool .soft:active:not(:disabled) { box-shadow: inset 0 0 0 2px var(--kt-line), 0 1px 0 var(--kt-line); }
+.sm .btn { min-height: 28px; min-width: 28px; padding: 0 10px; font-size: 12px; box-shadow: 0 2px 0 #4c1d95; }
+.note { flex-basis: 100%; margin: 0; text-align: center; font-size: 15px; font-weight: 700; color: var(--kt-purple); }
+.sm .note { font-size: 11px; }
+.tool button:focus-visible, .tool svg:focus-visible { outline: 3px solid var(--kt-ink); outline-offset: 3px; }
+
+/* Counters: rows of 5, each ten as a 2 × 5 block; red (the second color) shows first. */
+.ctrField { display: flex; flex-wrap: wrap; justify-content: center; align-content: flex-start; gap: 18px; min-height: calc(var(--kt-counter) * 2 + 38px); min-width: min(100%, 280px); }
+.sm .ctrField { gap: 6px; min-width: min(100%, 90px); min-height: calc(var(--kt-counter) * 2 + 16px); }
+.ctrTen { display: grid; grid-template-columns: repeat(5, var(--kt-counter)); grid-auto-rows: var(--kt-counter); gap: 6px; align-content: start; }
+.sm .ctrTen { gap: 2px; }
+.tool .counter {
+  display: block; width: var(--kt-counter); height: var(--kt-counter); min-height: 0; min-width: 0; margin: 0; padding: 0;
+  border: 2px solid #c98a0b; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #ffe3a1, var(--kt-gold) 62%);
+  box-shadow: 0 2px 0 rgb(36 18 79 / .18);
+}
+.tool .counter[data-color=red] { border-color: #a92a2e; background: radial-gradient(circle at 35% 30%, #ff9a9d, var(--kt-red) 62%); }
+.sm .counter { border-width: 1px; box-shadow: none; }
+.tool button.counter { cursor: pointer; }
+.tool button.counter:hover { filter: brightness(1.06); }
+
+/* Linking cubes: a train that wraps at each ten, a new color every ten. */
+.lcTrain { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 18px; min-height: calc(var(--kt-cube) + 40px); min-width: min(100%, 280px); }
+.sm .lcTrain { gap: 4px 6px; min-width: min(100%, 90px); min-height: calc(var(--kt-cube) + 14px); }
+.lcTen { display: flex; padding-top: 6px; }
+.sm .lcTen { padding-top: 2px; }
+.cube {
+  position: relative; display: block; width: var(--kt-cube); height: var(--kt-cube); margin-left: -2px; border: 2px solid rgb(36 18 79 / .32); border-radius: 4px;
+  background: var(--kt-violet); box-shadow: inset 0 -5px 0 rgb(0 0 0 / .13), inset 0 4px 0 rgb(255 255 255 / .25);
+}
+.cube:first-child { margin-left: 0; }
+.cube::after { content: ''; position: absolute; top: -7px; left: 30%; width: 40%; height: 6px; border-radius: 3px 3px 0 0; background: inherit; }
+.cube[data-ten='1'] { background: var(--kt-teal); }
+.cube[data-ten='2'] { background: var(--kt-pink); }
+.sm .cube { margin-left: -1px; border-width: 1px; border-radius: 2px; box-shadow: none; }
+.sm .cube::after { top: -3px; height: 2px; }
+
+/* Ten frames: 2 × 5 squares, a second frame beside (or under) the first. */
+.tfFrames { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; max-width: 100%; }
+.sm .tfFrames { gap: 6px; }
+.frame { display: grid; grid-template-columns: repeat(5, var(--kt-cell)); grid-auto-rows: var(--kt-cell); gap: 3px; border: 4px solid var(--kt-ink); border-radius: 12px; background: var(--kt-ink); overflow: hidden; }
+.sm .frame { gap: 1px; border-width: 2px; border-radius: 4px; }
+.tool .cell { display: grid; place-items: center; width: 100%; height: 100%; min-height: 0; min-width: 0; margin: 0; padding: 0; border: 0; border-radius: 0; background: #fff; }
+.tool button.cell { cursor: pointer; }
+.tool button.cell:hover { background: var(--kt-soft); }
+.tool .frame .cell:focus-visible { outline: 3px solid var(--kt-purple); outline-offset: -5px; }
+.dot { display: block; width: 74%; height: 74%; border-radius: 50%; border: 2px solid #be3d86; background: radial-gradient(circle at 35% 30%, #fbc4e1, var(--kt-pink) 62%); }
+.sm .dot { border-width: 1px; }
+
+/* Number line */
+.nl { display: block; max-width: 100%; height: auto; margin: 0; font-family: inherit; overflow: visible; }
+.nlH { width: 720px; }
+.nlV { width: auto; height: min(440px, 70vh); }
+.sm .nlH { width: 240px; }
+.sm .nlV { height: 150px; }
+.nl[data-live=true] { cursor: pointer; touch-action: manipulation; border-radius: 14px; }
+.nlLine { stroke: var(--kt-ink); stroke-width: 4; stroke-linecap: round; }
+.nlArrow { fill: var(--kt-ink); }
+.nlTick { stroke: var(--kt-ink); stroke-width: 3; stroke-linecap: round; }
+.nlLabel { fill: var(--kt-ink); font-weight: 800; }
+.nlPointer { fill: var(--kt-purple); stroke: #fff; stroke-width: 3; stroke-linejoin: round; }
+.nlDot { fill: var(--kt-gold); stroke: var(--kt-purple); stroke-width: 4; }
+
+/* Hundreds board: 10 columns; marked squares teal, hidden squares a gold "?". */
+.board { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 3px; width: 520px; max-width: 100%; }
+.sm .board { width: 190px; gap: 1px; }
+.tool .sq {
+  display: grid; place-items: center; aspect-ratio: 1; width: 100%; min-width: 0; min-height: 0; margin: 0; padding: 0;
+  border: 1px solid var(--kt-line); border-radius: 7px; background: #fff; color: var(--kt-ink);
+  font: inherit; font-size: clamp(10px, 2.8vw, 17px); font-weight: 800; line-height: 1;
+}
+.tool .sq[data-hidden=true] { border: 2px dashed var(--kt-gold); background: #fff7e0; color: #8a5a06; }
+.tool .sq[data-marked=true] { border: 2px solid #0f766e; background: var(--kt-teal); color: #fff; }
+.tool button.sq { cursor: pointer; }
+.tool button.sq:hover { background: var(--kt-soft); }
+.tool button.sq[data-hidden=true]:hover { background: #ffefc2; }
+.tool button.sq[data-marked=true]:hover { background: #0d9488; }
+.sm .sq { border-radius: 2px; border-width: 1px; font-size: 6.5px; font-weight: 700; }
+.sm .sq[data-hidden=true], .sm .sq[data-marked=true] { border-width: 1px; }
+
+@media (max-width: 400px) {
+  .lg { --kt-cube: 24px; --kt-cell: 48px; }
+  .lg .tray { padding: 12px; }
+}
+
+/* Motion only for those who have not asked the system to reduce it. */
+@media (prefers-reduced-motion: no-preference) {
+  .lg .counter, .lg .cube, .lg .dot { animation: pop .22s ease-out; }
+  .tool .counter, .tool .cell, .tool .sq { transition: background-color .15s, border-color .15s; }
+  .tool .btn { transition: background-color .15s, transform .08s, box-shadow .08s; }
+  .marker { transition: transform .25s ease; }
+}
+@keyframes pop { from { transform: scale(.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }

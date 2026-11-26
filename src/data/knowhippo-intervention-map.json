@@ -1,0 +1,4489 @@
+{
+ "about": "KnowHippo intervention skill map, Texas K-5 math. Drafted 2026-11-22 from the 246 active Texas K-5 math standards; Counting & Cardinality split 11-22 (to 10, then 11-20); toolkit from Kennady 11-26. Personal Financial Literacy is off the map. Review copy: Claude outputs/hippo-trail-k5-math-skill-map-2026-11-22.xlsx.",
+ "zones": [
+  "Whole Numbers",
+  "Operations",
+  "Fractions & Decimals",
+  "Algebraic Thinking",
+  "Geometry",
+  "Measurement",
+  "Data"
+ ],
+ "categories": [
+  {
+   "code": "CC",
+   "zone": "Whole Numbers",
+   "name": "Counting & Cardinality",
+   "order": 1,
+   "texasGrades": {
+    "1": "K",
+    "2": "K",
+    "3": "1",
+    "4": "2",
+    "5": "3",
+    "6": "4",
+    "7": "5"
+   }
+  },
+  {
+   "code": "NS",
+   "zone": "Whole Numbers",
+   "name": "Number Sense",
+   "order": 2,
+   "texasGrades": {
+    "1": "K",
+    "2": "1",
+    "3": "2",
+    "4": "3",
+    "5": "4",
+    "6": "5"
+   }
+  },
+  {
+   "code": "PV",
+   "zone": "Whole Numbers",
+   "name": "Base Ten Place Value",
+   "order": 3,
+   "texasGrades": {
+    "1": "K",
+    "2": "1",
+    "3": "2",
+    "4": "3",
+    "5": "4",
+    "6": "5"
+   }
+  },
+  {
+   "code": "FF",
+   "zone": "Operations",
+   "name": "Fact Fluency",
+   "order": 4,
+   "texasGrades": {
+    "1": "K",
+    "2": "1",
+    "3": "2",
+    "4": "3"
+   }
+  },
+  {
+   "code": "AS",
+   "zone": "Operations",
+   "name": "Base Ten Addition & Subtraction",
+   "order": 5,
+   "texasGrades": {
+    "1": "K",
+    "2": "1",
+    "3": "2",
+    "4": "3",
+    "5": "4",
+    "6": "5"
+   }
+  },
+  {
+   "code": "MD",
+   "zone": "Operations",
+   "name": "Base Ten Multiplication & Division",
+   "order": 6,
+   "texasGrades": {
+    "1": "2",
+    "2": "3",
+    "3": "4",
+    "4": "5"
+   }
+  },
+  {
+   "code": "FN",
+   "zone": "Fractions & Decimals",
+   "name": "Fraction Foundations",
+   "order": 7,
+   "texasGrades": {
+    "1": "1",
+    "2": "2",
+    "3": "3",
+    "4": "4"
+   }
+  },
+  {
+   "code": "FO",
+   "zone": "Fractions & Decimals",
+   "name": "Fraction Operations",
+   "order": 8,
+   "texasGrades": {
+    "1": "4",
+    "2": "5"
+   }
+  },
+  {
+   "code": "FD",
+   "zone": "Fractions & Decimals",
+   "name": "Fractions & Decimals",
+   "order": 9,
+   "texasGrades": {
+    "1": "4",
+    "2": "5"
+   }
+  },
+  {
+   "code": "EE",
+   "zone": "Algebraic Thinking",
+   "name": "Expressions & Equations",
+   "order": 10,
+   "texasGrades": {
+    "1": "1",
+    "2": "2",
+    "3": "3",
+    "4": "4",
+    "5": "5"
+   }
+  },
+  {
+   "code": "PR",
+   "zone": "Algebraic Thinking",
+   "name": "Patterns & Relationships",
+   "order": 11,
+   "texasGrades": {
+    "1": "1",
+    "2": "3",
+    "3": "4",
+    "4": "5"
+   }
+  },
+  {
+   "code": "SA",
+   "zone": "Geometry",
+   "name": "Shapes & Attributes",
+   "order": 12,
+   "texasGrades": {
+    "1": "K",
+    "2": "1",
+    "3": "2",
+    "4": "3",
+    "5": "5"
+   }
+  },
+  {
+   "code": "LA",
+   "zone": "Geometry",
+   "name": "Lines, Angles & Coordinates",
+   "order": 13,
+   "texasGrades": {
+    "1": "4",
+    "2": "4",
+    "3": "5"
+   }
+  },
+  {
+   "code": "LW",
+   "zone": "Measurement",
+   "name": "Length, Weight & Capacity",
+   "order": 14,
+   "texasGrades": {
+    "1": "K",
+    "2": "1",
+    "3": "2",
+    "4": "3",
+    "5": "4",
+    "6": "5"
+   }
+  },
+  {
+   "code": "TM",
+   "zone": "Measurement",
+   "name": "Time & Money",
+   "order": 15,
+   "texasGrades": {
+    "1": "K",
+    "2": "1",
+    "3": "2",
+    "4": "3"
+   }
+  },
+  {
+   "code": "AP",
+   "zone": "Measurement",
+   "name": "Area, Perimeter & Volume",
+   "order": 16,
+   "texasGrades": {
+    "1": "2",
+    "2": "3",
+    "3": "4",
+    "4": "5"
+   }
+  },
+  {
+   "code": "DG",
+   "zone": "Data",
+   "name": "Data & Graphs",
+   "order": 17,
+   "texasGrades": {
+    "1": "K",
+    "2": "1",
+    "3": "2",
+    "4": "3",
+    "5": "4",
+    "6": "5"
+   }
+  }
+ ],
+ "tools": [
+  {
+   "code": "CTR",
+   "name": "Counters (incl. two-color)",
+   "group": "Early number",
+   "onList": true,
+   "order": 1
+  },
+  {
+   "code": "UT",
+   "name": "Unit tiles",
+   "group": "Early number",
+   "onList": true,
+   "order": 2
+  },
+  {
+   "code": "LC",
+   "name": "Linking cubes",
+   "group": "Early number",
+   "onList": true,
+   "order": 3
+  },
+  {
+   "code": "CUP",
+   "name": "Counters with cups or bands (regrouping)",
+   "group": "Place value",
+   "onList": true,
+   "order": 4
+  },
+  {
+   "code": "US",
+   "name": "Unit squares",
+   "group": "Place value",
+   "onList": true,
+   "order": 5
+  },
+  {
+   "code": "B10",
+   "name": "Base-ten materials: linking cubes, straws and bands, counters and containers, KP Ten Frame Tiles",
+   "group": "Place value",
+   "onList": true,
+   "order": 6
+  },
+  {
+   "code": "PVC",
+   "name": "Place value charts (whole number and decimal)",
+   "group": "Place value",
+   "onList": true,
+   "order": 7
+  },
+  {
+   "code": "TF",
+   "name": "Ten frames",
+   "group": "Graphic organizers",
+   "onList": true,
+   "order": 8
+  },
+  {
+   "code": "FC",
+   "name": "Fraction circles",
+   "group": "Fractions",
+   "onList": true,
+   "order": 9
+  },
+  {
+   "code": "FS",
+   "name": "Fraction squares",
+   "group": "Fractions",
+   "onList": true,
+   "order": 10
+  },
+  {
+   "code": "FB",
+   "name": "Fraction tiles / bars",
+   "group": "Fractions",
+   "onList": true,
+   "order": 11
+  },
+  {
+   "code": "FT",
+   "name": "Fraction towers",
+   "group": "Fractions",
+   "onList": true,
+   "order": 12
+  },
+  {
+   "code": "CR",
+   "name": "Cuisenaire rods",
+   "group": "Fractions",
+   "onList": true,
+   "order": 13
+  },
+  {
+   "code": "PB",
+   "name": "Pattern blocks",
+   "group": "Geometry",
+   "onList": true,
+   "order": 14
+  },
+  {
+   "code": "NS",
+   "name": "Nonstandard measuring tools (paper clips, paper strips)",
+   "group": "Measurement",
+   "onList": true,
+   "order": 15
+  },
+  {
+   "code": "RUL",
+   "name": "Rulers",
+   "group": "Measurement",
+   "onList": true,
+   "order": 16
+  },
+  {
+   "code": "BAL",
+   "name": "Balance scales and weights",
+   "group": "Measurement",
+   "onList": true,
+   "order": 17
+  },
+  {
+   "code": "LV",
+   "name": "Liquid volume tools",
+   "group": "Measurement",
+   "onList": true,
+   "order": 18
+  },
+  {
+   "code": "TAN",
+   "name": "Tangrams",
+   "group": "Geometry",
+   "onList": true,
+   "order": 19
+  },
+  {
+   "code": "GB",
+   "name": "Geoboards",
+   "group": "Geometry",
+   "onList": true,
+   "order": 20
+  },
+  {
+   "code": "UC",
+   "name": "Unit cubes",
+   "group": "Geometry",
+   "onList": true,
+   "order": 21
+  },
+  {
+   "code": "SOL",
+   "name": "Geometric solids",
+   "group": "Geometry",
+   "onList": true,
+   "order": 22
+  },
+  {
+   "code": "PPW",
+   "name": "Part-part-whole charts",
+   "group": "Graphic organizers",
+   "onList": true,
+   "order": 23
+  },
+  {
+   "code": "NL",
+   "name": "Number lines (horizontal, vertical, double)",
+   "group": "Graphic organizers",
+   "onList": true,
+   "order": 24
+  },
+  {
+   "code": "AR",
+   "name": "Arrays",
+   "group": "Graphic organizers",
+   "onList": true,
+   "order": 25
+  },
+  {
+   "code": "SD",
+   "name": "Bar models / tape diagrams",
+   "group": "Graphic organizers",
+   "onList": true,
+   "order": 26
+  },
+  {
+   "code": "HB",
+   "name": "Hundreds boards",
+   "group": "Graphic organizers",
+   "onList": true,
+   "order": 27
+  },
+  {
+   "code": "PVT",
+   "name": "Place value tables",
+   "group": "Graphic organizers",
+   "onList": true,
+   "order": 28
+  },
+  {
+   "code": "CN",
+   "name": "Coins and bills",
+   "group": "Measurement",
+   "onList": false,
+   "order": 29
+  },
+  {
+   "code": "CLK",
+   "name": "Clocks",
+   "group": "Measurement",
+   "onList": false,
+   "order": 30
+  },
+  {
+   "code": "PRO",
+   "name": "Protractors",
+   "group": "Geometry",
+   "onList": false,
+   "order": 31
+  },
+  {
+   "code": "CG",
+   "name": "Coordinate grids",
+   "group": "Graphic organizers",
+   "onList": false,
+   "order": 32
+  },
+  {
+   "code": "GR",
+   "name": "Graph builder (picture, bar, dot plots)",
+   "group": "Graphic organizers",
+   "onList": false,
+   "order": 33
+  },
+  {
+   "code": "IO",
+   "name": "Input-output tables",
+   "group": "Graphic organizers",
+   "onList": false,
+   "order": 34
+  }
+ ],
+ "skills": [
+  {
+   "code": "CC1.1",
+   "category": "CC",
+   "level": 1,
+   "order": 1,
+   "name": "Count forward and back to 10",
+   "texasMain": [
+    "K.2A"
+   ],
+   "texasAlso": [],
+   "prereqs": [],
+   "tools": [
+    "NL",
+    "CTR"
+   ]
+  },
+  {
+   "code": "CC1.2",
+   "category": "CC",
+   "level": 1,
+   "order": 2,
+   "name": "Count a set of objects to 10; the last number tells how many",
+   "texasMain": [
+    "K.2C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC1.1"
+   ],
+   "tools": [
+    "CTR",
+    "LC"
+   ]
+  },
+  {
+   "code": "CC1.3",
+   "category": "CC",
+   "level": 1,
+   "order": 3,
+   "name": "Recognize small quantities instantly",
+   "texasMain": [
+    "K.2D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC1.2"
+   ],
+   "tools": [
+    "TF",
+    "CTR"
+   ]
+  },
+  {
+   "code": "CC1.4",
+   "category": "CC",
+   "level": 1,
+   "order": 4,
+   "name": "Read, write and show numbers 0 to 10",
+   "texasMain": [
+    "K.2B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC1.2"
+   ],
+   "tools": [
+    "TF",
+    "CTR"
+   ]
+  },
+  {
+   "code": "CC2.1",
+   "category": "CC",
+   "level": 2,
+   "order": 1,
+   "name": "Count forward and back from 10 to 20",
+   "texasMain": [
+    "K.2A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC1.1"
+   ],
+   "tools": [
+    "NL",
+    "HB"
+   ]
+  },
+  {
+   "code": "CC2.2",
+   "category": "CC",
+   "level": 2,
+   "order": 2,
+   "name": "Say and read the teen numbers: eleven to nineteen",
+   "texasMain": [
+    "K.2B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC1.4",
+    "CC2.1"
+   ],
+   "tools": [
+    "TF",
+    "HB"
+   ]
+  },
+  {
+   "code": "CC2.3",
+   "category": "CC",
+   "level": 2,
+   "order": 3,
+   "name": "Count a set of 11 to 20 objects",
+   "texasMain": [
+    "K.2C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC1.2",
+    "CC2.1"
+   ],
+   "tools": [
+    "CTR",
+    "LC",
+    "TF"
+   ]
+  },
+  {
+   "code": "CC2.4",
+   "category": "CC",
+   "level": 2,
+   "order": 4,
+   "name": "Teen numbers as 10 and some more on ten frames",
+   "texasMain": [],
+   "texasAlso": [],
+   "prereqs": [
+    "CC2.3"
+   ],
+   "tools": [
+    "TF",
+    "B10",
+    "LC"
+   ]
+  },
+  {
+   "code": "CC2.5",
+   "category": "CC",
+   "level": 2,
+   "order": 5,
+   "name": "Write and show numbers 11 to 20",
+   "texasMain": [
+    "K.2B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC2.2",
+    "CC2.4"
+   ],
+   "tools": [
+    "TF",
+    "PVT"
+   ]
+  },
+  {
+   "code": "CC2.6",
+   "category": "CC",
+   "level": 2,
+   "order": 6,
+   "name": "Count to 100 by ones and tens",
+   "texasMain": [
+    "K.5A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC2.1"
+   ],
+   "tools": [
+    "HB",
+    "NL"
+   ]
+  },
+  {
+   "code": "CC3.1",
+   "category": "CC",
+   "level": 3,
+   "order": 1,
+   "name": "Count forward and back from any number to 120",
+   "texasMain": [
+    "1.5A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC2.6"
+   ],
+   "tools": [
+    "HB",
+    "NL"
+   ]
+  },
+  {
+   "code": "CC3.2",
+   "category": "CC",
+   "level": 3,
+   "order": 2,
+   "name": "Recognize structured quantities instantly",
+   "texasMain": [
+    "1.2A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC1.3"
+   ],
+   "tools": [
+    "TF",
+    "CTR"
+   ]
+  },
+  {
+   "code": "CC3.3",
+   "category": "CC",
+   "level": 3,
+   "order": 3,
+   "name": "Skip count by 2s, 5s and 10s to find how many, to 120",
+   "texasMain": [
+    "1.5B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC3.1"
+   ],
+   "tools": [
+    "NL",
+    "HB",
+    "LC"
+   ]
+  },
+  {
+   "code": "CC3.4",
+   "category": "CC",
+   "level": 3,
+   "order": 4,
+   "name": "Read and write numbers to 120",
+   "texasMain": [],
+   "texasAlso": [
+    "1.2C"
+   ],
+   "prereqs": [
+    "CC2.5",
+    "CC3.1"
+   ],
+   "tools": [
+    "PVT",
+    "B10"
+   ]
+  },
+  {
+   "code": "CC4.1",
+   "category": "CC",
+   "level": 4,
+   "order": 1,
+   "name": "Read, write and say numbers to 1,200 in standard and word form",
+   "texasMain": [],
+   "texasAlso": [
+    "2.2B"
+   ],
+   "prereqs": [
+    "CC3.4"
+   ],
+   "tools": [
+    "PVC",
+    "B10"
+   ]
+  },
+  {
+   "code": "CC4.2",
+   "category": "CC",
+   "level": 4,
+   "order": 2,
+   "name": "Count on by 10s and 100s from any number to 1,200",
+   "texasMain": [],
+   "texasAlso": [],
+   "prereqs": [
+    "CC3.3"
+   ],
+   "tools": [
+    "NL",
+    "HB"
+   ]
+  },
+  {
+   "code": "CC5.1",
+   "category": "CC",
+   "level": 5,
+   "order": 1,
+   "name": "Read, write and say numbers to 100,000",
+   "texasMain": [],
+   "texasAlso": [
+    "3.2A"
+   ],
+   "prereqs": [
+    "CC4.1"
+   ],
+   "tools": [
+    "PVC"
+   ]
+  },
+  {
+   "code": "CC5.2",
+   "category": "CC",
+   "level": 5,
+   "order": 2,
+   "name": "Count on by 1,000s and 10,000s",
+   "texasMain": [],
+   "texasAlso": [],
+   "prereqs": [
+    "CC4.2"
+   ],
+   "tools": [
+    "NL",
+    "PVC"
+   ]
+  },
+  {
+   "code": "CC6.1",
+   "category": "CC",
+   "level": 6,
+   "order": 1,
+   "name": "Read, write and say whole numbers to 1,000,000,000",
+   "texasMain": [],
+   "texasAlso": [
+    "4.2B"
+   ],
+   "prereqs": [
+    "CC5.1"
+   ],
+   "tools": [
+    "PVC"
+   ]
+  },
+  {
+   "code": "CC6.2",
+   "category": "CC",
+   "level": 6,
+   "order": 2,
+   "name": "Name tenths and hundredths in words and numerals",
+   "texasMain": [],
+   "texasAlso": [
+    "4.2E"
+   ],
+   "prereqs": [
+    "CC5.1",
+    "FN4.1"
+   ],
+   "tools": [
+    "PVC",
+    "US"
+   ]
+  },
+  {
+   "code": "CC7.1",
+   "category": "CC",
+   "level": 7,
+   "order": 1,
+   "name": "Read, write and say decimals to thousandths",
+   "texasMain": [],
+   "texasAlso": [
+    "5.2A"
+   ],
+   "prereqs": [
+    "CC6.2"
+   ],
+   "tools": [
+    "PVC"
+   ]
+  },
+  {
+   "code": "NS1.1",
+   "category": "NS",
+   "level": 1,
+   "order": 1,
+   "name": "Make a set that is more than, less than or equal to a number to 20",
+   "texasMain": [
+    "K.2E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC2.3"
+   ],
+   "tools": [
+    "TF",
+    "CTR"
+   ]
+  },
+  {
+   "code": "NS1.2",
+   "category": "NS",
+   "level": 1,
+   "order": 2,
+   "name": "One more and one less than a number to 20",
+   "texasMain": [
+    "K.2F"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC2.1"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "NS1.3",
+   "category": "NS",
+   "level": 1,
+   "order": 3,
+   "name": "Compare sets of objects to 20 using words",
+   "texasMain": [
+    "K.2G"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "NS1.1"
+   ],
+   "tools": [
+    "TF",
+    "CTR"
+   ]
+  },
+  {
+   "code": "NS1.4",
+   "category": "NS",
+   "level": 1,
+   "order": 4,
+   "name": "Compare two written numbers to 20 using words",
+   "texasMain": [
+    "K.2H"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "NS1.3",
+    "CC2.5"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "NS2.1",
+   "category": "NS",
+   "level": 2,
+   "order": 1,
+   "name": "Name a number greater or less than a number to 120",
+   "texasMain": [
+    "1.2D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "NS1.2"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "NS2.2",
+   "category": "NS",
+   "level": 2,
+   "order": 2,
+   "name": "Compare numbers to 120 with words and >, <, =",
+   "texasMain": [
+    "1.2E",
+    "1.2G"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "NS1.4",
+    "PV2.1"
+   ],
+   "tools": [
+    "B10"
+   ]
+  },
+  {
+   "code": "NS2.3",
+   "category": "NS",
+   "level": 2,
+   "order": 3,
+   "name": "Order numbers to 120 on an open number line",
+   "texasMain": [
+    "1.2F"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "NS2.2"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "NS2.4",
+   "category": "NS",
+   "level": 2,
+   "order": 4,
+   "name": "10 more and 10 less than a number to 120",
+   "texasMain": [
+    "1.5C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "NS1.2",
+    "PV2.1"
+   ],
+   "tools": [
+    "PVC"
+   ]
+  },
+  {
+   "code": "NS3.1",
+   "category": "NS",
+   "level": 3,
+   "order": 1,
+   "name": "Compare and order numbers to 1,200 with >, <, =",
+   "texasMain": [
+    "2.2C",
+    "2.2D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "NS2.2",
+    "PV3.1"
+   ],
+   "tools": [
+    "B10"
+   ]
+  },
+  {
+   "code": "NS3.2",
+   "category": "NS",
+   "level": 3,
+   "order": 2,
+   "name": "Find and name whole numbers on a number line",
+   "texasMain": [
+    "2.2E",
+    "2.2F",
+    "2.9C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "NS2.3"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "NS3.3",
+   "category": "NS",
+   "level": 3,
+   "order": 3,
+   "name": "10 or 100 more or less than a number to 1,200",
+   "texasMain": [
+    "2.7B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "NS2.4"
+   ],
+   "tools": [
+    "B10"
+   ]
+  },
+  {
+   "code": "NS3.4",
+   "category": "NS",
+   "level": 3,
+   "order": 4,
+   "name": "Even or odd by pairing objects, to 40",
+   "texasMain": [
+    "2.7A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC3.3"
+   ],
+   "tools": [
+    "TF",
+    "CTR"
+   ]
+  },
+  {
+   "code": "NS4.1",
+   "category": "NS",
+   "level": 4,
+   "order": 1,
+   "name": "Compare and order numbers to 100,000",
+   "texasMain": [
+    "3.2D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "NS3.1",
+    "PV4.1"
+   ],
+   "tools": [
+    "PVC"
+   ]
+  },
+  {
+   "code": "NS4.2",
+   "category": "NS",
+   "level": 4,
+   "order": 2,
+   "name": "Place a number between multiples of 10, 100, 1,000 or 10,000",
+   "texasMain": [],
+   "texasAlso": [
+    "3.2C"
+   ],
+   "prereqs": [
+    "NS3.2"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "NS4.3",
+   "category": "NS",
+   "level": 4,
+   "order": 3,
+   "name": "Even or odd using divisibility rules",
+   "texasMain": [
+    "3.4I"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "NS3.4"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "NS5.1",
+   "category": "NS",
+   "level": 5,
+   "order": 1,
+   "name": "Compare and order whole numbers to 1,000,000,000",
+   "texasMain": [
+    "4.2C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "NS4.1"
+   ],
+   "tools": [
+    "PVC"
+   ]
+  },
+  {
+   "code": "NS5.2",
+   "category": "NS",
+   "level": 5,
+   "order": 2,
+   "name": "Compare and order decimals to hundredths",
+   "texasMain": [
+    "4.2F"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FD1.1"
+   ],
+   "tools": [
+    "PVC",
+    "US"
+   ]
+  },
+  {
+   "code": "NS5.3",
+   "category": "NS",
+   "level": 5,
+   "order": 3,
+   "name": "Decimals on a number line to hundredths",
+   "texasMain": [],
+   "texasAlso": [
+    "4.2H"
+   ],
+   "prereqs": [
+    "NS3.2",
+    "FD1.1"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "NS6.1",
+   "category": "NS",
+   "level": 6,
+   "order": 1,
+   "name": "Compare and order decimals to thousandths",
+   "texasMain": [
+    "5.2B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "NS5.2",
+    "PV6.1"
+   ],
+   "tools": [
+    "PVC",
+    "US"
+   ]
+  },
+  {
+   "code": "NS6.2",
+   "category": "NS",
+   "level": 6,
+   "order": 2,
+   "name": "Prime and composite numbers",
+   "texasMain": [
+    "5.4A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD2.2"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "PV1.1",
+   "category": "PV",
+   "level": 1,
+   "order": 1,
+   "name": "Compose and decompose numbers to 10",
+   "texasMain": [
+    "K.2I"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC1.2"
+   ],
+   "tools": [
+    "PPW",
+    "TF",
+    "CTR"
+   ]
+  },
+  {
+   "code": "PV1.2",
+   "category": "PV",
+   "level": 1,
+   "order": 2,
+   "name": "Teen numbers as ten and some ones",
+   "texasMain": [],
+   "texasAlso": [],
+   "prereqs": [
+    "PV1.1",
+    "CC2.4"
+   ],
+   "tools": [
+    "TF",
+    "CTR"
+   ]
+  },
+  {
+   "code": "PV2.1",
+   "category": "PV",
+   "level": 2,
+   "order": 1,
+   "name": "Tens and ones: compose and decompose to 120",
+   "texasMain": [
+    "1.2B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PV1.2"
+   ],
+   "tools": [
+    "B10",
+    "CUP",
+    "PVT"
+   ]
+  },
+  {
+   "code": "PV2.2",
+   "category": "PV",
+   "level": 2,
+   "order": 2,
+   "name": "Show numbers to 120 with objects, pictures, expanded and standard form",
+   "texasMain": [
+    "1.2C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PV2.1"
+   ],
+   "tools": [
+    "B10",
+    "CUP",
+    "PVT"
+   ]
+  },
+  {
+   "code": "PV3.1",
+   "category": "PV",
+   "level": 3,
+   "order": 1,
+   "name": "Hundreds, tens and ones: compose and decompose to 1,200",
+   "texasMain": [
+    "2.2A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PV2.1"
+   ],
+   "tools": [
+    "B10",
+    "CUP",
+    "PVT"
+   ]
+  },
+  {
+   "code": "PV3.2",
+   "category": "PV",
+   "level": 3,
+   "order": 2,
+   "name": "Standard, word and expanded form to 1,200",
+   "texasMain": [
+    "2.2B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PV3.1",
+    "CC4.1"
+   ],
+   "tools": [
+    "PVC"
+   ]
+  },
+  {
+   "code": "PV4.1",
+   "category": "PV",
+   "level": 4,
+   "order": 1,
+   "name": "Compose and decompose numbers to 100,000 with expanded notation",
+   "texasMain": [
+    "3.2A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PV3.2"
+   ],
+   "tools": [
+    "PVC"
+   ]
+  },
+  {
+   "code": "PV4.2",
+   "category": "PV",
+   "level": 4,
+   "order": 2,
+   "name": "How the places relate, through the hundred thousands",
+   "texasMain": [
+    "3.2B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PV4.1"
+   ],
+   "tools": [
+    "B10",
+    "CUP",
+    "PVT"
+   ]
+  },
+  {
+   "code": "PV4.3",
+   "category": "PV",
+   "level": 4,
+   "order": 3,
+   "name": "Round whole numbers using the number line",
+   "texasMain": [
+    "3.2C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "NS4.2"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "PV5.1",
+   "category": "PV",
+   "level": 5,
+   "order": 1,
+   "name": "Each place is 10 times the place to its right",
+   "texasMain": [
+    "4.2A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PV4.2"
+   ],
+   "tools": [
+    "B10",
+    "CUP",
+    "PVT"
+   ]
+  },
+  {
+   "code": "PV5.2",
+   "category": "PV",
+   "level": 5,
+   "order": 2,
+   "name": "Value of a digit to billions and to hundredths",
+   "texasMain": [
+    "4.2B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PV5.1",
+    "CC6.1"
+   ],
+   "tools": [
+    "PVC",
+    "US"
+   ]
+  },
+  {
+   "code": "PV5.3",
+   "category": "PV",
+   "level": 5,
+   "order": 3,
+   "name": "Round whole numbers through the hundred thousands",
+   "texasMain": [
+    "4.2D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PV4.3"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "PV6.1",
+   "category": "PV",
+   "level": 6,
+   "order": 1,
+   "name": "Value of a digit in decimals to thousandths",
+   "texasMain": [
+    "5.2A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PV5.2"
+   ],
+   "tools": [
+    "PVC",
+    "US"
+   ]
+  },
+  {
+   "code": "PV6.2",
+   "category": "PV",
+   "level": 6,
+   "order": 2,
+   "name": "Round decimals to tenths or hundredths",
+   "texasMain": [
+    "5.2C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PV5.3",
+    "PV6.1"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "FF1.1",
+   "category": "FF",
+   "level": 1,
+   "order": 1,
+   "name": "Add and subtract within 5 quickly",
+   "texasMain": [],
+   "texasAlso": [],
+   "prereqs": [
+    "PV1.1"
+   ],
+   "tools": [
+    "TF",
+    "CTR"
+   ]
+  },
+  {
+   "code": "FF2.1",
+   "category": "FF",
+   "level": 2,
+   "order": 1,
+   "name": "Make 10 with two or more addends",
+   "texasMain": [
+    "1.3C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FF1.1"
+   ],
+   "tools": [
+    "TF",
+    "PPW"
+   ]
+  },
+  {
+   "code": "FF2.2",
+   "category": "FF",
+   "level": 2,
+   "order": 2,
+   "name": "Fact strategies within 20: make a 10, break apart to 10",
+   "texasMain": [
+    "1.3D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FF2.1"
+   ],
+   "tools": [
+    "TF",
+    "PPW"
+   ]
+  },
+  {
+   "code": "FF3.1",
+   "category": "FF",
+   "level": 3,
+   "order": 1,
+   "name": "Add and subtract facts within 20 quickly",
+   "texasMain": [
+    "2.4A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FF2.2"
+   ],
+   "tools": [
+    "TF",
+    "CTR"
+   ]
+  },
+  {
+   "code": "FF4.1",
+   "category": "FF",
+   "level": 4,
+   "order": 1,
+   "name": "Multiplication facts to 10 x 10",
+   "texasMain": [
+    "3.4F"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD2.2"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "FF4.2",
+   "category": "FF",
+   "level": 4,
+   "order": 2,
+   "name": "Division facts to 100",
+   "texasMain": [],
+   "texasAlso": [
+    "3.4F"
+   ],
+   "prereqs": [
+    "FF4.1",
+    "MD2.4"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "AS1.1",
+   "category": "AS",
+   "level": 1,
+   "order": 1,
+   "name": "Joining and separating: act out adding and taking away",
+   "texasMain": [
+    "K.3A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC1.2"
+   ],
+   "tools": [
+    "PPW",
+    "CTR"
+   ]
+  },
+  {
+   "code": "AS1.2",
+   "category": "AS",
+   "level": 1,
+   "order": 2,
+   "name": "Word problems within 10 with objects and drawings",
+   "texasMain": [
+    "K.3B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AS1.1"
+   ],
+   "tools": [
+    "PPW",
+    "CTR",
+    "TF"
+   ]
+  },
+  {
+   "code": "AS1.3",
+   "category": "AS",
+   "level": 1,
+   "order": 3,
+   "name": "Explain how you added or subtracted within 10",
+   "texasMain": [
+    "K.3C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AS1.2"
+   ],
+   "tools": [
+    "PPW",
+    "TF"
+   ]
+  },
+  {
+   "code": "AS2.1",
+   "category": "AS",
+   "level": 2,
+   "order": 1,
+   "name": "Word problems within 20 with the unknown in any spot",
+   "texasMain": [
+    "1.3B",
+    "1.5D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AS1.2",
+    "FF2.1"
+   ],
+   "tools": [
+    "PPW",
+    "TF",
+    "SD"
+   ]
+  },
+  {
+   "code": "AS2.2",
+   "category": "AS",
+   "level": 2,
+   "order": 2,
+   "name": "Explain addition and subtraction strategies within 20",
+   "texasMain": [
+    "1.3E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AS1.3",
+    "FF2.2"
+   ],
+   "tools": [
+    "TF",
+    "CTR"
+   ]
+  },
+  {
+   "code": "AS2.3",
+   "category": "AS",
+   "level": 2,
+   "order": 3,
+   "name": "Add a multiple of 10 and a one-digit number, to 99",
+   "texasMain": [
+    "1.3A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PV2.1"
+   ],
+   "tools": [
+    "B10",
+    "CUP",
+    "PVT"
+   ]
+  },
+  {
+   "code": "AS2.4",
+   "category": "AS",
+   "level": 2,
+   "order": 4,
+   "name": "Use properties to add two or three numbers",
+   "texasMain": [
+    "1.5G"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FF2.1"
+   ],
+   "tools": [
+    "TF",
+    "CTR"
+   ]
+  },
+  {
+   "code": "AS3.1",
+   "category": "AS",
+   "level": 3,
+   "order": 1,
+   "name": "Add up to four two-digit numbers; subtract two-digit numbers",
+   "texasMain": [
+    "2.4B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AS2.3",
+    "FF3.1"
+   ],
+   "tools": [
+    "B10",
+    "CUP",
+    "PVT"
+   ]
+  },
+  {
+   "code": "AS3.2",
+   "category": "AS",
+   "level": 3,
+   "order": 2,
+   "name": "One- and multi-step word problems within 1,000",
+   "texasMain": [
+    "2.4C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AS3.1",
+    "PV3.1"
+   ],
+   "tools": [
+    "B10",
+    "CUP",
+    "PVT"
+   ]
+  },
+  {
+   "code": "AS3.3",
+   "category": "AS",
+   "level": 3,
+   "order": 3,
+   "name": "Write and solve a problem for a number sentence",
+   "texasMain": [
+    "2.4D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AS3.2"
+   ],
+   "tools": [
+    "SD"
+   ]
+  },
+  {
+   "code": "AS4.1",
+   "category": "AS",
+   "level": 4,
+   "order": 1,
+   "name": "Add and subtract within 1,000 fluently, one and two steps",
+   "texasMain": [
+    "3.4A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AS3.2"
+   ],
+   "tools": [
+    "B10",
+    "CUP",
+    "PVT"
+   ]
+  },
+  {
+   "code": "AS4.2",
+   "category": "AS",
+   "level": 4,
+   "order": 2,
+   "name": "Estimate sums and differences by rounding or compatible numbers",
+   "texasMain": [
+    "3.4B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PV4.3",
+    "AS4.1"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "AS4.3",
+   "category": "AS",
+   "level": 4,
+   "order": 3,
+   "name": "Show addition and subtraction problems with models and equations",
+   "texasMain": [
+    "3.5A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AS3.3"
+   ],
+   "tools": [
+    "SD"
+   ]
+  },
+  {
+   "code": "AS5.1",
+   "category": "AS",
+   "level": 5,
+   "order": 1,
+   "name": "Add and subtract whole numbers and decimals with the standard algorithm",
+   "texasMain": [
+    "4.4A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AS4.1",
+    "PV5.2"
+   ],
+   "tools": [
+    "B10",
+    "CUP",
+    "PVT"
+   ]
+  },
+  {
+   "code": "AS5.2",
+   "category": "AS",
+   "level": 5,
+   "order": 2,
+   "name": "Estimate by rounding to 10, 100 or 1,000",
+   "texasMain": [
+    "4.4G"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AS4.2",
+    "PV5.3"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "AS6.1",
+   "category": "AS",
+   "level": 6,
+   "order": 1,
+   "name": "Add and subtract fractions and decimals fluently",
+   "texasMain": [
+    "5.3K"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AS5.1",
+    "FO2.1"
+   ],
+   "tools": [
+    "PVC",
+    "US"
+   ]
+  },
+  {
+   "code": "AS6.2",
+   "category": "AS",
+   "level": 6,
+   "order": 2,
+   "name": "Estimate answers with all four operations",
+   "texasMain": [
+    "5.3A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AS5.2",
+    "MD3.5"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "MD1.1",
+   "category": "MD",
+   "level": 1,
+   "order": 1,
+   "name": "Join equal groups: multiplication stories with objects",
+   "texasMain": [
+    "2.6A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC3.3",
+    "AS2.1"
+   ],
+   "tools": [
+    "TF",
+    "CTR"
+   ]
+  },
+  {
+   "code": "MD1.2",
+   "category": "MD",
+   "level": 1,
+   "order": 2,
+   "name": "Share into equal groups: division stories with objects",
+   "texasMain": [
+    "2.6B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD1.1"
+   ],
+   "tools": [
+    "TF",
+    "CTR"
+   ]
+  },
+  {
+   "code": "MD2.1",
+   "category": "MD",
+   "level": 2,
+   "order": 1,
+   "name": "Equal groups and arrays to 10 x 10",
+   "texasMain": [
+    "3.4D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD1.1"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "MD2.2",
+   "category": "MD",
+   "level": 2,
+   "order": 2,
+   "name": "Show multiplication many ways: groups, arrays, jumps, skip counting",
+   "texasMain": [
+    "3.4E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD2.1"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "MD2.3",
+   "category": "MD",
+   "level": 2,
+   "order": 3,
+   "name": "Share equally: how many in each group",
+   "texasMain": [
+    "3.4H"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD1.2"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "MD2.4",
+   "category": "MD",
+   "level": 2,
+   "order": 4,
+   "name": "Use multiplication to find a quotient",
+   "texasMain": [
+    "3.4J"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD2.2",
+    "MD2.3"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "MD2.5",
+   "category": "MD",
+   "level": 2,
+   "order": 5,
+   "name": "Multiply a two-digit number by a one-digit number",
+   "texasMain": [
+    "3.4G"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD2.2",
+    "PV3.1"
+   ],
+   "tools": [
+    "B10",
+    "CUP",
+    "PVT"
+   ]
+  },
+  {
+   "code": "MD2.6",
+   "category": "MD",
+   "level": 2,
+   "order": 6,
+   "name": "One- and two-step multiplication and division problems within 100",
+   "texasMain": [
+    "3.4K",
+    "3.5B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD2.4",
+    "FF4.1"
+   ],
+   "tools": [
+    "SD"
+   ]
+  },
+  {
+   "code": "MD3.1",
+   "category": "MD",
+   "level": 3,
+   "order": 1,
+   "name": "Multiply by 10 and 100",
+   "texasMain": [
+    "4.4B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PV5.1",
+    "FF4.1"
+   ],
+   "tools": [
+    "B10",
+    "CUP",
+    "PVT"
+   ]
+  },
+  {
+   "code": "MD3.2",
+   "category": "MD",
+   "level": 3,
+   "order": 2,
+   "name": "Two-digit by two-digit with arrays and area models",
+   "texasMain": [
+    "4.4C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD2.5",
+    "MD3.1"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "MD3.3",
+   "category": "MD",
+   "level": 3,
+   "order": 3,
+   "name": "Multiply up to four digits by one digit, and two by two digits",
+   "texasMain": [
+    "4.4D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD3.2"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "MD3.4",
+   "category": "MD",
+   "level": 3,
+   "order": 4,
+   "name": "Show division of up to four digits by one digit with models",
+   "texasMain": [
+    "4.4E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD2.4",
+    "FF4.2"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "MD3.5",
+   "category": "MD",
+   "level": 3,
+   "order": 5,
+   "name": "Divide up to four digits by one digit",
+   "texasMain": [
+    "4.4F"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD3.4"
+   ],
+   "tools": [
+    "B10",
+    "CUP",
+    "PVT"
+   ]
+  },
+  {
+   "code": "MD3.6",
+   "category": "MD",
+   "level": 3,
+   "order": 6,
+   "name": "Multiplication and division problems, including remainders",
+   "texasMain": [
+    "4.4H"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD3.3",
+    "MD3.5"
+   ],
+   "tools": [
+    "SD"
+   ]
+  },
+  {
+   "code": "MD4.1",
+   "category": "MD",
+   "level": 4,
+   "order": 1,
+   "name": "Multiply three digits by two digits with the standard algorithm",
+   "texasMain": [
+    "5.3B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD3.3"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "MD4.2",
+   "category": "MD",
+   "level": 4,
+   "order": 2,
+   "name": "Divide up to four digits by two digits",
+   "texasMain": [
+    "5.3C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD3.5"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "MD4.3",
+   "category": "MD",
+   "level": 4,
+   "order": 3,
+   "name": "Show decimal multiplication to hundredths with models",
+   "texasMain": [
+    "5.3D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD3.2",
+    "PV6.1"
+   ],
+   "tools": [
+    "PVC",
+    "US"
+   ]
+  },
+  {
+   "code": "MD4.4",
+   "category": "MD",
+   "level": 4,
+   "order": 4,
+   "name": "Multiply decimals to hundredths, including money",
+   "texasMain": [
+    "5.3E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD4.3"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "MD4.5",
+   "category": "MD",
+   "level": 4,
+   "order": 5,
+   "name": "Show decimal division with models",
+   "texasMain": [
+    "5.3F"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD4.2",
+    "PV6.1"
+   ],
+   "tools": [
+    "PVC",
+    "US"
+   ]
+  },
+  {
+   "code": "MD4.6",
+   "category": "MD",
+   "level": 4,
+   "order": 6,
+   "name": "Divide decimals to hundredths",
+   "texasMain": [
+    "5.3G"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD4.5"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "FN1.1",
+   "category": "FN",
+   "level": 1,
+   "order": 1,
+   "name": "Fair shares: halves and fourths",
+   "texasMain": [
+    "1.6G"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA2.3"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FN1.2",
+   "category": "FN",
+   "level": 1,
+   "order": 2,
+   "name": "Halves and fourths: examples and non-examples",
+   "texasMain": [
+    "1.6H"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN1.1"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FN2.1",
+   "category": "FN",
+   "level": 2,
+   "order": 1,
+   "name": "Equal parts: halves, fourths and eighths",
+   "texasMain": [
+    "2.3A",
+    "2.3D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN1.2"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FN2.2",
+   "category": "FN",
+   "level": 2,
+   "order": 2,
+   "name": "More parts means smaller parts",
+   "texasMain": [
+    "2.3B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN2.1"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FN2.3",
+   "category": "FN",
+   "level": 2,
+   "order": 3,
+   "name": "Count fractional parts past one whole",
+   "texasMain": [
+    "2.3C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN2.1"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FN3.1",
+   "category": "FN",
+   "level": 3,
+   "order": 1,
+   "name": "Unit fractions: one part of b equal parts",
+   "texasMain": [
+    "3.3C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN2.2"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FN3.2",
+   "category": "FN",
+   "level": 3,
+   "order": 2,
+   "name": "Show fractions with objects and strip diagrams",
+   "texasMain": [
+    "3.3A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN3.1"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FN3.3",
+   "category": "FN",
+   "level": 3,
+   "order": 3,
+   "name": "Fractions on a number line",
+   "texasMain": [
+    "3.3B",
+    "3.7A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN3.2",
+    "NS3.2"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "FN3.4",
+   "category": "FN",
+   "level": 3,
+   "order": 4,
+   "name": "Build a fraction from unit fractions",
+   "texasMain": [
+    "3.3D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN3.1",
+    "FN2.3"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FN3.5",
+   "category": "FN",
+   "level": 3,
+   "order": 5,
+   "name": "Share objects among people using fractions",
+   "texasMain": [
+    "3.3E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN3.2",
+    "MD2.3"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FN3.6",
+   "category": "FN",
+   "level": 3,
+   "order": 6,
+   "name": "Equivalent fractions with models and number lines",
+   "texasMain": [
+    "3.3F",
+    "3.3G"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN3.3"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FN3.7",
+   "category": "FN",
+   "level": 3,
+   "order": 7,
+   "name": "Compare fractions with the same numerator or denominator",
+   "texasMain": [
+    "3.3H"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN3.3"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FN3.8",
+   "category": "FN",
+   "level": 3,
+   "order": 8,
+   "name": "Equal areas as unit fractions of a whole",
+   "texasMain": [
+    "3.6E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN3.1",
+    "SA3.5"
+   ],
+   "tools": [
+    "FS",
+    "PB",
+    "GB"
+   ]
+  },
+  {
+   "code": "FN4.1",
+   "category": "FN",
+   "level": 4,
+   "order": 1,
+   "name": "Fractions as sums of unit fractions, including more than one whole",
+   "texasMain": [
+    "4.3A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN3.4"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FN4.2",
+   "category": "FN",
+   "level": 4,
+   "order": 2,
+   "name": "Break apart a fraction in more than one way",
+   "texasMain": [
+    "4.3B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN4.1"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FN4.3",
+   "category": "FN",
+   "level": 4,
+   "order": 3,
+   "name": "Decide if two fractions are equivalent",
+   "texasMain": [
+    "4.3C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN3.6"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FN4.4",
+   "category": "FN",
+   "level": 4,
+   "order": 4,
+   "name": "Compare fractions with different numerators and denominators",
+   "texasMain": [
+    "4.3D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN3.7",
+    "FN4.3"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FO1.1",
+   "category": "FO",
+   "level": 1,
+   "order": 1,
+   "name": "Add and subtract fractions with like denominators",
+   "texasMain": [
+    "4.3E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN4.2"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FO1.2",
+   "category": "FO",
+   "level": 1,
+   "order": 2,
+   "name": "Check fraction sums with benchmarks 0, 1/4, 1/2, 3/4, 1",
+   "texasMain": [
+    "4.3F"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FO1.1",
+    "FN4.4"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "FO2.1",
+   "category": "FO",
+   "level": 2,
+   "order": 1,
+   "name": "Add and subtract fractions with unlike denominators",
+   "texasMain": [
+    "5.3H"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FO1.1",
+    "FN4.3"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FO2.2",
+   "category": "FO",
+   "level": 2,
+   "order": 2,
+   "name": "Multiply a whole number and a fraction",
+   "texasMain": [
+    "5.3I"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN4.1",
+    "MD2.2"
+   ],
+   "tools": [
+    "AR",
+    "CTR"
+   ]
+  },
+  {
+   "code": "FO2.3",
+   "category": "FO",
+   "level": 2,
+   "order": 3,
+   "name": "Divide unit fractions and whole numbers",
+   "texasMain": [
+    "5.3J",
+    "5.3L"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FO2.2",
+    "MD2.4"
+   ],
+   "tools": [
+    "FB",
+    "FC",
+    "FS",
+    "FT",
+    "CR"
+   ]
+  },
+  {
+   "code": "FD1.1",
+   "category": "FD",
+   "level": 1,
+   "order": 1,
+   "name": "Tenths and hundredths as fractions and decimals",
+   "texasMain": [
+    "4.2G"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN4.3",
+    "PV5.1"
+   ],
+   "tools": [
+    "PVC",
+    "US"
+   ]
+  },
+  {
+   "code": "FD1.2",
+   "category": "FD",
+   "level": 1,
+   "order": 2,
+   "name": "Show decimals with models and money",
+   "texasMain": [
+    "4.2E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FD1.1",
+    "TM4.1"
+   ],
+   "tools": [
+    "PVC",
+    "US"
+   ]
+  },
+  {
+   "code": "FD1.3",
+   "category": "FD",
+   "level": 1,
+   "order": 3,
+   "name": "Fractions and decimals as distances on a number line",
+   "texasMain": [
+    "4.3G",
+    "4.2H"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "FN3.3",
+    "FD1.1"
+   ],
+   "tools": [
+    "NL"
+   ]
+  },
+  {
+   "code": "FD2.1",
+   "category": "FD",
+   "level": 2,
+   "order": 1,
+   "name": "Thousandths as fractions and decimals",
+   "texasMain": [],
+   "texasAlso": [],
+   "prereqs": [
+    "FD1.1"
+   ],
+   "tools": [
+    "PVC",
+    "US"
+   ]
+  },
+  {
+   "code": "EE1.1",
+   "category": "EE",
+   "level": 1,
+   "order": 1,
+   "name": "The equal sign means both sides have the same value",
+   "texasMain": [
+    "1.5E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AS1.2"
+   ],
+   "tools": [
+    "BAL",
+    "UC"
+   ]
+  },
+  {
+   "code": "EE1.2",
+   "category": "EE",
+   "level": 1,
+   "order": 2,
+   "name": "Find the unknown in an addition or subtraction equation",
+   "texasMain": [
+    "1.5F"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "EE1.1",
+    "FF2.2"
+   ],
+   "tools": [
+    "BAL",
+    "PPW"
+   ]
+  },
+  {
+   "code": "EE2.1",
+   "category": "EE",
+   "level": 2,
+   "order": 1,
+   "name": "Word problems with the unknown in any position, to 1,000",
+   "texasMain": [
+    "2.7C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "EE1.2",
+    "AS3.2"
+   ],
+   "tools": [
+    "SD"
+   ]
+  },
+  {
+   "code": "EE3.1",
+   "category": "EE",
+   "level": 3,
+   "order": 1,
+   "name": "Multiplication as comparison: 3 x 24 is 3 times as much",
+   "texasMain": [
+    "3.5C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD2.2"
+   ],
+   "tools": [
+    "SD"
+   ]
+  },
+  {
+   "code": "EE3.2",
+   "category": "EE",
+   "level": 3,
+   "order": 2,
+   "name": "Find a missing factor or product",
+   "texasMain": [
+    "3.5D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "MD2.4"
+   ],
+   "tools": [
+    "BAL",
+    "UC"
+   ]
+  },
+  {
+   "code": "EE4.1",
+   "category": "EE",
+   "level": 4,
+   "order": 1,
+   "name": "Multi-step problems with a letter for the unknown",
+   "texasMain": [
+    "4.5A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "EE2.1",
+    "EE3.2",
+    "MD3.6"
+   ],
+   "tools": [
+    "SD"
+   ]
+  },
+  {
+   "code": "EE5.1",
+   "category": "EE",
+   "level": 5,
+   "order": 1,
+   "name": "Multi-step equations with a letter for the unknown",
+   "texasMain": [
+    "5.4B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "EE4.1"
+   ],
+   "tools": [
+    "SD"
+   ]
+  },
+  {
+   "code": "EE5.2",
+   "category": "EE",
+   "level": 5,
+   "order": 2,
+   "name": "What parentheses and brackets mean",
+   "texasMain": [
+    "5.4E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "EE4.1"
+   ],
+   "tools": [
+    "BAL",
+    "UC"
+   ]
+  },
+  {
+   "code": "EE5.3",
+   "category": "EE",
+   "level": 5,
+   "order": 3,
+   "name": "Simplify expressions with up to two levels of grouping",
+   "texasMain": [
+    "5.4F"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "EE5.2"
+   ],
+   "tools": [
+    "BAL",
+    "UC"
+   ]
+  },
+  {
+   "code": "PR1.1",
+   "category": "PR",
+   "level": 1,
+   "order": 1,
+   "name": "Find and extend number patterns from skip counting",
+   "texasMain": [],
+   "texasAlso": [],
+   "prereqs": [
+    "CC3.3"
+   ],
+   "tools": [
+    "PVC",
+    "HB"
+   ]
+  },
+  {
+   "code": "PR2.1",
+   "category": "PR",
+   "level": 2,
+   "order": 1,
+   "name": "Number pairs in a table from real situations",
+   "texasMain": [
+    "3.5E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PR1.1",
+    "MD2.2"
+   ],
+   "tools": [
+    "IO"
+   ]
+  },
+  {
+   "code": "PR3.1",
+   "category": "PR",
+   "level": 3,
+   "order": 1,
+   "name": "Input-output tables: find and use the rule",
+   "texasMain": [
+    "4.5B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PR2.1"
+   ],
+   "tools": [
+    "IO"
+   ]
+  },
+  {
+   "code": "PR4.1",
+   "category": "PR",
+   "level": 4,
+   "order": 1,
+   "name": "Make a pattern from a rule (y = ax, y = x + a) and graph it",
+   "texasMain": [
+    "5.4C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PR3.1",
+    "LA3.2"
+   ],
+   "tools": [
+    "CG"
+   ]
+  },
+  {
+   "code": "PR4.2",
+   "category": "PR",
+   "level": 4,
+   "order": 2,
+   "name": "Tell additive from multiplicative patterns",
+   "texasMain": [
+    "5.4D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "PR4.1"
+   ],
+   "tools": [
+    "IO"
+   ]
+  },
+  {
+   "code": "SA1.1",
+   "category": "SA",
+   "level": 1,
+   "order": 1,
+   "name": "Name 2D shapes: circle, triangle, rectangle, square",
+   "texasMain": [
+    "K.6A"
+   ],
+   "texasAlso": [],
+   "prereqs": [],
+   "tools": [
+    "GB",
+    "PB"
+   ]
+  },
+  {
+   "code": "SA1.2",
+   "category": "SA",
+   "level": 1,
+   "order": 2,
+   "name": "Name 3D solids in the real world",
+   "texasMain": [
+    "K.6B"
+   ],
+   "texasAlso": [],
+   "prereqs": [],
+   "tools": [
+    "SOL"
+   ]
+  },
+  {
+   "code": "SA1.3",
+   "category": "SA",
+   "level": 1,
+   "order": 3,
+   "name": "Find the flat shapes on solids",
+   "texasMain": [
+    "K.6C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA1.1",
+    "SA1.2"
+   ],
+   "tools": [
+    "SOL"
+   ]
+  },
+  {
+   "code": "SA1.4",
+   "category": "SA",
+   "level": 1,
+   "order": 4,
+   "name": "Describe attributes of 2D shapes",
+   "texasMain": [
+    "K.6D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA1.1"
+   ],
+   "tools": [
+    "GB",
+    "PB"
+   ]
+  },
+  {
+   "code": "SA1.5",
+   "category": "SA",
+   "level": 1,
+   "order": 5,
+   "name": "Sort 2D and 3D shapes",
+   "texasMain": [
+    "K.6E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA1.4"
+   ],
+   "tools": [
+    "GB",
+    "PB"
+   ]
+  },
+  {
+   "code": "SA1.6",
+   "category": "SA",
+   "level": 1,
+   "order": 6,
+   "name": "Make 2D shapes",
+   "texasMain": [
+    "K.6F"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA1.4"
+   ],
+   "tools": [
+    "GB",
+    "PB"
+   ]
+  },
+  {
+   "code": "SA2.1",
+   "category": "SA",
+   "level": 2,
+   "order": 1,
+   "name": "Sort 2D shapes by their attributes",
+   "texasMain": [
+    "1.6A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA1.5"
+   ],
+   "tools": [
+    "GB",
+    "PB"
+   ]
+  },
+  {
+   "code": "SA2.2",
+   "category": "SA",
+   "level": 2,
+   "order": 2,
+   "name": "Attributes that define a shape and ones that do not",
+   "texasMain": [
+    "1.6B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA2.1"
+   ],
+   "tools": [
+    "GB",
+    "PB"
+   ]
+  },
+  {
+   "code": "SA2.3",
+   "category": "SA",
+   "level": 2,
+   "order": 3,
+   "name": "Name, make and describe 2D shapes, including rhombuses and hexagons",
+   "texasMain": [
+    "1.6C",
+    "1.6D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA1.6"
+   ],
+   "tools": [
+    "GB",
+    "PB"
+   ]
+  },
+  {
+   "code": "SA2.4",
+   "category": "SA",
+   "level": 2,
+   "order": 4,
+   "name": "Name and describe 3D solids, including prisms",
+   "texasMain": [
+    "1.6E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA1.2"
+   ],
+   "tools": [
+    "SOL"
+   ]
+  },
+  {
+   "code": "SA2.5",
+   "category": "SA",
+   "level": 2,
+   "order": 5,
+   "name": "Put shapes together to make a target shape",
+   "texasMain": [
+    "1.6F"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA2.3"
+   ],
+   "tools": [
+    "PB",
+    "TAN",
+    "GB"
+   ]
+  },
+  {
+   "code": "SA3.1",
+   "category": "SA",
+   "level": 3,
+   "order": 1,
+   "name": "Make 2D shapes from sides and vertices",
+   "texasMain": [
+    "2.8A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA2.3"
+   ],
+   "tools": [
+    "GB",
+    "PB"
+   ]
+  },
+  {
+   "code": "SA3.2",
+   "category": "SA",
+   "level": 3,
+   "order": 2,
+   "name": "Sort 3D solids by attributes",
+   "texasMain": [
+    "2.8B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA2.4"
+   ],
+   "tools": [
+    "SOL"
+   ]
+  },
+  {
+   "code": "SA3.3",
+   "category": "SA",
+   "level": 3,
+   "order": 3,
+   "name": "Sort polygons by sides and vertices",
+   "texasMain": [
+    "2.8C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA3.1"
+   ],
+   "tools": [
+    "GB",
+    "PB"
+   ]
+  },
+  {
+   "code": "SA3.4",
+   "category": "SA",
+   "level": 3,
+   "order": 4,
+   "name": "Compose 2D shapes and 3D solids",
+   "texasMain": [
+    "2.8D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA2.5"
+   ],
+   "tools": [
+    "PB",
+    "TAN",
+    "GB"
+   ]
+  },
+  {
+   "code": "SA3.5",
+   "category": "SA",
+   "level": 3,
+   "order": 5,
+   "name": "Decompose 2D shapes and name the parts",
+   "texasMain": [
+    "2.8E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA3.4"
+   ],
+   "tools": [
+    "PB",
+    "TAN",
+    "GB"
+   ]
+  },
+  {
+   "code": "SA4.1",
+   "category": "SA",
+   "level": 4,
+   "order": 1,
+   "name": "Sort 2D and 3D figures with formal language",
+   "texasMain": [
+    "3.6A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA3.2",
+    "SA3.3"
+   ],
+   "tools": [
+    "SOL"
+   ]
+  },
+  {
+   "code": "SA4.2",
+   "category": "SA",
+   "level": 4,
+   "order": 2,
+   "name": "Quadrilaterals: rhombus, parallelogram, trapezoid, rectangle, square",
+   "texasMain": [
+    "3.6B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA3.3"
+   ],
+   "tools": [
+    "GB",
+    "PB"
+   ]
+  },
+  {
+   "code": "SA5.1",
+   "category": "SA",
+   "level": 5,
+   "order": 1,
+   "name": "Classify 2D figures in a hierarchy",
+   "texasMain": [
+    "5.5A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA4.2",
+    "LA1.4"
+   ],
+   "tools": [
+    "GB",
+    "PB"
+   ]
+  },
+  {
+   "code": "LA1.1",
+   "category": "LA",
+   "level": 1,
+   "order": 1,
+   "name": "Points, lines, segments, rays, angles; parallel and perpendicular",
+   "texasMain": [
+    "4.6A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA4.2"
+   ],
+   "tools": [
+    "GB",
+    "PB"
+   ]
+  },
+  {
+   "code": "LA1.2",
+   "category": "LA",
+   "level": 1,
+   "order": 2,
+   "name": "Lines of symmetry",
+   "texasMain": [
+    "4.6B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "SA4.2"
+   ],
+   "tools": [
+    "GB",
+    "PB"
+   ]
+  },
+  {
+   "code": "LA1.3",
+   "category": "LA",
+   "level": 1,
+   "order": 3,
+   "name": "Acute, right and obtuse angles",
+   "texasMain": [
+    "4.6C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LA1.1"
+   ],
+   "tools": [
+    "PRO"
+   ]
+  },
+  {
+   "code": "LA1.4",
+   "category": "LA",
+   "level": 1,
+   "order": 4,
+   "name": "Classify figures by their lines and angles",
+   "texasMain": [
+    "4.6D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LA1.1",
+    "LA1.3"
+   ],
+   "tools": [
+    "GB",
+    "PB"
+   ]
+  },
+  {
+   "code": "LA2.1",
+   "category": "LA",
+   "level": 2,
+   "order": 1,
+   "name": "What an angle measure is: parts of a circle and degrees",
+   "texasMain": [
+    "4.7A",
+    "4.7B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LA1.3",
+    "FN3.1"
+   ],
+   "tools": [
+    "PRO"
+   ]
+  },
+  {
+   "code": "LA2.2",
+   "category": "LA",
+   "level": 2,
+   "order": 2,
+   "name": "Measure angles with a protractor",
+   "texasMain": [
+    "4.7C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LA2.1"
+   ],
+   "tools": [
+    "PRO"
+   ]
+  },
+  {
+   "code": "LA2.3",
+   "category": "LA",
+   "level": 2,
+   "order": 3,
+   "name": "Draw an angle of a given measure",
+   "texasMain": [
+    "4.7D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LA2.2"
+   ],
+   "tools": [
+    "PRO"
+   ]
+  },
+  {
+   "code": "LA2.4",
+   "category": "LA",
+   "level": 2,
+   "order": 4,
+   "name": "Find an unknown angle from two adjacent angles",
+   "texasMain": [
+    "4.7E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LA2.2",
+    "AS4.1"
+   ],
+   "tools": [
+    "PRO"
+   ]
+  },
+  {
+   "code": "LA3.1",
+   "category": "LA",
+   "level": 3,
+   "order": 1,
+   "name": "Parts of the coordinate plane",
+   "texasMain": [
+    "5.8A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "NS3.2"
+   ],
+   "tools": [
+    "CG"
+   ]
+  },
+  {
+   "code": "LA3.2",
+   "category": "LA",
+   "level": 3,
+   "order": 2,
+   "name": "How to graph ordered pairs",
+   "texasMain": [
+    "5.8B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LA3.1"
+   ],
+   "tools": [
+    "CG"
+   ]
+  },
+  {
+   "code": "LA3.3",
+   "category": "LA",
+   "level": 3,
+   "order": 3,
+   "name": "Graph ordered pairs from problems, patterns and tables",
+   "texasMain": [
+    "5.8C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LA3.2",
+    "PR3.1"
+   ],
+   "tools": [
+    "CG"
+   ]
+  },
+  {
+   "code": "LW1.1",
+   "category": "LW",
+   "level": 1,
+   "order": 1,
+   "name": "Name what can be measured: length, capacity, weight",
+   "texasMain": [
+    "K.7A"
+   ],
+   "texasAlso": [],
+   "prereqs": [],
+   "tools": [
+    "BAL",
+    "LV"
+   ]
+  },
+  {
+   "code": "LW1.2",
+   "category": "LW",
+   "level": 1,
+   "order": 2,
+   "name": "Compare two objects by length, capacity or weight",
+   "texasMain": [
+    "K.7B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LW1.1"
+   ],
+   "tools": [
+    "BAL",
+    "LV"
+   ]
+  },
+  {
+   "code": "LW2.1",
+   "category": "LW",
+   "level": 2,
+   "order": 1,
+   "name": "Measure length with same-size units end to end",
+   "texasMain": [
+    "1.7A",
+    "1.7B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LW1.2",
+    "CC1.2"
+   ],
+   "tools": [
+    "NS",
+    "LC",
+    "RUL"
+   ]
+  },
+  {
+   "code": "LW2.2",
+   "category": "LW",
+   "level": 2,
+   "order": 2,
+   "name": "Measure with two different units and explain the difference",
+   "texasMain": [
+    "1.7C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LW2.1"
+   ],
+   "tools": [
+    "NS",
+    "LC",
+    "RUL"
+   ]
+  },
+  {
+   "code": "LW2.3",
+   "category": "LW",
+   "level": 2,
+   "order": 3,
+   "name": "Length to the nearest whole unit",
+   "texasMain": [
+    "1.7D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LW2.1"
+   ],
+   "tools": [
+    "NS",
+    "LC",
+    "RUL"
+   ]
+  },
+  {
+   "code": "LW3.1",
+   "category": "LW",
+   "level": 3,
+   "order": 1,
+   "name": "Measure length with standard units and tools",
+   "texasMain": [
+    "2.9A",
+    "2.9D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LW2.3"
+   ],
+   "tools": [
+    "RUL"
+   ]
+  },
+  {
+   "code": "LW3.2",
+   "category": "LW",
+   "level": 3,
+   "order": 2,
+   "name": "Bigger unit, fewer units",
+   "texasMain": [
+    "2.9B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LW2.2"
+   ],
+   "tools": [
+    "RUL"
+   ]
+  },
+  {
+   "code": "LW3.3",
+   "category": "LW",
+   "level": 3,
+   "order": 3,
+   "name": "Solve and estimate length problems",
+   "texasMain": [
+    "2.9E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LW3.1",
+    "AS3.2"
+   ],
+   "tools": [
+    "RUL"
+   ]
+  },
+  {
+   "code": "LW4.1",
+   "category": "LW",
+   "level": 4,
+   "order": 1,
+   "name": "Capacity or weight: which measurement to use",
+   "texasMain": [
+    "3.7D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LW1.2"
+   ],
+   "tools": [
+    "BAL",
+    "LV"
+   ]
+  },
+  {
+   "code": "LW4.2",
+   "category": "LW",
+   "level": 4,
+   "order": 2,
+   "name": "Measure capacity and weight with tools and units",
+   "texasMain": [
+    "3.7E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LW4.1"
+   ],
+   "tools": [
+    "BAL",
+    "LV"
+   ]
+  },
+  {
+   "code": "LW5.1",
+   "category": "LW",
+   "level": 5,
+   "order": 1,
+   "name": "Relative sizes of customary and metric units",
+   "texasMain": [
+    "4.8A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LW3.1",
+    "LW4.2"
+   ],
+   "tools": [
+    "RUL",
+    "BAL",
+    "LV"
+   ]
+  },
+  {
+   "code": "LW5.2",
+   "category": "LW",
+   "level": 5,
+   "order": 2,
+   "name": "Convert units within a system using a table",
+   "texasMain": [
+    "4.8B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LW5.1",
+    "MD3.1"
+   ],
+   "tools": [
+    "IO"
+   ]
+  },
+  {
+   "code": "LW5.3",
+   "category": "LW",
+   "level": 5,
+   "order": 3,
+   "name": "Problems with length, time, liquid volume, mass and money",
+   "texasMain": [
+    "4.8C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LW5.2",
+    "TM4.2",
+    "MD3.6"
+   ],
+   "tools": [
+    "SD"
+   ]
+  },
+  {
+   "code": "LW6.1",
+   "category": "LW",
+   "level": 6,
+   "order": 1,
+   "name": "Convert units within a system to solve problems",
+   "texasMain": [
+    "5.7A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LW5.2"
+   ],
+   "tools": [
+    "IO"
+   ]
+  },
+  {
+   "code": "TM1.1",
+   "category": "TM",
+   "level": 1,
+   "order": 1,
+   "name": "Name coins: penny, nickel, dime, quarter",
+   "texasMain": [
+    "K.4A"
+   ],
+   "texasAlso": [],
+   "prereqs": [],
+   "tools": [
+    "CN"
+   ]
+  },
+  {
+   "code": "TM2.1",
+   "category": "TM",
+   "level": 2,
+   "order": 1,
+   "name": "Coin values and how they relate",
+   "texasMain": [
+    "1.4A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "TM1.1"
+   ],
+   "tools": [
+    "CN"
+   ]
+  },
+  {
+   "code": "TM2.2",
+   "category": "TM",
+   "level": 2,
+   "order": 2,
+   "name": "Write a coin value with the cent sign",
+   "texasMain": [
+    "1.4B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "TM2.1"
+   ],
+   "tools": [
+    "CN"
+   ]
+  },
+  {
+   "code": "TM2.3",
+   "category": "TM",
+   "level": 2,
+   "order": 3,
+   "name": "Count coins by 2s, 5s and 10s",
+   "texasMain": [
+    "1.4C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "TM2.1",
+    "CC3.3"
+   ],
+   "tools": [
+    "CN"
+   ]
+  },
+  {
+   "code": "TM2.4",
+   "category": "TM",
+   "level": 2,
+   "order": 4,
+   "name": "Time to the hour and half hour",
+   "texasMain": [
+    "1.7E"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC2.5"
+   ],
+   "tools": [
+    "CLK"
+   ]
+  },
+  {
+   "code": "TM3.1",
+   "category": "TM",
+   "level": 3,
+   "order": 1,
+   "name": "Value of a collection of coins up to one dollar",
+   "texasMain": [
+    "2.5A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "TM2.3"
+   ],
+   "tools": [
+    "CN"
+   ]
+  },
+  {
+   "code": "TM3.2",
+   "category": "TM",
+   "level": 3,
+   "order": 2,
+   "name": "Write money with the cent sign, dollar sign and decimal point",
+   "texasMain": [
+    "2.5B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "TM3.1",
+    "TM2.2"
+   ],
+   "tools": [
+    "CN"
+   ]
+  },
+  {
+   "code": "TM3.3",
+   "category": "TM",
+   "level": 3,
+   "order": 3,
+   "name": "Time to the minute; a.m. and p.m.",
+   "texasMain": [
+    "2.9G"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "TM2.4",
+    "CC3.3"
+   ],
+   "tools": [
+    "CLK"
+   ]
+  },
+  {
+   "code": "TM4.1",
+   "category": "TM",
+   "level": 4,
+   "order": 1,
+   "name": "Value of a collection of coins and bills",
+   "texasMain": [
+    "3.4C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "TM3.2"
+   ],
+   "tools": [
+    "CN"
+   ]
+  },
+  {
+   "code": "TM4.2",
+   "category": "TM",
+   "level": 4,
+   "order": 2,
+   "name": "Add and subtract time intervals in minutes",
+   "texasMain": [
+    "3.7C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "TM3.3",
+    "AS3.1"
+   ],
+   "tools": [
+    "CLK"
+   ]
+  },
+  {
+   "code": "AP1.1",
+   "category": "AP",
+   "level": 1,
+   "order": 1,
+   "name": "Area by covering a rectangle with square units",
+   "texasMain": [
+    "2.9F"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "CC3.3",
+    "SA3.1"
+   ],
+   "tools": [
+    "US",
+    "UT"
+   ]
+  },
+  {
+   "code": "AP2.1",
+   "category": "AP",
+   "level": 2,
+   "order": 1,
+   "name": "Area of rectangles: rows times squares in each row",
+   "texasMain": [
+    "3.6C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AP1.1",
+    "MD2.1"
+   ],
+   "tools": [
+    "US",
+    "UT"
+   ]
+  },
+  {
+   "code": "AP2.2",
+   "category": "AP",
+   "level": 2,
+   "order": 2,
+   "name": "Area of shapes made of rectangles",
+   "texasMain": [
+    "3.6D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AP2.1",
+    "SA3.5"
+   ],
+   "tools": [
+    "US",
+    "UT"
+   ]
+  },
+  {
+   "code": "AP2.3",
+   "category": "AP",
+   "level": 2,
+   "order": 3,
+   "name": "Perimeter and a missing side length",
+   "texasMain": [
+    "3.7B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "LW3.1",
+    "AS4.1"
+   ],
+   "tools": [
+    "GB",
+    "RUL"
+   ]
+  },
+  {
+   "code": "AP3.1",
+   "category": "AP",
+   "level": 3,
+   "order": 1,
+   "name": "Perimeter and area formulas for rectangles",
+   "texasMain": [
+    "4.5C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AP2.1",
+    "AP2.3"
+   ],
+   "tools": [
+    "US",
+    "UT"
+   ]
+  },
+  {
+   "code": "AP3.2",
+   "category": "AP",
+   "level": 3,
+   "order": 2,
+   "name": "Perimeter and area problems",
+   "texasMain": [
+    "4.5D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AP3.1",
+    "MD3.3"
+   ],
+   "tools": [
+    "US",
+    "UT"
+   ]
+  },
+  {
+   "code": "AP4.1",
+   "category": "AP",
+   "level": 4,
+   "order": 1,
+   "name": "Unit cubes: volume as cubes that fill a solid",
+   "texasMain": [
+    "5.6A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AP2.1",
+    "SA4.1"
+   ],
+   "tools": [
+    "UC",
+    "LC"
+   ]
+  },
+  {
+   "code": "AP4.2",
+   "category": "AP",
+   "level": 4,
+   "order": 2,
+   "name": "Volume of a prism as layers of the base",
+   "texasMain": [
+    "5.6B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AP4.1"
+   ],
+   "tools": [
+    "UC",
+    "LC"
+   ]
+  },
+  {
+   "code": "AP4.3",
+   "category": "AP",
+   "level": 4,
+   "order": 3,
+   "name": "Volume formulas for prisms and cubes",
+   "texasMain": [
+    "5.4G"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AP4.2"
+   ],
+   "tools": [
+    "UC",
+    "LC"
+   ]
+  },
+  {
+   "code": "AP4.4",
+   "category": "AP",
+   "level": 4,
+   "order": 4,
+   "name": "Perimeter, area and volume problems",
+   "texasMain": [
+    "5.4H"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "AP3.2",
+    "AP4.3"
+   ],
+   "tools": [
+    "UC",
+    "LC"
+   ]
+  },
+  {
+   "code": "DG1.1",
+   "category": "DG",
+   "level": 1,
+   "order": 1,
+   "name": "Sort data into two or three groups",
+   "texasMain": [
+    "K.8A"
+   ],
+   "texasAlso": [],
+   "prereqs": [],
+   "tools": [
+    "GR"
+   ]
+  },
+  {
+   "code": "DG1.2",
+   "category": "DG",
+   "level": 1,
+   "order": 2,
+   "name": "Make real-object and picture graphs",
+   "texasMain": [
+    "K.8B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG1.1",
+    "CC1.2"
+   ],
+   "tools": [
+    "GR"
+   ]
+  },
+  {
+   "code": "DG1.3",
+   "category": "DG",
+   "level": 1,
+   "order": 3,
+   "name": "Answer questions from real-object and picture graphs",
+   "texasMain": [
+    "K.8C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG1.2",
+    "NS1.3"
+   ],
+   "tools": [
+    "GR"
+   ]
+  },
+  {
+   "code": "DG2.1",
+   "category": "DG",
+   "level": 2,
+   "order": 1,
+   "name": "Tally marks and T-charts with up to three groups",
+   "texasMain": [
+    "1.8A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG1.1",
+    "CC3.3"
+   ],
+   "tools": [
+    "GR"
+   ]
+  },
+  {
+   "code": "DG2.2",
+   "category": "DG",
+   "level": 2,
+   "order": 2,
+   "name": "Make picture and bar-type graphs",
+   "texasMain": [
+    "1.8B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG2.1",
+    "DG1.2"
+   ],
+   "tools": [
+    "GR"
+   ]
+  },
+  {
+   "code": "DG2.3",
+   "category": "DG",
+   "level": 2,
+   "order": 3,
+   "name": "Ask and answer questions from picture and bar-type graphs",
+   "texasMain": [
+    "1.8C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG2.2",
+    "DG1.3"
+   ],
+   "tools": [
+    "GR"
+   ]
+  },
+  {
+   "code": "DG3.1",
+   "category": "DG",
+   "level": 3,
+   "order": 1,
+   "name": "What a bar or a picture stands for in a graph",
+   "texasMain": [
+    "2.10A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG2.2"
+   ],
+   "tools": [
+    "GR"
+   ]
+  },
+  {
+   "code": "DG3.2",
+   "category": "DG",
+   "level": 3,
+   "order": 2,
+   "name": "Pictographs and bar graphs with intervals",
+   "texasMain": [
+    "2.10B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG3.1",
+    "CC3.3"
+   ],
+   "tools": [
+    "GR"
+   ]
+  },
+  {
+   "code": "DG3.3",
+   "category": "DG",
+   "level": 3,
+   "order": 3,
+   "name": "Add and subtract word problems from graphs",
+   "texasMain": [
+    "2.10C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG3.2",
+    "AS3.2"
+   ],
+   "tools": [
+    "GR"
+   ]
+  },
+  {
+   "code": "DG3.4",
+   "category": "DG",
+   "level": 3,
+   "order": 4,
+   "name": "Draw conclusions and predict from a graph",
+   "texasMain": [
+    "2.10D"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG3.2"
+   ],
+   "tools": [
+    "GR"
+   ]
+  },
+  {
+   "code": "DG4.1",
+   "category": "DG",
+   "level": 4,
+   "order": 1,
+   "name": "Frequency tables, dot plots and scaled graphs",
+   "texasMain": [
+    "3.8A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG3.2",
+    "MD2.2"
+   ],
+   "tools": [
+    "GR"
+   ]
+  },
+  {
+   "code": "DG4.2",
+   "category": "DG",
+   "level": 4,
+   "order": 2,
+   "name": "One- and two-step problems from scaled graphs",
+   "texasMain": [
+    "3.8B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG4.1",
+    "DG3.3"
+   ],
+   "tools": [
+    "GR"
+   ]
+  },
+  {
+   "code": "DG5.1",
+   "category": "DG",
+   "level": 5,
+   "order": 1,
+   "name": "Frequency tables, dot plots and stem-and-leaf plots with fractions",
+   "texasMain": [
+    "4.9A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG4.1",
+    "FN3.3"
+   ],
+   "tools": [
+    "GR"
+   ]
+  },
+  {
+   "code": "DG5.2",
+   "category": "DG",
+   "level": 5,
+   "order": 2,
+   "name": "Problems from stem-and-leaf plots and dot plots",
+   "texasMain": [
+    "4.9B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG5.1",
+    "DG4.2"
+   ],
+   "tools": [
+    "GR"
+   ]
+  },
+  {
+   "code": "DG6.1",
+   "category": "DG",
+   "level": 6,
+   "order": 1,
+   "name": "Show data with bar graphs, dot plots and stem-and-leaf plots",
+   "texasMain": [
+    "5.9A"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG5.1"
+   ],
+   "tools": [
+    "GR"
+   ]
+  },
+  {
+   "code": "DG6.2",
+   "category": "DG",
+   "level": 6,
+   "order": 2,
+   "name": "Scatterplots of paired data",
+   "texasMain": [
+    "5.9B"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG6.1",
+    "LA3.2"
+   ],
+   "tools": [
+    "CG"
+   ]
+  },
+  {
+   "code": "DG6.3",
+   "category": "DG",
+   "level": 6,
+   "order": 3,
+   "name": "Solve problems from data displays",
+   "texasMain": [
+    "5.9C"
+   ],
+   "texasAlso": [],
+   "prereqs": [
+    "DG6.1",
+    "DG5.2"
+   ],
+   "tools": [
+    "GR"
+   ]
+  }
+ ]
+}

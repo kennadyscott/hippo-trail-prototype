@@ -1,0 +1,23 @@
+{
+  "name": "hippo-trail-prototype",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "KnowHippo Hippo Trail (math intervention) prototype: the student trail in the live KnowHippo look, the CMS lesson builder, and build costs.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "4.7.0",
+    "typescript": "^5.9.3",
+    "vite": "6.4.6"
+  }
+}
