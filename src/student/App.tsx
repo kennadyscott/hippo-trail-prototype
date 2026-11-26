@@ -215,14 +215,31 @@ function SkillList({p, c, compact}: {p: ClimbProps; c: ReturnType<typeof useClim
   </ul>
 }
 function Pins({p, c, pins, hugoAt}: {p: ClimbProps; c: ReturnType<typeof useClimb>; pins: [number, number][]; hugoAt: 'above' | 'side'}) {
-  return <>{c.levels.map((l, i) => {
-    const k = c.levels.length < 2 ? pins.length - 1 : Math.round(i * (pins.length - 1) / (c.levels.length - 1)), [x, y] = pins[k], cur = l === p.P.level, done = l < p.P.level
-    return <div key={l} className={`ht-pin${cur ? ' cur' : done ? ' done' : ''}`} style={{left: `${x}%`, top: `${y}%`}}>
-      {cur && <img className={`ht-pin-hugo ${hugoAt}`} src={hugoHiker} alt=""/>}
-      <span className="ht-pin-dot">{done ? '✓' : l}</span>
-      <span className="ht-pin-label">{l === c.top ? `Camp ${l} · grade level` : `Camp ${l}`}{cur ? ' · you' : ''}</span>
-    </div>
-  })}</>
+  const pts = c.levels.map((l, i) => { const k = c.levels.length < 2 ? pins.length - 1 : Math.round(i * (pins.length - 1) / (c.levels.length - 1)); return {l, x: pins[k][0], y: pins[k][1]} })
+  const cur = Math.max(0, pts.findIndex(q => q.l === p.P.level))
+  // A smooth curve through the camps (Catmull-Rom as cubic Béziers).
+  const line = (from: number, to: number) => {
+    const q = pts.map(t => [t.x, t.y - 2.5]); if (to <= from) return ''
+    let d = `M ${q[from][0]} ${q[from][1]}`
+    for (let i = from; i < to; i++) { const p0 = q[Math.max(0, i - 1)], p1 = q[i], p2 = q[i + 1], p3 = q[Math.min(q.length - 1, i + 2)]
+      d += ` C ${p1[0] + (p2[0] - p0[0]) / 6} ${p1[1] + (p2[1] - p0[1]) / 6}, ${p2[0] - (p3[0] - p1[0]) / 6} ${p2[1] - (p3[1] - p1[1]) / 6}, ${p2[0]} ${p2[1]}` }
+    return d
+  }
+  return <>
+    <svg className="ht-route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <path d={line(0, pts.length - 1)} className="ht-route-glow"/>
+      <path d={line(cur, pts.length - 1)} className="ht-route-ahead"/>
+      {cur > 0 && <path d={line(0, cur)} className="ht-route-done"/>}
+    </svg>
+    {pts.map(({l, x, y}) => {
+      const isCur = l === p.P.level, done = l < p.P.level
+      return <div key={l} className={`ht-pin${isCur ? ' cur' : done ? ' done' : ''}`} style={{left: `${x}%`, top: `${y}%`}}>
+        {isCur && <img className={`ht-pin-hugo ${hugoAt}`} src={hugoHiker} alt=""/>}
+        <span className="ht-pin-dot">{done ? '✓' : l}</span>
+        <span className="ht-pin-label">{l === c.top ? `Camp ${l} · grade level` : `Camp ${l}`}{isCur ? ' · you are here' : ''}</span>
+      </div>
+    })}
+  </>
 }
 function Pack({c, p, inline}: {c: ReturnType<typeof useClimb>; p: ClimbProps; inline?: boolean}) {
   return <div className={inline ? 'ht-pack-inline' : 'ht-pack'}>

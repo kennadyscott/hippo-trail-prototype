@@ -306,3 +306,22 @@
 .ht-home-head { flex-direction: column; align-items: flex-start; gap: 0; }
 .ht-home-head .ht-subjects { margin-top: 12px; }
 @media (max-width: 760px) { .ht-subjects button { font-size: 15px; padding: 6px 14px 6px 8px; } .ht-subjects button img { width: 26px; height: 26px; } }
+
+/* Readable maps (Kennady, November 26: "it all blends into each other") */
+.htA, .ht-C .htC-pano { position: relative; }
+.ht-A .htA { background: #ffffff8c; backdrop-filter: blur(8px); border: 2px solid #ffffffb3; border-radius: 34px; padding: 16px; }
+.htA-map img, .htC-pano img { filter: saturate(.72) brightness(1.08) contrast(.9); }
+.ht-route { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.ht-route path { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.ht-route-glow { stroke: #291454; stroke-opacity: .55; stroke-width: 11px; }
+.ht-route-ahead { stroke: #fff; stroke-width: 5px; stroke-dasharray: 2 12; }
+.ht-route-done { stroke: #f5a524; stroke-width: 6px; }
+.ht-pin { z-index: 2; gap: 4px; }
+.ht-pin-dot { width: 42px; height: 42px; font-size: 17px; background: #fff; color: #291454; border: 4px solid #291454; box-shadow: 0 4px 12px #29145466; }
+.ht-pin.done .ht-pin-dot { background: #00aa98; color: #fff; border-color: #fff; box-shadow: 0 0 0 3px #291454, 0 4px 12px #29145466; }
+.ht-pin.cur .ht-pin-dot { width: 58px; height: 58px; font-size: 24px; background: #f5a524; color: #fff; border: 5px solid #fff; box-shadow: 0 0 0 4px #291454, 0 0 0 14px #ffd16699, 0 6px 16px #29145477; }
+.ht-pin-label { font-size: 13px; color: #fff; background: #291454; padding: 3px 11px; box-shadow: 0 3px 8px #29145455; }
+.ht-pin.cur .ht-pin-label { background: #f5a524; color: #2a1600; font-size: 14px; }
+.ht-pin-hugo.side { right: calc(100% + 4px); left: auto; bottom: 18px; width: 92px; }
+.ht-pin-hugo.above { bottom: 92px; width: 80px; }
+@keyframes ht-pulse { 50% { box-shadow: 0 0 0 4px #291454, 0 0 0 22px #ffd16633, 0 6px 16px #29145477; } }
