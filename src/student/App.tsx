@@ -28,7 +28,7 @@ const UNLOCKS: Record<TrailCode, string> = {CC: 'Represent Numbers', PV: 'Roundi
 
 type Progress = {level: number; done: Record<string, number>; review: {code: string; from: string; reason: string} | null; minutes: number; started: string; finished?: boolean}
 type View =
-  | {name: 'home'} | {name: 'check'} | {name: 'climb'} | {name: 'review'} | {name: 'tools'} | {name: 'adventures'} | {name: 'rules'}
+  | {name: 'home'} | {name: 'check'} | {name: 'climb'} | {name: 'review'} | {name: 'tools'} | {name: 'adventures'} | {name: 'rules'} | {name: 'built'}
   | {name: 'lesson'; code: string; step: number; review: boolean}
   | {name: 'stepback'; code: string; reason: string} | {name: 'levelup'; level: number}
 const START: Record<TrailCode, Progress> = {
@@ -49,7 +49,7 @@ export function App() {
   setStudentGrade(grade)
   const [layout, setLayoutState] = useState<Layout>(() => { try { const v = localStorage.getItem('hippo-trail-layout'); return v === 'C' || v === 'D' ? v : 'A' } catch { return 'A' } })
   const setLayout = (l: Layout) => { setLayoutState(l); try { localStorage.setItem('hippo-trail-layout', l) } catch { /* ignore */ } }
-  const [trail, setTrail] = useState<TrailCode>(init.trail), [prog, setProg] = useState(init.prog), [view, setView] = useState<View>(() => location.hash === '#rules' ? {name: 'rules'} : {name: 'home'})
+  const [trail, setTrail] = useState<TrailCode>(init.trail), [prog, setProg] = useState(init.prog), [view, setView] = useState<View>(() => location.hash === '#rules' ? {name: 'rules'} : location.hash === '#built' ? {name: 'built'} : {name: 'home'})
   useEffect(() => { try { localStorage.setItem(KEY, JSON.stringify({trail, prog})) } catch { /* ignore */ } }, [trail, prog])
   useEffect(() => { window.scrollTo(0, 0) }, [view.name, (view as {code?: string}).code])
   const P = prog[trail], T = TRAILS[trail]
@@ -95,6 +95,7 @@ export function App() {
     case 'tools': page = <Tools onBack={() => setView({name: 'home'})}/>; break
     case 'adventures': page = <Adventures onBack={() => setView({name: 'home'})}/>; break
     case 'rules': page = <EntryRules name={name} onBack={() => setView({name: 'home'})}/>; break
+    case 'built': page = <QuickToBuild name={name} onBack={() => setView({name: 'home'})}/>; break
     case 'lesson': {
       const s = byCode.get(view.code)!
       page = <LessonPage key={view.code + view.review} name={name} skill={s} trailName={T.name} level={P.level} review={view.review} step={view.step} setStep={n => setView({...view, step: n})}
@@ -107,7 +108,7 @@ export function App() {
   }
 
   return <>
-    <nav className="pt-switch" aria-label="Prototype view"><b>Prototype</b><span>View as</span><a href="./" aria-current="page">Student</a><a href="./teacher.html">Teacher</a><a href="./cms.html">CMS</a><button type="button" className="pt-rules" aria-pressed={view.name === 'rules'} onClick={() => setView({name: 'rules'})}>Entry rules</button><span className="pt-sep">Climb layout</span>{([["A", "Mountain map"], ["C", "Ridge"], ["D", "Drawn"]] as [Layout, string][]).map(([l, label]) => <button key={l} type="button" className="pt-abc" aria-pressed={layout === l} onClick={() => { setLayout(l); setView({name: 'climb'}) }}>{l} · {label}</button>)}<small>Not part of KnowHippo</small></nav>
+    <nav className="pt-switch" aria-label="Prototype view"><b>Prototype</b><span>View as</span><a href="./" aria-current="page">Student</a><a href="./teacher.html">Teacher</a><a href="./cms.html">CMS</a><button type="button" className="pt-rules" aria-pressed={view.name === 'rules'} onClick={() => setView({name: 'rules'})}>Entry rules</button><button type="button" className="pt-rules" aria-pressed={view.name === 'built'} onClick={() => setView({name: 'built'})}>Why it’s quick to build</button><span className="pt-sep">Climb layout</span>{([["A", "Mountain map"], ["C", "Ridge"], ["D", "Drawn"]] as [Layout, string][]).map(([l, label]) => <button key={l} type="button" className="pt-abc" aria-pressed={layout === l} onClick={() => { setLayout(l); setView({name: 'climb'}) }}>{l} · {label}</button>)}<small>Not part of KnowHippo</small></nav>
     <div className="student-world ht-has-bar">
       <Header grade={grade} onHome={() => setView({name: 'home'})}/>
       {page}
@@ -528,6 +529,45 @@ function EntryRules({name, onBack}: {name: string; onBack: () => void}) {
         <article className="ht-rule ht-rule-decided"><h2>Decided</h2><p>Low scores start the {name} on their own, and teachers can also assign it to any student.</p>
           <p className="ht-note">Decided by Kennady, November 26, 2026.</p></article>
       </div>
+    </section>
+  </main>
+}
+
+
+/* ---------- Why it's quick to build: publishers review and approve; they don't build lessons ---------- */
+function QuickToBuild({name, onBack}: {name: string; onBack: () => void}) {
+  const step = (n: string, t: string, d: string, who: 'auto' | 'pub') => <li className={who === 'auto' ? 'gold' : undefined}><span>{n}</span><b>{t}</b><small>{d}</small><em>{who === 'auto' ? 'Automatic' : 'Publisher'}</em></li>
+  return <main className="gw-world gw-detail">
+    <div className="gw-detail-heading"><div>
+      <button type="button" className="gw-back" onClick={onBack}>‹ My Learning</button>
+      <span className="kg-plan-label">Prototype · how lessons get made</span>
+      <h1>Why the {name} is quick to make</h1>
+    </div></div>
+    <section className="ht-rules">
+      <p className="ht-lede">Publishers check and approve lessons. They don’t build them. Everything a lesson needs is already decided by the skill map, one lesson shape and a set of shared tools, so a draft appears on its own and the publisher’s job is to play it and say yes.</p>
+      <ol className="ht-flow ht-flow-built">
+        {step('1', 'Skill map', '219 skills, already planned', 'auto')}
+        {step('2', 'Draft appears', 'Made from the skill map in seconds · $0', 'auto')}
+        {step('3', 'Play it', 'As a student, in the preview', 'pub')}
+        {step('4', 'Fix what’s off', 'A word, a number, a picture', 'pub')}
+        {step('5', 'Approve', 'Or Feedback / Stuck with a note', 'pub')}
+      </ol>
+      <h2 className="ht-sec">Already done for every lesson</h2>
+      <div className="ht-rule-grid">
+        <article className="ht-rule"><h2>The plan is the skill map</h2><p>219 skills in 17 categories. Each one already has its level, the skill it builds on, its standards and its tools. No one designs a sequence lesson by lesson.</p></article>
+        <article className="ht-rule"><h2>Every lesson has the same shape</h2><p>Warm-up, Show Me, Build together, Build it yourself, Show what you know. There’s no layout or flow to invent, and students always know what comes next.</p></article>
+        <article className="ht-rule"><h2>The draft writes itself</h2><p>Rules turn the skill into a full lesson: numbers in the right range (a teen skill practices teens), the right tool, the Show Me moves, 8 practice problems, and warm-up and mastery questions. No AI is needed, so it costs nothing.</p></article>
+        <article className="ht-rule"><h2>The tools check the answers</h2><p>Counters, ten frames, number lines and the rest know what the student built. There’s no answer key to write, and the hint for each kind of mistake comes from the tool.</p></article>
+        <article className="ht-rule"><h2>The rules are set once</h2><p>More practice after a miss, moving down a level, the help ladder and the pass mark are one setting for every lesson, not something to build into each one.</p></article>
+        <article className="ht-rule"><h2>One lesson feeds three places</h2><p>The same mastery questions are reused by Hippo Check (placement) and spiral review, so those don’t need their own content.</p></article>
+      </div>
+      <div className="ht-rule-grid">
+        <article className="ht-rule ht-rule-decided"><h2>What a publisher does</h2><p>Open the draft, play it in the student preview, fix anything that’s off, then approve.</p>
+          <dl><div><dt>Per skill</dt><dd>About an hour, mostly playing it</dd></div><div><dt>Counting &amp; Cardinality</dt><dd>21 skills · about 26 hours</dd></div><div><dt>All of K–5 math</dt><dd>219 skills · about 274 hours</dd></div><div><dt>AI cost to draft</dt><dd>$0 (rules, not AI)</dd></div></dl></article>
+        <article className="ht-rule"><h2>What’s still real building</h2><p>The manipulatives, built once by developers and reused by every lesson that needs them.</p>
+          <dl><div><dt>Built so far</dt><dd>Counters, linking cubes, ten frames, number lines, hundreds board</dd></div><div><dt>8 tools cover</dt><dd>The main tool for 141 of the 219 skills</dd></div><div><dt>Next to build</dt><dd>Place value chart, base-ten blocks, fraction bars</dd></div></dl></article>
+      </div>
+      <div className="ht-row ht-row-center"><a className="ht-gold ht-linkbtn" href="./cms.html">See the lesson builder in the CMS →</a></div>
     </section>
   </main>
 }
