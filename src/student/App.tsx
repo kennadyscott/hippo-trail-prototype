@@ -35,7 +35,7 @@ const START: Record<TrailCode, Progress> = {
   CC: {level: 2, done: {'CC2.1': 100, 'CC2.2': 75}, review: null, minutes: 42, started: 'Nov 3'},
   PV: {level: 1, done: {}, review: null, minutes: 0, started: 'Nov 24'},
 }
-const KEY = 'hippo-trail-progress-v2'
+const KEY = 'hippo-trail-progress-v3'   // v3: skills were renumbered when every level became one grade
 const load = (): {trail: TrailCode; prog: Record<TrailCode, Progress>} => {
   try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s?.prog?.CC?.started && s?.prog?.PV?.started) return s } catch { /* ignore */ }
   return {trail: 'CC', prog: structuredClone(START)}

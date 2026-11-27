@@ -23,11 +23,12 @@ export const byId = new Map(baseMap.skills.map(s => [s.id, s]))
 export const skillsOf = (cat: string) => baseMap.skills.filter(s => s.category === cat).sort((a, b) => a.level - b.level || a.order - b.order)
 export const CC = skillsOf('CC')
 
-// The two trails in the prototype. Level names are what students read; grades stay hidden.
+// The two trails in the prototype. Level names are what students read; grades stay hidden. One level is one grade (November 27, 2026):
+// Counting's two Kinder levels became one, so Level 1 is Kinder, Level 2 is grade 1 and so on.
 export type TrailCode = 'CC' | 'PV'
 export const TRAILS: Record<TrailCode, {name: string; levelNames: Record<number, string>; playableTo: number}> = {
-  CC: {name: 'Counting & Cardinality', playableTo: 4,
-    levelNames: {1: 'Count to 10', 2: 'The teens, then to 100', 3: 'Count to 120', 4: 'Count to 1,200', 5: 'Count to 100,000', 6: 'Big numbers and tenths', 7: 'Decimals to thousandths'}},
+  CC: {name: 'Counting & Cardinality', playableTo: 3,
+    levelNames: {1: 'Count to 20, then to 100', 2: 'Count to 120', 3: 'Count to 1,200', 4: 'Count to 100,000', 5: 'Big numbers and tenths', 6: 'Decimals to thousandths'}},
   PV: {name: 'Base Ten Place Value', playableTo: 1,
     levelNames: {1: 'Ten and some more', 2: 'Tens and ones', 3: 'Hundreds, tens and ones', 4: 'Big numbers and rounding', 5: 'Each place is 10 times', 6: 'Decimals'}},
 }

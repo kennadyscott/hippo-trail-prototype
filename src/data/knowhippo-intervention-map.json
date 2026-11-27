@@ -1,5 +1,5 @@
 {
- "about": "KnowHippo intervention skill map, Texas K-5 math. Drafted 2026-11-22 from the 246 active Texas K-5 math standards; Counting & Cardinality split 11-22 (to 10, then 11-20); toolkit from Kennady 11-26. Personal Financial Literacy is off the map. Review copy: Claude outputs/hippo-trail-k5-math-skill-map-2026-11-22.xlsx.",
+ "about": "KnowHippo intervention skill map, Texas K-5 math. Drafted 2026-11-22 from the 246 active Texas K-5 math standards; one level per grade since 11-27 (Counting & Cardinality's two Kinder levels and Lines, Angles & Coordinates' two grade 4 levels merged); toolkit from Kennady 11-26. Personal Financial Literacy is off the map. Review copy: Claude outputs/hippo-trail-k5-math-skill-map-2026-11-22.xlsx.",
  "zones": [
   "Whole Numbers",
   "Operations",
@@ -17,12 +17,11 @@
    "order": 1,
    "texasGrades": {
     "1": "K",
-    "2": "K",
-    "3": "1",
-    "4": "2",
-    "5": "3",
-    "6": "4",
-    "7": "5"
+    "2": "1",
+    "3": "2",
+    "4": "3",
+    "5": "4",
+    "6": "5"
    }
   },
   {
@@ -168,8 +167,7 @@
    "order": 13,
    "texasGrades": {
     "1": "4",
-    "2": "4",
-    "3": "5"
+    "2": "5"
    }
   },
   {
@@ -263,7 +261,7 @@
   },
   {
    "code": "B10",
-   "name": "Base-ten materials: linking cubes, straws and bands, counters and containers, KP Ten Frame Tiles",
+   "name": "Base-ten blocks and materials: linking cubes, straws and bands, counters and containers, KP Ten Frame Tiles",
    "group": "Place value",
    "onList": true,
    "order": 6
@@ -396,21 +394,21 @@
   },
   {
    "code": "AR",
-   "name": "Arrays",
+   "name": "Arrays and area models",
    "group": "Graphic organizers",
    "onList": true,
    "order": 25
   },
   {
    "code": "SD",
-   "name": "Bar models / tape diagrams",
+   "name": "Strip diagrams (bar models / tape diagrams)",
    "group": "Graphic organizers",
    "onList": true,
    "order": 26
   },
   {
    "code": "HB",
-   "name": "Hundreds boards",
+   "name": "Hundreds boards (hundred grids)",
    "group": "Graphic organizers",
    "onList": true,
    "order": 27
@@ -537,10 +535,10 @@
    ]
   },
   {
-   "code": "CC2.1",
+   "code": "CC1.5",
    "category": "CC",
-   "level": 2,
-   "order": 1,
+   "level": 1,
+   "order": 5,
    "name": "Count forward and back from 10 to 20",
    "texasMain": [
     "K.2A"
@@ -555,10 +553,10 @@
    ]
   },
   {
-   "code": "CC2.2",
+   "code": "CC1.6",
    "category": "CC",
-   "level": 2,
-   "order": 2,
+   "level": 1,
+   "order": 6,
    "name": "Say and read the teen numbers: eleven to nineteen",
    "texasMain": [
     "K.2B"
@@ -566,7 +564,7 @@
    "texasAlso": [],
    "prereqs": [
     "CC1.4",
-    "CC2.1"
+    "CC1.5"
    ],
    "tools": [
     "TF",
@@ -574,10 +572,10 @@
    ]
   },
   {
-   "code": "CC2.3",
+   "code": "CC1.7",
    "category": "CC",
-   "level": 2,
-   "order": 3,
+   "level": 1,
+   "order": 7,
    "name": "Count a set of 11 to 20 objects",
    "texasMain": [
     "K.2C"
@@ -585,7 +583,7 @@
    "texasAlso": [],
    "prereqs": [
     "CC1.2",
-    "CC2.1"
+    "CC1.5"
    ],
    "tools": [
     "CTR",
@@ -594,15 +592,15 @@
    ]
   },
   {
-   "code": "CC2.4",
+   "code": "CC1.8",
    "category": "CC",
-   "level": 2,
-   "order": 4,
+   "level": 1,
+   "order": 8,
    "name": "Teen numbers as 10 and some more on ten frames",
    "texasMain": [],
    "texasAlso": [],
    "prereqs": [
-    "CC2.3"
+    "CC1.7"
    ],
    "tools": [
     "TF",
@@ -611,18 +609,18 @@
    ]
   },
   {
-   "code": "CC2.5",
+   "code": "CC1.9",
    "category": "CC",
-   "level": 2,
-   "order": 5,
+   "level": 1,
+   "order": 9,
    "name": "Write and show numbers 11 to 20",
    "texasMain": [
     "K.2B"
    ],
    "texasAlso": [],
    "prereqs": [
-    "CC2.2",
-    "CC2.4"
+    "CC1.6",
+    "CC1.8"
    ],
    "tools": [
     "TF",
@@ -630,17 +628,17 @@
    ]
   },
   {
-   "code": "CC2.6",
+   "code": "CC1.10",
    "category": "CC",
-   "level": 2,
-   "order": 6,
+   "level": 1,
+   "order": 10,
    "name": "Count to 100 by ones and tens",
    "texasMain": [
     "K.5A"
    ],
    "texasAlso": [],
    "prereqs": [
-    "CC2.1"
+    "CC1.5"
    ],
    "tools": [
     "HB",
@@ -648,9 +646,9 @@
    ]
   },
   {
-   "code": "CC3.1",
+   "code": "CC2.1",
    "category": "CC",
-   "level": 3,
+   "level": 2,
    "order": 1,
    "name": "Count forward and back from any number to 120",
    "texasMain": [
@@ -658,7 +656,7 @@
    ],
    "texasAlso": [],
    "prereqs": [
-    "CC2.6"
+    "CC1.10"
    ],
    "tools": [
     "HB",
@@ -666,9 +664,9 @@
    ]
   },
   {
-   "code": "CC3.2",
+   "code": "CC2.2",
    "category": "CC",
-   "level": 3,
+   "level": 2,
    "order": 2,
    "name": "Recognize structured quantities instantly",
    "texasMain": [
@@ -684,9 +682,9 @@
    ]
   },
   {
-   "code": "CC3.3",
+   "code": "CC2.3",
    "category": "CC",
-   "level": 3,
+   "level": 2,
    "order": 3,
    "name": "Skip count by 2s, 5s and 10s to find how many, to 120",
    "texasMain": [
@@ -694,7 +692,7 @@
    ],
    "texasAlso": [],
    "prereqs": [
-    "CC3.1"
+    "CC2.1"
    ],
    "tools": [
     "NL",
@@ -703,9 +701,9 @@
    ]
   },
   {
-   "code": "CC3.4",
+   "code": "CC2.4",
    "category": "CC",
-   "level": 3,
+   "level": 2,
    "order": 4,
    "name": "Read and write numbers to 120",
    "texasMain": [],
@@ -713,8 +711,8 @@
     "1.2C"
    ],
    "prereqs": [
-    "CC2.5",
-    "CC3.1"
+    "CC1.9",
+    "CC2.1"
    ],
    "tools": [
     "PVT",
@@ -722,9 +720,9 @@
    ]
   },
   {
-   "code": "CC4.1",
+   "code": "CC3.1",
    "category": "CC",
-   "level": 4,
+   "level": 3,
    "order": 1,
    "name": "Read, write and say numbers to 1,200 in standard and word form",
    "texasMain": [],
@@ -732,7 +730,7 @@
     "2.2B"
    ],
    "prereqs": [
-    "CC3.4"
+    "CC2.4"
    ],
    "tools": [
     "PVC",
@@ -740,15 +738,15 @@
    ]
   },
   {
-   "code": "CC4.2",
+   "code": "CC3.2",
    "category": "CC",
-   "level": 4,
+   "level": 3,
    "order": 2,
    "name": "Count on by 10s and 100s from any number to 1,200",
    "texasMain": [],
    "texasAlso": [],
    "prereqs": [
-    "CC3.3"
+    "CC2.3"
    ],
    "tools": [
     "NL",
@@ -756,14 +754,47 @@
    ]
   },
   {
-   "code": "CC5.1",
+   "code": "CC4.1",
    "category": "CC",
-   "level": 5,
+   "level": 4,
    "order": 1,
    "name": "Read, write and say numbers to 100,000",
    "texasMain": [],
    "texasAlso": [
     "3.2A"
+   ],
+   "prereqs": [
+    "CC3.1"
+   ],
+   "tools": [
+    "PVC"
+   ]
+  },
+  {
+   "code": "CC4.2",
+   "category": "CC",
+   "level": 4,
+   "order": 2,
+   "name": "Count on by 1,000s and 10,000s",
+   "texasMain": [],
+   "texasAlso": [],
+   "prereqs": [
+    "CC3.2"
+   ],
+   "tools": [
+    "NL",
+    "PVC"
+   ]
+  },
+  {
+   "code": "CC5.1",
+   "category": "CC",
+   "level": 5,
+   "order": 1,
+   "name": "Read, write and say whole numbers to 1,000,000,000",
+   "texasMain": [],
+   "texasAlso": [
+    "4.2B"
    ],
    "prereqs": [
     "CC4.1"
@@ -777,46 +808,13 @@
    "category": "CC",
    "level": 5,
    "order": 2,
-   "name": "Count on by 1,000s and 10,000s",
-   "texasMain": [],
-   "texasAlso": [],
-   "prereqs": [
-    "CC4.2"
-   ],
-   "tools": [
-    "NL",
-    "PVC"
-   ]
-  },
-  {
-   "code": "CC6.1",
-   "category": "CC",
-   "level": 6,
-   "order": 1,
-   "name": "Read, write and say whole numbers to 1,000,000,000",
-   "texasMain": [],
-   "texasAlso": [
-    "4.2B"
-   ],
-   "prereqs": [
-    "CC5.1"
-   ],
-   "tools": [
-    "PVC"
-   ]
-  },
-  {
-   "code": "CC6.2",
-   "category": "CC",
-   "level": 6,
-   "order": 2,
    "name": "Name tenths and hundredths in words and numerals",
    "texasMain": [],
    "texasAlso": [
     "4.2E"
    ],
    "prereqs": [
-    "CC5.1",
+    "CC4.1",
     "FN4.1"
    ],
    "tools": [
@@ -825,9 +823,9 @@
    ]
   },
   {
-   "code": "CC7.1",
+   "code": "CC6.1",
    "category": "CC",
-   "level": 7,
+   "level": 6,
    "order": 1,
    "name": "Read, write and say decimals to thousandths",
    "texasMain": [],
@@ -835,7 +833,7 @@
     "5.2A"
    ],
    "prereqs": [
-    "CC6.2"
+    "CC5.2"
    ],
    "tools": [
     "PVC"
@@ -852,7 +850,7 @@
    ],
    "texasAlso": [],
    "prereqs": [
-    "CC2.3"
+    "CC1.7"
    ],
    "tools": [
     "TF",
@@ -870,7 +868,7 @@
    ],
    "texasAlso": [],
    "prereqs": [
-    "CC2.1"
+    "CC1.5"
    ],
    "tools": [
     "NL"
@@ -906,7 +904,7 @@
    "texasAlso": [],
    "prereqs": [
     "NS1.3",
-    "CC2.5"
+    "CC1.9"
    ],
    "tools": [
     "NL"
@@ -1049,7 +1047,7 @@
    ],
    "texasAlso": [],
    "prereqs": [
-    "CC3.3"
+    "CC2.3"
    ],
    "tools": [
     "TF",
@@ -1228,7 +1226,7 @@
    "texasAlso": [],
    "prereqs": [
     "PV1.1",
-    "CC2.4"
+    "CC1.8"
    ],
    "tools": [
     "TF",
@@ -1304,7 +1302,7 @@
    "texasAlso": [],
    "prereqs": [
     "PV3.1",
-    "CC4.1"
+    "CC3.1"
    ],
    "tools": [
     "PVC"
@@ -1394,7 +1392,7 @@
    "texasAlso": [],
    "prereqs": [
     "PV5.1",
-    "CC6.1"
+    "CC5.1"
    ],
    "tools": [
     "PVC",
@@ -1890,7 +1888,7 @@
    ],
    "texasAlso": [],
    "prereqs": [
-    "CC3.3",
+    "CC2.3",
     "AS2.1"
    ],
    "tools": [
@@ -2957,7 +2955,7 @@
    "texasMain": [],
    "texasAlso": [],
    "prereqs": [
-    "CC3.3"
+    "CC2.3"
    ],
    "tools": [
     "PVC",
@@ -3011,7 +3009,7 @@
    "texasAlso": [],
    "prereqs": [
     "PR3.1",
-    "LA3.2"
+    "LA2.2"
    ],
    "tools": [
     "CG"
@@ -3447,10 +3445,10 @@
    ]
   },
   {
-   "code": "LA2.1",
+   "code": "LA1.5",
    "category": "LA",
-   "level": 2,
-   "order": 1,
+   "level": 1,
+   "order": 5,
    "name": "What an angle measure is: parts of a circle and degrees",
    "texasMain": [
     "4.7A",
@@ -3466,51 +3464,51 @@
    ]
   },
   {
-   "code": "LA2.2",
+   "code": "LA1.6",
    "category": "LA",
-   "level": 2,
-   "order": 2,
+   "level": 1,
+   "order": 6,
    "name": "Measure angles with a protractor",
    "texasMain": [
     "4.7C"
    ],
    "texasAlso": [],
    "prereqs": [
-    "LA2.1"
+    "LA1.5"
    ],
    "tools": [
     "PRO"
    ]
   },
   {
-   "code": "LA2.3",
+   "code": "LA1.7",
    "category": "LA",
-   "level": 2,
-   "order": 3,
+   "level": 1,
+   "order": 7,
    "name": "Draw an angle of a given measure",
    "texasMain": [
     "4.7D"
    ],
    "texasAlso": [],
    "prereqs": [
-    "LA2.2"
+    "LA1.6"
    ],
    "tools": [
     "PRO"
    ]
   },
   {
-   "code": "LA2.4",
+   "code": "LA1.8",
    "category": "LA",
-   "level": 2,
-   "order": 4,
+   "level": 1,
+   "order": 8,
    "name": "Find an unknown angle from two adjacent angles",
    "texasMain": [
     "4.7E"
    ],
    "texasAlso": [],
    "prereqs": [
-    "LA2.2",
+    "LA1.6",
     "AS4.1"
    ],
    "tools": [
@@ -3518,9 +3516,9 @@
    ]
   },
   {
-   "code": "LA3.1",
+   "code": "LA2.1",
    "category": "LA",
-   "level": 3,
+   "level": 2,
    "order": 1,
    "name": "Parts of the coordinate plane",
    "texasMain": [
@@ -3535,9 +3533,9 @@
    ]
   },
   {
-   "code": "LA3.2",
+   "code": "LA2.2",
    "category": "LA",
-   "level": 3,
+   "level": 2,
    "order": 2,
    "name": "How to graph ordered pairs",
    "texasMain": [
@@ -3545,16 +3543,16 @@
    ],
    "texasAlso": [],
    "prereqs": [
-    "LA3.1"
+    "LA2.1"
    ],
    "tools": [
     "CG"
    ]
   },
   {
-   "code": "LA3.3",
+   "code": "LA2.3",
    "category": "LA",
-   "level": 3,
+   "level": 2,
    "order": 3,
    "name": "Graph ordered pairs from problems, patterns and tables",
    "texasMain": [
@@ -3562,7 +3560,7 @@
    ],
    "texasAlso": [],
    "prereqs": [
-    "LA3.2",
+    "LA2.2",
     "PR3.1"
    ],
    "tools": [
@@ -3886,7 +3884,7 @@
    "texasAlso": [],
    "prereqs": [
     "TM2.1",
-    "CC3.3"
+    "CC2.3"
    ],
    "tools": [
     "CN"
@@ -3903,7 +3901,7 @@
    ],
    "texasAlso": [],
    "prereqs": [
-    "CC2.5"
+    "CC1.9"
    ],
    "tools": [
     "CLK"
@@ -3956,7 +3954,7 @@
    "texasAlso": [],
    "prereqs": [
     "TM2.4",
-    "CC3.3"
+    "CC2.3"
    ],
    "tools": [
     "CLK"
@@ -4008,7 +4006,7 @@
    ],
    "texasAlso": [],
    "prereqs": [
-    "CC3.3",
+    "CC2.3",
     "SA3.1"
    ],
    "tools": [
@@ -4248,7 +4246,7 @@
    "texasAlso": [],
    "prereqs": [
     "DG1.1",
-    "CC3.3"
+    "CC2.3"
    ],
    "tools": [
     "GR"
@@ -4319,7 +4317,7 @@
    "texasAlso": [],
    "prereqs": [
     "DG3.1",
-    "CC3.3"
+    "CC2.3"
    ],
    "tools": [
     "GR"
@@ -4461,7 +4459,7 @@
    "texasAlso": [],
    "prereqs": [
     "DG6.1",
-    "LA3.2"
+    "LA2.2"
    ],
    "tools": [
     "CG"

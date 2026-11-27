@@ -141,7 +141,7 @@ export function skillRange(s: Pick<DraftSkill, 'name' | 'levelNo' | 'categoryCod
   if (/to 100\b|by ones and tens/.test(n)) return { lo: 20, hi: 100 }
   if (/to 120\b/.test(n)) return { lo: 20, hi: 120 }
   if (/1,200|10s and 100s/.test(n)) return { lo: 120, hi: 1200 }
-  if (s.categoryCode === 'CC') return s.levelNo <= 1 ? { lo: 1, hi: 10 } : s.levelNo === 2 ? { lo: 11, hi: 20 } : s.levelNo === 3 ? { lo: 20, hi: 120 } : { lo: 120, hi: 1200 }
+  if (s.categoryCode === 'CC') return s.levelNo <= 1 ? { lo: 1, hi: 10 } : s.levelNo === 2 ? { lo: 20, hi: 120 } : { lo: 120, hi: 1200 }   // one level per grade: K, grade 1, grade 2
   return { lo: 1, hi: 20 }
 }
 /** The first built tool the skill lists, else ten frames. */
