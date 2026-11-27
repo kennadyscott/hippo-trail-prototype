@@ -220,10 +220,11 @@ function Mastery({L, onPass, onRetry}: {L: LessonSteps; onPass: (pct: number) =>
 /* ---------- prompts (same wording as the CMS player) ---------- */
 export function buildPrompt(tool: string, n: number) { return tool === 'NL' ? `Put the marker on ${n}.` : tool === 'HB' ? `Find ${n} on the hundreds board.` : tool === 'LC' ? `Make a train of ${n} cubes.` : tool === 'TF' ? `Show ${n} on the ten frames.` : `Show ${n} counters.` }
 function readPrompt(tool: string) { return tool === 'NL' ? 'What number is the marker on?' : tool === 'HB' ? 'Which number is hidden?' : tool === 'LC' ? 'How many cubes?' : 'How many counters?' }
+// Guided prompts coach how to build the number. They never say the tool is right, how many are left or that there are too many: only
+// Check tells (November 27, 2026).
 function guidePrompt(tool: string, scene: Scene, n: number) {
-  const have = sceneNumber(scene) ?? 0
-  if (tool === 'TF' && scene.tool === 'TF') { const first = scene.cells.filter(c => c < 10).length; return have > n ? 'Too many. Tap one to take it away.' : n > 10 && first < 10 ? `Show ${n}. Fill the first ten frame first.` : have < n ? `Now ${n - have} more.` : 'Ready? Press Check.' }
-  if (tool === 'NL') return scene.tool === 'NL' && scene.at === n ? 'Ready? Press Check.' : `Count the jumps from ${scene.tool === 'NL' ? scene.min : 0} to ${n}, then tap it.`
-  if (tool === 'HB') return scene.tool === 'HB' && scene.marked.length === 1 && scene.marked[0] === n ? 'Ready? Press Check.' : n > 10 ? `Find the row that starts at ${Math.floor((n - 1) / 10) * 10 + 1}, then count along it.` : `Count along the first row to ${n}.`
-  return have > n ? 'Too many. Take one away.' : have < n ? `${buildPrompt(tool, n)} Count each one as you add it.` : 'Ready? Press Check.'
+  if (tool === 'TF' && scene.tool === 'TF') { const first = scene.cells.filter(c => c < 10).length; return n > 10 && first < 10 && scene.cells.some(c => c >= 10) ? `Show ${n}. Fill the first ten frame first.` : n > 10 ? `Show ${n}. Fill the first ten frame, then count on.` : `Show ${n}. Count each one as you add it.` }
+  if (tool === 'NL') return `Count the jumps from ${scene.tool === 'NL' ? scene.min : 0} to ${n}, then tap it.`
+  if (tool === 'HB') return n > 10 ? `Find the row that starts at ${Math.floor((n - 1) / 10) * 10 + 1}, then count along it to ${n}.` : `Count along the first row to ${n}.`
+  return `${buildPrompt(tool, n)} Count each one as you add it.`
 }
